@@ -56,11 +56,12 @@ public:
    * @param r Registro a agregar
    *
    * \pre t = \P{this} \LAND campos(r) = campos(t) \LAND puedoInsertar?(r, t)
-   * \post \P{this} = agregarRegistro(r, t)
+   * \post \P{this} = agregarRegistro(r, t) \LAND \P{res} apunta al registro
+   * recién agregado.
    *
    * \complexity{\O(copy(registro))}
    */
-  void agregarRegistro(const Registro &r);
+  const_iterador_registros agregarRegistro(const Registro &r);
 
   /**
    * @brief Campos de la tabla

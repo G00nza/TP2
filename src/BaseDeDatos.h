@@ -175,11 +175,14 @@ private:
      *     * ) \LAND
      *     * obtener(c, _uso_criterios) > 0
      *
-     * abs: registro \TO Registro\n
-     * abs(r) \EQUIV r' \|
-     *  * campos(r') = _campos \LAND
-     *  * \FORALL (c : string) c \in _campos \IMPLIES valor(c, r') = valor(c,
-     *    _datos) 
+     * abs: basededatos \TO BaseDeDatos\n
+     * abs(bd) \EQUIV bd' \|
+     *  * _nombres_tablas = tablas(bd') \LAND
+     *  * (\FORALL nt : string) nt \IN _nombres_tablas \IMPLIES
+     *    * obtener(nt, _tablas) = dameTabla(nt, bd') \LAND
+     *  * (\FORALL c : criterio) 
+     *    * (usoCriterio(c, bd') == 0 \LAND \LNOT def?(c, _uso_criterios)) \LOR
+     *    * (usoCriterio(c, db') == obtener(c, _uso_criterios))
      */
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
