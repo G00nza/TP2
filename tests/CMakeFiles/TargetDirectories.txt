@@ -1,0 +1,16 @@
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/CMakeFiles/install/strip.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/CMakeFiles/install/local.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/CMakeFiles/install.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/CMakeFiles/list_install_components.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/CMakeFiles/rebuild_cache.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/CMakeFiles/edit_cache.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/CMakeFiles/doc_doxygen.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/CMakeFiles/correrTests.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/tests/google-test/CMakeFiles/install/strip.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/tests/google-test/CMakeFiles/install/local.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/tests/google-test/CMakeFiles/install.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/tests/google-test/CMakeFiles/list_install_components.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/tests/google-test/CMakeFiles/edit_cache.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/tests/google-test/CMakeFiles/gtest_main.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/tests/google-test/CMakeFiles/rebuild_cache.dir
+/home/march/algoritmos2/2017/c2/tps/tp2/tp2_base/tests/google-test/CMakeFiles/gtest.dir
