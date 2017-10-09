@@ -1,138 +1,162 @@
+
+#ifndef TP2_LINEAR_MAP_HPP
+#define TP2_LINEAR_MAP_HPP
+
 #include "linear_map.h"
-#include <utility>
 
 using namespace std;
 
-template<class K, class S>
-linear_map<K, S>::linear_map() : _elems() {}
 
 template<class K, class S>
-linear_map<K, S>::linear_map(const linear_map<K, S>& other) : 
-    _elems(other._elems) {}
-
+linear_map::linear_map(): _elem() {}
 
 template<class K, class S>
-pair<typename linear_map<K, S>::iterator, bool>
-  linear_map<K, S>::insert(const linear_map<K, S>::value_type& v) {
-    for (linear_map<K, S>::iterator it = _elems.begin(); it != _elems.end(); ++it) {
-      if (it->first == v.first) {
-        it->second = v.second;
-        return make_pair(it, false);
-      } 
+linear_map::linear_map(const linear_map<K, S> &other) {
+    linear_map res();
+
+    auto it = other._elems::begin();
+    while (it != other._elems::end()){
+        res._elems.push_back(*it);
+        ++it;
     }
-    auto it = _elems.insert(_elems.end(), v);
-    return make_pair(it, true); 
-  }
+    return res;
+}
+
+template<class value_type>
+pair<iterator, bool> linear_map::insert(const value_type& v){
+    bool res = true;
+
+    auto it = begin();
+    while (it != end()){
+        if (*it.first == v.first){
+            *it.second = v.second;
+            res = false;
+        }
+        ++it;
+    }
+    if (res){
+        _elems.push_back(v);
+    }
+    return make_pair(it, res);
+}
+
 
 template<class K, class S>
-typename linear_map<K, S>::iterator linear_map<K, S>::fast_insert(const linear_map<K, S>::value_type& v) {
-  auto it = _elems.insert(_elems.end(), v);
-  return it; 
-}
-  
-template<class K, class S>
-linear_map<K, S>& linear_map<K, S>::operator=(const linear_map<K, S>& other) {
-  _elems.clear();
-  for (auto v : other._elems) {
+linear_map::iterator linear_map::fast_insert(const value_type& v){
+    auto it = _elems::end();
     _elems.push_back(v);
-  }
-  return *this;
+
+    return it;
 }
 
 template<class K, class S>
-typename linear_map<K, S>::size_type linear_map<K, S>::size() const {
-  return _elems.size();
+linear_map::size_type linear_map::size() const{
+    return _elems.size();
 }
 
 template<class K, class S>
-typename linear_map<K, S>::iterator linear_map<K, S>::find(const K &k) {
-  for (auto it = _elems.begin(); it != _elems.end(); ++it) {
-    if (it->first == k) {
-      return it;
+S& linear_map::at(const K& key){
+   S res;
+
+    auto it = _elems::begin();
+    while (it != _elems::end()){
+        if (*it.first == v.first) {
+            res = *it.second;
+        }
+
+        ++it;
     }
-  }
-  return _elems.end();
+    return res;
 }
 
-template<class K, class S>
-typename linear_map<K, S>::const_iterator 
-linear_map<K, S>::find(const K &k) const {
-  for (auto it = _elems.begin(); it != _elems.end(); it++) {
-    if (it->first == k) {
-      return it;
+
+template<class K>
+linear_map::iterator linear_map::find(const K &k){
+    auto res = _elems::begin();
+    while(res != _elems::end() && *res.first != k){
+        ++res;
     }
-  }
-  return _elems.end();
-}
-  
-template<class K, class S>
-size_t linear_map<K, S>::count(const K &k) const{
-  return find(k) != _elems.end();
+    return res;
 }
 
-template<class K, class S>
-bool linear_map<K, S>::operator==(const linear_map<K, S> &other) const {
-  for (auto v : other) {
-    if (not count(v.first) or at(v.first) != v.second) {
-      return false;
+template<class K>
+linear_map::const_iterator linear_map::find(const K &k) const{
+    auto res = _elems::begin();//Es un const, ojo con el auto
+    while(res != _elems::end() && *res.first != k){
+        ++res;
     }
-  }
-  return true;
+    return res;
 }
 
+linear_map::iterator linear_map::begin(){
+    auto res = _elems::begin();
+    return res;
+}
+
+linear_map::iterator linear_map::end(){
+    auto res = _elems::end();
+    return res;
+}
+
+linear_map::const_iterator linear_map::begin() const{
+    auto res = _elems::begin();
+    return res;
+}
+
+linear_map::const_iterator linear_map::end() const{
+    auto res = _elems::end();
+    return res;
+}
+
+//size_t linear_map::count(const K &k) const {}
+
 template<class K, class S>
-typename linear_map<K, S>::size_type linear_map<K, S>::erase(const K& key) {
-  for (auto it = _elems.begin(); it != _elems.end(); it++) {
-    if (it->first == key) {
-      _elems.erase(it);
-      return 1;
+const S& linear_map::at(const K& key) const{
+    S res;
+
+    auto it = _elems::begin();
+    while (it != _elems::end()){
+        if (*it.first == v.first) {
+            res = *it.second;
+        }
+
+        ++it;
     }
-  }
+    return res;
 }
 
 template<class K, class S>
-const S& linear_map<K, S>::at(const K& key) const {
-  return find(key)->second;
+size_type linear_map::erase(const K& key){
+    auto it = find (key);
+    _elems::erase(it);
+    return 0; //no se k onda aca guachin
 }
 
 template<class K, class S>
-S& linear_map<K, S>::at(const K& key) {
-  return find(key)->second;
-}
-  
-template<class K, class S>
-typename linear_map<K, S>::iterator linear_map<K, S>::begin() {
-  return _elems.begin();
-}
+linear_map& linear_map::operator=(const linear_map& other){
+    linear_map& res();
 
-template<class K, class S>
-typename linear_map<K, S>::iterator linear_map<K, S>::end() {
-  return _elems.end();
-}
-
-template<class K, class S>
-typename linear_map<K, S>::const_iterator linear_map<K, S>::begin() const {
-  return _elems.cbegin();
-}
-
-template<class K, class S>
-typename linear_map<K, S>::const_iterator linear_map<K, S>::end() const {
-  return _elems.cend();
-}
-
-template<class K, class S>
-std::ostream &operator<<(std::ostream &os, const linear_map<K, S>& m) {
-    os << "{ ";
-    int count = m.size();
-    for (auto kv : m) {
-      count--;
-      os << kv.first << ": " << kv.second;
-      if (count) {
-        os << ", ";
-      }
+    auto it = other._elems::begin();
+    while (it != other._elems::end()){
+        res._elems.push_back(*it);
+        ++it;
     }
-    os << " }";
-    return os;
+    return res;
+}
+
+template<class K, class S>
+bool linear_map::operator==(const linear_map &other) const {
+    bool res = true;
+    auto itThis = this.begin();
+    while (itThis != this.end() && res){
+        res &= *other.find(*itThis.first) == *itThis;
+    }
+    auto itOther = other.begin();
+    while (itOther != other.end() && res){
+        res &= *this.find(*itOther.first) == *itOther;
+    }
+    return res;
 }
 
 
+#endif //TP2_LINEAR_MAP_HPP
