@@ -19,6 +19,19 @@ linear_map<K,S>::linear_map(const linear_map<K, S> &other) {
     }
     //return this;
 }
+
+template<class K, class S>
+pair<typename linear_map<K, S>::iterator, bool>
+linear_map<K, S>::insert(const linear_map<K, S>::value_type& v) {
+    for (linear_map<K, S>::iterator it = _elems.begin(); it != _elems.end(); ++it) {
+        if (it->first == v.first) {
+            it->second = v.second;
+            return make_pair(it, false);
+        }
+    }
+    auto it = _elems.insert(_elems.end(), v);
+    return make_pair(it, true);
+}
 /*
 template<class K, class S>
 pair<iterator, bool> linear_map<K,S>::insert(const value_type& v){
@@ -157,5 +170,18 @@ bool linear_map<K,S>::operator==(const linear_map<K,S> &other) const {
     return res;
 }
 
-
+template<class K, class S>
+std::ostream &operator<<(std::ostream &os, const linear_map<K, S>& m) {
+    os << "{ ";
+    int count = m.size();
+    for (auto kv : m) {
+        count--;
+        os << kv.first << ": " << kv.second;
+        if (count) {
+            os << ", ";
+        }
+    }
+    os << " }";
+    return os;
+}
 #endif //TP2_LINEAR_MAP_HPP
