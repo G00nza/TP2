@@ -198,7 +198,7 @@ private:
      *    * (usoCriterio(c, db') == obtener(c, _uso_criterios)) \LAND
      *  * (\FORALL t : string) t \IN tablas(bd') \LAND
      *  * (\FORALL c : string) c \IN campos(dameTabla(t, bd'))
-     *    * tieneIndice?(t, c, bd') == def?(c, obtener(t, _indices))
+     *    * tieneIndice?(t, c, bd') == def?(c, obtener(t, _indices)) 
      */
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
