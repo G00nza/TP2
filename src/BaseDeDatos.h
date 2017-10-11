@@ -183,7 +183,7 @@ private:
      *             *  \LNOT vacio?(obtener(d, obtener(c, obtener(t , _indices)))) \LAND
      *             * (
      *               * \FORALL (r : Registro) r \IN obtener(d, obtener(c, obtener(t , _indices))) \IMPLIES
-     *                 *  r \IN registros (obtener(t, _tablas))
+     *                 *  r \IN registros (obtener(t, _tablas)) \LAND valor(c, r) = d
      *             * )
      *         * )
      *     * )
