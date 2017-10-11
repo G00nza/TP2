@@ -140,3 +140,24 @@ linear_set<BaseDeDatos::Criterio> BaseDeDatos::top_criterios() const {
   }
   return ret;
 }
+
+void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
+    Tabla t = dameTabla(nombre);
+    if (_indices.find(nombre) == _indices.end()) {
+        linear_map<string, Indice> map_indices = linear_map<string, Indice>();
+        map_indices.fast_insert(make_pair(campo, Indice()));
+        Indice indice = Indice();
+        auto it = t.registros_begin();
+        while (it != t.registros_end()) {
+            linear_set<Dato> datos = linear_set<Dato>();
+            datos.insert((*it).dato(campo));
+            if (indice.find((*it).dato(campo)) == indice.end()){
+                linear_set<Registro> nuevo_conj_registros = linear_set<Registro>();
+                nuevo_conj_registros.fast_insert(*it);
+                indice.fast_insert(make_pair((*it).dato(campo), nuevo_conj_registros));
+            }
+            ++it;
+        }
+        _indices.fast_insert(make_pair(nombre, map_indices));
+    }
+}
