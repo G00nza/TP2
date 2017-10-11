@@ -354,7 +354,15 @@
 			<Option target="correrTests_sol"/>
 			<Option target="correrTests"/>
 		</Unit>
+		<Unit filename="/home/gsaenz/TP2/src/linear_map.hpp">
+			<Option target="correrTests_sol"/>
+			<Option target="correrTests"/>
+		</Unit>
 		<Unit filename="/home/gsaenz/TP2/src/linear_set.h">
+			<Option target="correrTests_sol"/>
+			<Option target="correrTests"/>
+		</Unit>
+		<Unit filename="/home/gsaenz/TP2/src/linear_set.hpp">
 			<Option target="correrTests_sol"/>
 			<Option target="correrTests"/>
 		</Unit>
