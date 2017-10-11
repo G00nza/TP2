@@ -24,6 +24,13 @@ class linear_set<T>::const_iterator {
   const_iterator(const typename linear_set<T>::const_iterator&);
   
   /**
+   * @brief Conversión desde iterator
+   *
+   * \complexity{\O(1)}
+   */
+  const_iterator(const typename linear_set<T>::iterator&);
+  
+  /**
    * @brief Avanza el iterador una posición.
    *
    * \pre El iterador no debe estar en la posición pasando-el-último.
@@ -177,6 +184,10 @@ class linear_set<T>::iterator {
 template<typename T>
 linear_set<T>::const_iterator::const_iterator(
     const typename linear_set<T>::const_iterator &other) : it(other.it) {}
+
+template<typename T>
+linear_set<T>::const_iterator::const_iterator(
+    const typename linear_set<T>::iterator &other) : it(other.it) {}
 
 template<typename T>
 typename linear_set<T>::const_iterator &linear_set<T>::const_iterator::operator++() {

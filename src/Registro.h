@@ -27,7 +27,7 @@ public:
      * \pre long(campos) = long(datos)
      * \post \P{res} = nuevoRegistro(campos, datos)
      *
-     * \complexity{\O(long(campos) * copy(campo) * copy(dato))}
+     * \complexity{\O(long(campos) * (copy(campo) + copy(dato)))}
      */
     Registro(const vector<string>& campos, const vector<Dato>& datos);
 

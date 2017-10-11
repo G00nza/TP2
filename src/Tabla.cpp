@@ -9,12 +9,13 @@ Tabla::Tabla(const linear_set<string> &claves,
     : _claves(claves) {
         for (int i = 0; i < campos.size(); i++) {
             _tipos.fast_insert(make_pair(campos[i], tipos[i]));
-            _campos.insert(campos[i]);
+            _campos.fast_insert(campos[i]);
         }
 }
 
-void Tabla::agregarRegistro(const Registro& r) {
-    _registros.insert(r);
+Tabla::const_iterador_registros Tabla::agregarRegistro(const Registro& r) {
+    return Tabla::const_iterador_registros(
+        linear_set<Registro>::const_iterator(_registros.fast_insert(r)));
 }
 
 const linear_set<string>& Tabla::campos() const {

@@ -689,6 +689,7 @@ TEST_F(DBAlumnos, crit_doble_otro_bool) {
 // * Join repetidos dos lados
 // * Join campos repetidos
 
+#ifdef POST_SOLUCION
 TEST_F(DBAlumnos, join_vacio) {
  auto begin = db.join("alumnos", "ex_alumnos", "LU");
  auto end = db.join_end(); 
@@ -831,3 +832,4 @@ TEST_F(DBAlumnos, join_campos_repetidos) {
   linear_set<Registro> join_b(begin, end);
   EXPECT_EQ(join_b, t_join_b.registros());
 }
+#endif // POST_SOLUCION

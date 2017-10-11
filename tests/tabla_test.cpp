@@ -85,6 +85,18 @@ TEST_F(TablaTests, registros) {
     EXPECT_TRUE(pertenece(r3, t.registros()));
 }
 
+TEST_F(TablaTests, agregarRegistro) {
+  EXPECT_TRUE(t2.registros().empty());
+  EXPECT_EQ(t2.registros_begin(), t2.registros_end());
+  auto r1 = Registro({"Cod", "Carrera"}, {Dato(15), Dato("A")});
+  auto rIt1 = t2.agregarRegistro(r1);
+  EXPECT_EQ(*rIt1, r1);
+  EXPECT_EQ(rIt1, t2.registros_begin());
+  EXPECT_NE(t2.registros_begin(), t2.registros_end());
+  EXPECT_FALSE(t2.registros().empty());
+  EXPECT_EQ(++rIt1, t2.registros_end());
+}
+
 TEST_F(TablaTests, igobs) {
     Tabla t1({"LU"}, {"LU"}, {datoStr("")});
     Tabla t2({"LU"}, {"LU"}, {datoStr("")});
