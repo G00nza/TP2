@@ -9,8 +9,8 @@ void BaseDeDatos::crearTabla(const string &nombre,
                              const linear_set<string> &claves,
                              const vector<string> &campos,
                              const vector<Dato> &tipos) {
-  _nombres_tablas.insert(nombre);
-  _tablas.insert(make_pair(nombre, Tabla(claves, campos, tipos)));
+  _nombres_tablas.fast_insert(nombre);
+  _tablas.fast_insert(make_pair(nombre, Tabla(claves, campos, tipos)));
 }
 
 void BaseDeDatos::agregarRegistro(const Registro &r, const string &nombre) {
@@ -109,7 +109,7 @@ Tabla BaseDeDatos::busqueda(const BaseDeDatos::Criterio &c,
   if (_uso_criterios.count(c)) {
     _uso_criterios.at(c)++;
   } else {
-    _uso_criterios.insert(make_pair(c, 1));
+    _uso_criterios.fast_insert(make_pair(c, 1));
   }
 
   const Tabla &ref = dameTabla(nombre);
@@ -135,7 +135,7 @@ linear_set<BaseDeDatos::Criterio> BaseDeDatos::top_criterios() const {
         ret = linear_set<Criterio>();
         max = crit_count.second;
       }
-      ret.insert(crit_count.first);
+      ret.fast_insert(crit_count.first);
     }
   }
   return ret;

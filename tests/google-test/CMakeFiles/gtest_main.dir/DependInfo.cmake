@@ -1,23 +1,23 @@
 # The set of languages for which implicit dependencies are needed:
-SET(CMAKE_DEPENDS_LANGUAGES
+set(CMAKE_DEPENDS_LANGUAGES
   "CXX"
   )
 # The set of files for implicit dependencies of each language:
-SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/gsaenz/TP2/Tp rapido/tests/google-test/src/gtest_main.cc" "/home/gsaenz/TP2/Tp rapido/tests/google-test/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/march/algoritmos2/2017/c2/tps/tp2/aed2-2c2017-tp2/tests/google-test/src/gtest_main.cc" "/home/march/algoritmos2/2017/c2/tps/tp2/aed2-2c2017-tp2/tests/google-test/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
   )
-SET(CMAKE_CXX_COMPILER_ID "GNU")
-
-# Targets to which this target links.
-SET(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/gsaenz/TP2/Tp rapido/tests/google-test/CMakeFiles/gtest.dir/DependInfo.cmake"
-  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
-SET(CMAKE_C_TARGET_INCLUDE_PATH
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "tests/google-test/include"
   "tests/google-test"
   )
-SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
-SET(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
-SET(CMAKE_ASM_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/march/algoritmos2/2017/c2/tps/tp2/aed2-2c2017-tp2/tests/google-test/CMakeFiles/gtest.dir/DependInfo.cmake"
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

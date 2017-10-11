@@ -190,6 +190,8 @@ private:
     linear_set<string> _nombres_tablas;
     linear_map<string, Tabla> _tablas;
     linear_map<Criterio, int> _uso_criterios;
+    /// infdices para lo que nos pide
+    linear_map<string, linear_map <string, linear_map <Dato, linear_set<Registro> > > > _indices;
     /** @} */
 
     /** @{ */

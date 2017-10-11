@@ -2471,6 +2471,8 @@ ALIASES += BOTTOM="\f$\bottom\f$"
 ALIASES += HAT{1}="\f$\widehat{\1}\f$"
 ALIASES += P1="\f$\pi_1\f$"
 ALIASES += P2="\f$\pi_2\f$"
+ALIASES += BULLET="\f$\bullet\f$"
+ALIASES += RIGHTARROW="\f$\rightarrow\f$"
 
 
 #alias de formato

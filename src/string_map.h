@@ -139,8 +139,11 @@ public:
    const_iterator find(const key_type &key) const;
 
     /** @brief insercion
-     * @param value par <clave,significado> a insertar, no debia existir la clave
-     * @returns un par con el iterador resultante y
+     *
+     * @param value par <clave,significado> a insertar
+     * @returns un par con un iterador al par clave-significado agregado o
+     * modificado y un bool que indica si la clave se insertó como una clave
+     * nueva.
      * 
      * \complexity{\O(S + copy(value_type))}
      */

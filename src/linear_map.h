@@ -93,6 +93,8 @@ class linear_map {
    *
    * \pre def?(key, \P{this})
    * \post \P{res} = obtener(\P{this}, k)
+   *
+   * \complexity{\O(#claves(\P{this}))}
    */
   S& at(const K& key);
 
@@ -180,9 +182,9 @@ class linear_map {
    * @brief Cantidad de apariciones de la clave.
    *
    * \pre true
-   * \post \P{res} == def?(\P{this}, k)
+   * \post \IF def?(\P{this}, k) \THEN \P{res} = 1 \ELSE \P{res} = 0 \FI
    *
-   * \complexity{\O(n) * cmp(Clave)}
+   * \complexity{\O(#claves(\P{this}) * cmp(Clave)}
    */
   size_t count(const K &k) const;
 
@@ -193,6 +195,8 @@ class linear_map {
    *
    * \pre def?(key, \P{this})
    * \post \P{res} = obtener(\P{this}, k)
+   *
+   * \complexity{\O(#claves(\P{this}))}
    */
   const S& at(const K& key) const; 
 
@@ -201,7 +205,7 @@ class linear_map {
    * elementos elminados.
    *
    * \pre d == \P{this} \LAND def?(key, \P{this})
-   * \post \P{this} == borrar(key, d)
+   * \post \P{this} == borrar(key, d) \LAND \P{res} = 1
    *
    * \complexity{\O(#claves(\P{this}))}
    */
@@ -211,7 +215,7 @@ class linear_map {
    * @brief Operador asignación del diccionario
    *
    * \pre true
-   * \post \P{this} == other
+   * \post \P{this} == other \LAND \P{res} es referencia a \P{this}
    *
    * \complexity{\O(#claves(\P{this}) + #claves(other) * (copy(Clave) +
    * copy(Significado)))}
@@ -231,8 +235,13 @@ class linear_map {
    *
    * rep: linear_map(Clave, Significado) \TO bool\n
    * rep(d) \EQUIV
-   *  * \FORALL (t, t': tupla(Clave, Significado)) 
-   *    (está?(t, _elems) \LAND está?(t', _elems)) \IMPLIES (t == t' \LOR \P1(t) != \P1(t'))
+   *  * \FORALL (i, j : Nat) 
+   *    (0 \LEQ i, j < long(_elems) \LAND \P1(_elems[i]) == \P1(_elems[j]))
+   *    \IMPLIES i = j
+   *
+   * \BULLET [\BULLET] : Secu(\ALPHA) s \TIMES Nat i \RIGHTARROW \ALPHA  {0 \LEQ i <
+   * long(s)} \n
+   * s[i] \EQUIV \IF i = 0 \THEN prim(s) \ELSE fin(s)[i - 1] \FI
    *
    * abs: linear_map(Clave, Significado) \TO Dicc(Clave, Significado)\n
    * abs(d) \EQUIV d' \|
