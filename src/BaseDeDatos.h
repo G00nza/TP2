@@ -163,7 +163,17 @@ public:
      */
     linear_set<Criterio> top_criterios() const;
 
-
+    /**
+     * @brief Crea un índice para una tabla de la base de datos en un campo de la misma.
+     *
+     * @param nombre Nombre de la tabla
+     * @param campo Nombre del campo
+     *
+     * \pre nombre \IN _nombres_tablas \LAND campo \IN campos(dameTabla(nombre,bd)) \LAND bd = bd'
+     * \post tieneIndice?(nombre, campo, bd)
+     *
+     * \complexity{\O(VER COMPLEJIDAD)}
+     */
     void crearIndice(const string &nombre, const string &campo);
 
 private:
