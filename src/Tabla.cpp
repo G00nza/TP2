@@ -8,7 +8,7 @@ Tabla::Tabla(const linear_set<string> &claves,
              const vector<Dato> &tipos) 
     : _claves(claves) {
         for (int i = 0; i < campos.size(); i++) {
-            _tipos.fast_insert(make_pair(campos[i], tipos[i]));
+            _tipos.insert(make_pair(campos[i], tipos[i]));
             _campos.fast_insert(campos[i]);
         }
 }
@@ -44,6 +44,10 @@ Tabla::const_iterador_registros Tabla::registros_end() const {
 
 int Tabla::cant_registros() const {
   return _registros.size();
+}
+
+const string_map<Dato> &Tabla::tipos() const {
+    return _tipos;
 }
 
 bool operator==(const Tabla& t1, const Tabla& t2) {

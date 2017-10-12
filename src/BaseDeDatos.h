@@ -1,6 +1,8 @@
 #ifndef _BASEDEDATOS_H
 #define _BASEDEDATOS_H
 
+
+
 #include "Registro.h"
 #include "Restriccion.h"
 #include "Tabla.h"
@@ -9,6 +11,7 @@
 #include <string>
 #include "linear_map.h"
 #include "linear_set.h"
+#include "string_map.h"
 #include "utils.h"
 
 using namespace std;
@@ -30,7 +33,6 @@ public:
     /** @brief Criterio de búsqueda para una base de datos */
     typedef linear_set<Restriccion> Criterio;
     typedef linear_map<Dato, linear_set<Registro> > Indice;
-
     /**
      * @brief Inicializa una base de datos sin tablas.
      *
@@ -97,7 +99,7 @@ public:
      * \pre nombre \IN tablas(\P{this})
      * \post \P{res} = dameTabla(nombre, \P{this})
      *
-     * \complexity{O(T)}
+     * \complexity{O(1)}
      */
     const Tabla &dameTabla(const string &nombre) const;
 
@@ -122,7 +124,7 @@ public:
      * \pre nombre \IN tablas(\P{this})
      * \post \P{res} = puedoInsertar?(r, dameTabla(nombre, \P{this}))
      *
-     * \complexity{\O(T + C^2 + (c * C + c * n * (C + L)))}
+     * \complexity{\O(C + (c*n*L))}
      */
     bool registroValido(const Registro &r, const string &nombre) const;
 
@@ -218,9 +220,9 @@ private:
 
     /** @{ */
     linear_set<string> _nombres_tablas;
-    linear_map<string, Tabla> _tablas;
+    string_map<Tabla> _tablas;
     linear_map<Criterio, int> _uso_criterios;
-    linear_map<string, linear_map<string, Indice > > _indices;
+    string_map<string_map<Indice> >_indices;
     /** @} */
 
     /** @{ */
@@ -231,7 +233,7 @@ private:
      * \post \P{res} == \FORALL (c : campo) c \IN campos(r) \IMPLIES
      * Nat?(valor(c, r)) == tipoCampo(c, t)
      *
-     * \complexity{O(C^2)}
+     * \complexity{O(C)}
      */
     bool _mismos_tipos(const Registro &r, const Tabla &t) const;
 
@@ -242,7 +244,7 @@ private:
      * \post \P{res} = \FORALL (r' : Registro) r \IN registros(t) \IMPLIES
      *  \EXISTS (c : campo) c \IN claves(t) \LAND valor(c, r') != valor(c, r)
      *
-     * \complexity{O(c * C + c * n * (C + L))}
+     * \complexity{O(c * n * L)}
      */
     bool _no_repite(const Registro &r, const Tabla &t) const;
 

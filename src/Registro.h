@@ -6,6 +6,7 @@
 #include "Dato.h"
 #include "linear_set.h"
 #include "linear_map.h"
+#include "string_map.h"
 
 using namespace std;
 
@@ -39,7 +40,7 @@ public:
      * \pre campo \in campos(\P{this})
      * \post \P{res} = valor(campo, \P{this})
      * 
-     * \complexity{\O(long(campos(\P{this})) * cmp(campo))}
+     * \complexity{\O(1)}
      */
     const Dato& dato(const string& campo) const;
 
@@ -54,6 +55,19 @@ public:
      * \complexity{\O(1)}
      */
     const linear_set<string>& campos() const;
+
+
+    /**
+     * @brief Devuelve el diccionario de datos para campo
+     *
+     * El diccionario se devuelve por referencia
+     *
+     * \pre true
+     * \post (\FORALL c: Campo) c \IN campos(this) \IMPLIES obtener(c, res) = valor(c, this)
+     *
+     * \complexity{\O(1)}
+     */
+    const string_map<Dato>& datos() const;
 
 private:
 	  ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,7 +86,7 @@ private:
 
     /** @{ */
     linear_set<string> _campos;
-    linear_map<string, Dato> _datos;
+    string_map<Dato> _datos;
     /** @} */
 
     friend ostream &operator<<(ostream &, const Registro &);

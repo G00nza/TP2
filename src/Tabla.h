@@ -84,7 +84,7 @@ public:
    * \pre campo \IN campos(\P{this})
    * \post tipoCampo(campo, \P{this})
    *
-   * \complexity{\O(#(campos(\P{this})) * cmp(campo)}
+   * \complexity{\O(1)}
    */
   const Dato &tipoCampo(const string &campo) const;
 
@@ -131,6 +131,19 @@ public:
    */
   const_iterador_registros registros_end() const;
 
+    /**
+   * @brief Tipos de los campos de la tabla
+   *
+   * El diccionario se devuelve por referencia no-modificable
+   *
+   * \pre true
+   * \post (\FORALL c: Campo) c \IN campos(this) \LAND def?(c, res) \IMPLIES
+   *         tipoCampo?(c, this) = obtener(c, res)
+   *
+   * \complexity{\O(1)}
+   */
+    const string_map<Dato>& tipos() const;
+
 private:
 	  ///////////////////////////////////////////////////////////////////////////////////////////////////
     /** \name Representación
@@ -161,7 +174,7 @@ private:
     /** @{ */
     linear_set<string> _claves;
     linear_set<string> _campos;
-    linear_map<string, Dato> _tipos;
+    string_map<Dato> _tipos;
     linear_set<Registro> _registros;
     /** }@ */
 
