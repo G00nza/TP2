@@ -18,6 +18,10 @@ using std::pair;
  */
 template < typename T >
 class string_map {
+    struct Nodo;
+
+    class iterator;
+    class const_iterator;
 public:
     typedef string key_type;
     typedef T mapped_type;
@@ -25,8 +29,7 @@ public:
     typedef size_t size_type;
 
 
-    class iterator;
-    class const_iterator;
+
     
 
     /** @brief Construye mapa vacio
@@ -110,7 +113,7 @@ public:
      */
    iterator begin();
 
-    /*  @brief iterador al fin de la coleccion
+    /**  @brief iterador al fin de la coleccion
      *
      *  \complexity{\O(S)}
      */
@@ -119,8 +122,8 @@ public:
     /// Versiones const de begin/end
    const_iterator begin() const;
    const_iterator end() const;
-   const_iterator cbegin() const;
-   const_iterator cend() const;
+   //const_iterator cbegin() const;
+   //const_iterator cend() const;
 
     /** @brief busca una clave
      *  @param key clave a buscar
@@ -165,9 +168,47 @@ public:
      */
     iterator erase(iterator pos);
 
-private:
+    /** @brief Devuelve la posicion de c en v, v posee un tamaño acotado
+     *  @param v Vector
+     *  @param c Char
+     *  @pre c \IN v
+     *  @returns posicion en la cual se encuentra c
+     *
+     *  \complexity{\O(1)}
+     */
+    int posicion(vector <char> v, char c)const;
 
+    /** @brief se fija si dos ramas son iguales
+     *  @param n1 Nodo
+     *  @param n2 Nodo
+     *  @returns devuelve true si n1 == n2
+     *
+     *  \complexity{\O(cant nodos)}
+     */
+    bool igualDeNodo(Nodo& n1, Nodo& n2)const;
+
+private:
+    Nodo* _raiz;
+
+    struct Nodo{
+        vector <char> _claves;
+        vector <Nodo*> _hijos;
+        T* _obtener;
+        Nodo* padre;
+        string _camino;
+    };
+    size_type _tamano;
+
+    class iterator{
+        Nodo* _valorIt;
+        friend class string_map;
+    };
+    class const_iterator{
+        Nodo* _valorIt;
+        friend class string_map;
+    };
 };
 
+#include "string_map.hpp"
 
 #endif //STRING_MAP_STRING_MAP_H
