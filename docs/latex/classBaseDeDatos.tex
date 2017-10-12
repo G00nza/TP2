@@ -24,7 +24,11 @@ Diagrama de colaboración para Base\-De\-Datos\-:\nopagebreak
 \item 
 \hypertarget{classBaseDeDatos_a6742a222e87623bc92a810a693fb337b}{typedef \hyperlink{classlinear__set}{linear\-\_\-set}$<$ \hyperlink{classRestriccion}{Restriccion} $>$ \hyperlink{classBaseDeDatos_a6742a222e87623bc92a810a693fb337b}{Criterio}}\label{classBaseDeDatos_a6742a222e87623bc92a810a693fb337b}
 
-\begin{DoxyCompactList}\small\item\em Criterio de búsqueda para una base de datos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Criterio de búsqueda para una base de datos. \end{DoxyCompactList}\item 
+\hypertarget{classBaseDeDatos_a1e94d358c9ef6e71f9d6bfb662e553cb}{typedef \hyperlink{classlinear__map}{linear\-\_\-map}$<$ \hyperlink{classDato}{Dato}, \\*
+\hyperlink{classlinear__set}{linear\-\_\-set}$<$ \hyperlink{classRegistro}{Registro} $>$ $>$ \hyperlink{classBaseDeDatos_a1e94d358c9ef6e71f9d6bfb662e553cb}{Indice}}\label{classBaseDeDatos_a1e94d358c9ef6e71f9d6bfb662e553cb}
+
+\begin{DoxyCompactList}\small\item\em Indice es el dicc (\hyperlink{classDato}{Dato}, Conj (registro)) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Métodos públicos}
 \begin{DoxyCompactItemize}
 \item 
@@ -84,6 +88,7 @@ rep(bd) $\equiv$
 
 $\forall$ (t \-: string) def?(t , \-\_\-indices) $\Rightarrow$ def?(t , \-\_\-tablas) $\land$
 \begin{DoxyItemize}
+\item $\lnot$ vacio?(claves(obtener(t, \-\_\-indices))) $\land$
 \item (
 \begin{DoxyItemize}
 \item $\forall$ (c \-: string) def? (c , obtener(t , \-\_\-indices)) $\Rightarrow$
@@ -98,7 +103,7 @@ $\forall$ (t \-: string) def?(t , \-\_\-indices) $\Rightarrow$ def?(t , \-\_\-ta
 \begin{DoxyItemize}
 \item $\forall$ (r \-: \hyperlink{classRegistro}{Registro}) r $\in$ obtener(d, obtener(c, obtener(t , \-\_\-indices))) $\Rightarrow$
 \begin{DoxyItemize}
-\item r $\in$ registros (obtener(t, \-\_\-tablas))
+\item r $\in$ registros (obtener(t, \-\_\-tablas)) $\land$ valor(c, r) = d
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item )
@@ -139,9 +144,9 @@ abs(bd) $\equiv$ bd' $|$
 \hypertarget{classBaseDeDatos_acc03ee648f19ad950d399861cc263a30}{\hyperlink{classlinear__map}{linear\-\_\-map}$<$ \hyperlink{classBaseDeDatos_a6742a222e87623bc92a810a693fb337b}{Criterio}, int $>$ {\bfseries \-\_\-uso\-\_\-criterios}}\label{classBaseDeDatos_acc03ee648f19ad950d399861cc263a30}
 
 \item 
-\hyperlink{classlinear__map}{linear\-\_\-map}$<$ string, \hyperlink{classlinear__map}{linear\-\_\-map}\\*
-$<$ string, \hyperlink{classlinear__map}{linear\-\_\-map}$<$ \hyperlink{classDato}{Dato}, \\*
-\hyperlink{classlinear__set}{linear\-\_\-set}$<$ \hyperlink{classRegistro}{Registro} $>$ $>$ $>$ $>$ \hyperlink{classBaseDeDatos_ac86d59c462ea3bef3aca9fc19d26bda1}{\-\_\-indices}
+\hypertarget{classBaseDeDatos_adb2234a6b0c8cb3b0b503f3e48cc3cc5}{\hyperlink{classlinear__map}{linear\-\_\-map}$<$ string, \hyperlink{classlinear__map}{linear\-\_\-map}\\*
+$<$ string, \hyperlink{classBaseDeDatos_a1e94d358c9ef6e71f9d6bfb662e553cb}{Indice} $>$ $>$ {\bfseries \-\_\-indices}}\label{classBaseDeDatos_adb2234a6b0c8cb3b0b503f3e48cc3cc5}
+
 \end{DoxyCompactItemize}
 \end{Indent}
 
@@ -520,12 +525,6 @@ nombre $\in$ tablas({\bfseries this})
 \begin{DoxyDescription}
 \item[Complejidad Temporal]$O$(\#cs $\ast$ cmp(\-Criterio))
 \end{DoxyDescription}
-
-\subsection{Documentación de los datos miembro}
-\hypertarget{classBaseDeDatos_ac86d59c462ea3bef3aca9fc19d26bda1}{\index{Base\-De\-Datos@{Base\-De\-Datos}!\-\_\-indices@{\-\_\-indices}}
-\index{\-\_\-indices@{\-\_\-indices}!BaseDeDatos@{Base\-De\-Datos}}
-\subsubsection[{\-\_\-indices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf linear\-\_\-map}$<$string, {\bf linear\-\_\-map} $<$string, {\bf linear\-\_\-map} $<${\bf Dato}, {\bf linear\-\_\-set}$<${\bf Registro}$>$ $>$ $>$ $>$ Base\-De\-Datos\-::\-\_\-indices\hspace{0.3cm}{\ttfamily [private]}}}\label{classBaseDeDatos_ac86d59c462ea3bef3aca9fc19d26bda1}
-infices para lo que nos pide \-\_\-indice es dicc(nombre de tabla , dicc (campo , dicc (dato , conj (registro) ) ) ) 
 
 La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
 \item 

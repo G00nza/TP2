@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['size',['size',['../classlinear__map.html#a16f411ae0221b803418d63862b6f3223',1,'linear_map::size()'],['../classlinear__set.html#a48c78a9f6814516482724214d685540e',1,'linear_set::size()'],['../classstring__map.html#af6a00aaeaf63ed9798c403e714a4be0c',1,'string_map::size()']]],
-  ['string_5fmap',['string_map',['../classstring__map.html',1,'string_map&lt; T &gt;'],['../classstring__map.html#acd7803d493b09db56e2e9022e526def7',1,'string_map::string_map()'],['../classstring__map.html#afa602ae4726c1dc0a562652107cdabfd',1,'string_map::string_map(const string_map &amp;)']]]
+  ['registro',['Registro',['../classRegistro.html',1,'Registro'],['../classRegistro.html#af3717314d0e658a463ffd8ac5b073441',1,'Registro::Registro()']]],
+  ['registros_5fbegin',['registros_begin',['../classTabla.html#aafc1aedd4c2c222387591c3b772d56a9',1,'Tabla']]],
+  ['registros_5fend',['registros_end',['../classTabla.html#ac736bbd3065cc25c36ef258fcddaea50',1,'Tabla']]],
+  ['registrovalido',['registroValido',['../classBaseDeDatos.html#a451ef7b34a2ff9d395da10745266b703',1,'BaseDeDatos']]],
+  ['restriccion',['Restriccion',['../classRestriccion.html',1,'Restriccion'],['../classRestriccion.html#a6a2bb9363d1083319784caec16d9c47f',1,'Restriccion::Restriccion()']]]
 ];

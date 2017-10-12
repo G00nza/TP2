@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['string_5fmap',['string_map',['../classstring__map.html',1,'']]]
+  ['registro',['Registro',['../classRegistro.html',1,'']]],
+  ['restriccion',['Restriccion',['../classRestriccion.html',1,'']]]
 ];

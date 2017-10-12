@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7estring_5fmap',['~string_map',['../classstring__map.html#a37b201370c0a6a3c2aa488dedbc0a9d7',1,'string_map']]]
+  ['valornat',['valorNat',['../classDato.html#a417fa8d0766c8ac1221c553b0f31ba93',1,'Dato']]],
+  ['valorstr',['valorStr',['../classDato.html#ac1ece791ad4cc21764a89ffac254add8',1,'Dato']]]
 ];

@@ -342,6 +342,10 @@
 			<Option target="correrTests_sol"/>
 			<Option target="correrTests"/>
 		</Unit>
+		<Unit filename="/home/gsaenz/TP2/src/Trie.hpp">
+			<Option target="correrTests_sol"/>
+			<Option target="correrTests"/>
+		</Unit>
 		<Unit filename="/home/gsaenz/TP2/src/const_iterador_registros.cpp">
 			<Option target="correrTests_sol"/>
 			<Option target="correrTests"/>
@@ -374,7 +378,15 @@
 			<Option target="correrTests_sol"/>
 			<Option target="correrTests"/>
 		</Unit>
+		<Unit filename="/home/gsaenz/TP2/src/trie.h">
+			<Option target="correrTests_sol"/>
+			<Option target="correrTests"/>
+		</Unit>
 		<Unit filename="/home/gsaenz/TP2/src/utils.h">
+			<Option target="correrTests_sol"/>
+			<Option target="correrTests"/>
+		</Unit>
+		<Unit filename="/home/gsaenz/TP2/tests/Trie_test.cpp">
 			<Option target="correrTests_sol"/>
 			<Option target="correrTests"/>
 		</Unit>

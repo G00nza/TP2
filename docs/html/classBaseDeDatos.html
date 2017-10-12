@@ -98,7 +98,7 @@ Diagrama de colaboración para BaseDeDatos:</div>
 <div class="dyncontent">
 <div class="center"><img src="classBaseDeDatos__coll__graph.png" border="0" usemap="#BaseDeDatos_coll__map" alt="Collaboration graph"/></div>
 <map name="BaseDeDatos_coll__map" id="BaseDeDatos_coll__map">
-<area shape="rect" id="node2" href="classlinear__map.html" title="linear_map\&lt; linear\l_set, int \&gt;" alt="" coords="255,5,383,46"/><area shape="rect" id="node3" href="classlinear__set.html" title="linear_set\&lt; string \&gt;" alt="" coords="251,71,386,97"/><area shape="rect" id="node4" href="classlinear__map.html" title="linear_map\&lt; string,\l bool \&gt;" alt="" coords="5,63,139,105"/><area shape="rect" id="node5" href="classlinear__map.html" title="linear_map\&lt; string,\l linear_map\&lt; string,\l linear_map\&lt; Dato, linear\l_set\&lt; Registro \&gt; \&gt; \&gt; \&gt;" alt="" coords="235,122,403,193"/><area shape="rect" id="node6" href="classlinear__map.html" title="linear_map\&lt; string,\l Tabla \&gt;" alt="" coords="252,217,385,258"/></map>
+<area shape="rect" id="node2" href="classlinear__map.html" title="linear_map\&lt; linear\l_set, int \&gt;" alt="" coords="240,5,368,46"/><area shape="rect" id="node3" href="classlinear__set.html" title="linear_set\&lt; string \&gt;" alt="" coords="237,71,371,97"/><area shape="rect" id="node4" href="classlinear__map.html" title="linear_map\&lt; string,\l bool \&gt;" alt="" coords="5,63,139,105"/><area shape="rect" id="node5" href="classlinear__map.html" title="linear_map\&lt; string,\l linear_map\&lt; string,\l linear_map \&gt; \&gt;" alt="" coords="235,121,373,177"/><area shape="rect" id="node6" href="classlinear__map.html" title="linear_map\&lt; string,\l Tabla \&gt;" alt="" coords="237,201,371,242"/></map>
 <center><span class="legend">[<a href="graph_legend.html">significado de colores y flechas</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -107,6 +107,11 @@ Tipos públicos</h2></td></tr>
 typedef <a class="el" href="classlinear__set.html">linear_set</a>&lt; <a class="el" href="classRestriccion.html">Restriccion</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBaseDeDatos.html#a6742a222e87623bc92a810a693fb337b">Criterio</a></td></tr>
 <tr class="memdesc:a6742a222e87623bc92a810a693fb337b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Criterio de búsqueda para una base de datos. <br/></td></tr>
 <tr class="separator:a6742a222e87623bc92a810a693fb337b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e94d358c9ef6e71f9d6bfb662e553cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e94d358c9ef6e71f9d6bfb662e553cb"></a>
+typedef <a class="el" href="classlinear__map.html">linear_map</a>&lt; <a class="el" href="classDato.html">Dato</a>, <br class="typebreak"/>
+<a class="el" href="classlinear__set.html">linear_set</a>&lt; <a class="el" href="classRegistro.html">Registro</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBaseDeDatos.html#a1e94d358c9ef6e71f9d6bfb662e553cb">Indice</a></td></tr>
+<tr class="memdesc:a1e94d358c9ef6e71f9d6bfb662e553cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indice es el dicc (<a class="el" href="classDato.html" title="Representa un Dato de una Base de Datos. ">Dato</a>, Conj (registro)) <br/></td></tr>
+<tr class="separator:a1e94d358c9ef6e71f9d6bfb662e553cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Métodos públicos</h2></td></tr>
@@ -181,6 +186,7 @@ rep(bd) <img class="formulaInl" alt="$\equiv$" src="form_8.png"/></p>
 </ul>
 <p><img class="formulaInl" alt="$\forall$" src="form_5.png"/> (t : string) def?(t , _indices) <img class="formulaInl" alt="$\Rightarrow$" src="form_9.png"/> def?(t , _tablas) <img class="formulaInl" alt="$\land$" src="form_1.png"/></p>
 <ul>
+<li><img class="formulaInl" alt="$\lnot$" src="form_2.png"/> vacio?(claves(obtener(t, _indices))) <img class="formulaInl" alt="$\land$" src="form_1.png"/></li>
 <li>(<ul>
 <li><img class="formulaInl" alt="$\forall$" src="form_5.png"/> (c : string) def? (c , obtener(t , _indices)) <img class="formulaInl" alt="$\Rightarrow$" src="form_9.png"/><ul>
 <li>c <img class="formulaInl" alt="$\in$" src="form_3.png"/> campos(obtener(t , _tablas)) <img class="formulaInl" alt="$\land$" src="form_1.png"/></li>
@@ -189,7 +195,7 @@ rep(bd) <img class="formulaInl" alt="$\equiv$" src="form_8.png"/></p>
 <li><img class="formulaInl" alt="$\lnot$" src="form_2.png"/> vacio?(obtener(d, obtener(c, obtener(t , _indices)))) <img class="formulaInl" alt="$\land$" src="form_1.png"/></li>
 <li>(<ul>
 <li><img class="formulaInl" alt="$\forall$" src="form_5.png"/> (r : <a class="el" href="classRegistro.html" title="Representa un registro de una tabla. ">Registro</a>) r <img class="formulaInl" alt="$\in$" src="form_3.png"/> obtener(d, obtener(c, obtener(t , _indices))) <img class="formulaInl" alt="$\Rightarrow$" src="form_9.png"/><ul>
-<li>r <img class="formulaInl" alt="$\in$" src="form_3.png"/> registros (obtener(t, _tablas))</li>
+<li>r <img class="formulaInl" alt="$\in$" src="form_3.png"/> registros (obtener(t, _tablas)) <img class="formulaInl" alt="$\land$" src="form_1.png"/> valor(c, r) = d</li>
 </ul>
 </li>
 </ul>
@@ -235,10 +241,10 @@ abs(bd) <img class="formulaInl" alt="$\equiv$" src="form_8.png"/> bd' |</p>
 <tr class="memitem:acc03ee648f19ad950d399861cc263a30"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc03ee648f19ad950d399861cc263a30"></a>
 <a class="el" href="classlinear__map.html">linear_map</a>&lt; <a class="el" href="classBaseDeDatos.html#a6742a222e87623bc92a810a693fb337b">Criterio</a>, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_uso_criterios</b></td></tr>
 <tr class="separator:acc03ee648f19ad950d399861cc263a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac86d59c462ea3bef3aca9fc19d26bda1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlinear__map.html">linear_map</a>&lt; string, <a class="el" href="classlinear__map.html">linear_map</a><br class="typebreak"/>
-&lt; string, <a class="el" href="classlinear__map.html">linear_map</a>&lt; <a class="el" href="classDato.html">Dato</a>, <br class="typebreak"/>
-<a class="el" href="classlinear__set.html">linear_set</a>&lt; <a class="el" href="classRegistro.html">Registro</a> &gt; &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBaseDeDatos.html#ac86d59c462ea3bef3aca9fc19d26bda1">_indices</a></td></tr>
-<tr class="separator:ac86d59c462ea3bef3aca9fc19d26bda1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb2234a6b0c8cb3b0b503f3e48cc3cc5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb2234a6b0c8cb3b0b503f3e48cc3cc5"></a>
+<a class="el" href="classlinear__map.html">linear_map</a>&lt; string, <a class="el" href="classlinear__map.html">linear_map</a><br class="typebreak"/>
+&lt; string, <a class="el" href="classBaseDeDatos.html#a1e94d358c9ef6e71f9d6bfb662e553cb">Indice</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_indices</b></td></tr>
+<tr class="separator:adb2234a6b0c8cb3b0b503f3e48cc3cc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Una base de datos es un administrador de tablas con funciones de búsqueda. </p>
@@ -801,28 +807,6 @@ abs(bd) <img class="formulaInl" alt="$\equiv$" src="form_8.png"/> bd' |</p>
 <dt>Complejidad Temporal</dt>
 <dd><img class="formulaInl" alt="$O$" src="form_0.png"/>(#cs * cmp(Criterio))</dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Documentación de los datos miembro</h2>
-<a class="anchor" id="ac86d59c462ea3bef3aca9fc19d26bda1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classlinear__map.html">linear_map</a>&lt;string, <a class="el" href="classlinear__map.html">linear_map</a> &lt;string, <a class="el" href="classlinear__map.html">linear_map</a> &lt;<a class="el" href="classDato.html">Dato</a>, <a class="el" href="classlinear__set.html">linear_set</a>&lt;<a class="el" href="classRegistro.html">Registro</a>&gt; &gt; &gt; &gt; BaseDeDatos::_indices</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>infices para lo que nos pide _indice es dicc(nombre de tabla , dicc (campo , dicc (dato , conj (registro) ) ) ) </p>
 
 </div>
 </div>

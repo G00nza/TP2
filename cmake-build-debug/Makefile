@@ -401,6 +401,36 @@ src/const_iterador_registros.cpp.s:
 	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/src/const_iterador_registros.cpp.s
 .PHONY : src/const_iterador_registros.cpp.s
 
+tests/Trie_test.o: tests/Trie_test.cpp.o
+
+.PHONY : tests/Trie_test.o
+
+# target to build an object file
+tests/Trie_test.cpp.o:
+	$(MAKE) -f CMakeFiles/correrTests_sol.dir/build.make CMakeFiles/correrTests_sol.dir/tests/Trie_test.cpp.o
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/Trie_test.cpp.o
+.PHONY : tests/Trie_test.cpp.o
+
+tests/Trie_test.i: tests/Trie_test.cpp.i
+
+.PHONY : tests/Trie_test.i
+
+# target to preprocess a source file
+tests/Trie_test.cpp.i:
+	$(MAKE) -f CMakeFiles/correrTests_sol.dir/build.make CMakeFiles/correrTests_sol.dir/tests/Trie_test.cpp.i
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/Trie_test.cpp.i
+.PHONY : tests/Trie_test.cpp.i
+
+tests/Trie_test.s: tests/Trie_test.cpp.s
+
+.PHONY : tests/Trie_test.s
+
+# target to generate assembly for a file
+tests/Trie_test.cpp.s:
+	$(MAKE) -f CMakeFiles/correrTests_sol.dir/build.make CMakeFiles/correrTests_sol.dir/tests/Trie_test.cpp.s
+	$(MAKE) -f CMakeFiles/correrTests.dir/build.make CMakeFiles/correrTests.dir/tests/Trie_test.cpp.s
+.PHONY : tests/Trie_test.cpp.s
+
 tests/base_de_datos_test.o: tests/base_de_datos_test.cpp.o
 
 .PHONY : tests/base_de_datos_test.o
@@ -646,6 +676,9 @@ help:
 	@echo "... src/const_iterador_registros.o"
 	@echo "... src/const_iterador_registros.i"
 	@echo "... src/const_iterador_registros.s"
+	@echo "... tests/Trie_test.o"
+	@echo "... tests/Trie_test.i"
+	@echo "... tests/Trie_test.s"
 	@echo "... tests/base_de_datos_test.o"
 	@echo "... tests/base_de_datos_test.i"
 	@echo "... tests/base_de_datos_test.s"

@@ -29,6 +29,8 @@ class BaseDeDatos {
 public:
   /** @brief Criterio de búsqueda para una base de datos */
   typedef linear_set<Restriccion> Criterio;
+    /**@brief Indice es el dicc (Dato, Conj (registro)) */
+  typedef linear_map <Dato, linear_set<Registro> > Indice;
 
   /**
    * @brief Inicializa una base de datos sin tablas.
@@ -175,6 +177,7 @@ private:
      *     * ) \LAND
      *     * obtener(c, _uso_criterios) > 0
      *   * \FORALL (t : string) def?(t , _indices) \IMPLIES def?(t , _tablas) \LAND
+     *     * \LNOT vacio?(claves(obtener(t, _indices))) \LAND
      *     * (
      *       * \FORALL (c : string) def? (c , obtener(t , _indices)) \IMPLIES
      *         *  c \IN campos(obtener(t , _tablas)) \LAND
@@ -206,9 +209,7 @@ private:
     linear_set<string> _nombres_tablas;
     linear_map<string, Tabla> _tablas;
     linear_map<Criterio, int> _uso_criterios;
-    /// infices para lo que nos pide
-    /// _indice es dicc(nombre de tabla , dicc (campo , dicc (dato , conj (registro) ) ) )
-    linear_map<string, linear_map <string, linear_map <Dato, linear_set<Registro> > > > _indices;
+    linear_map<string, linear_map <string, Indice > > _indices;
     /** @} */
 
     /** @{ */

@@ -1,0 +1,490 @@
+\hypertarget{classTrie}{\section{Referencia de la plantilla de la Clase Trie$<$ K, S $>$}
+\label{classTrie}\index{Trie$<$ K, S $>$@{Trie$<$ K, S $>$}}
+}
+
+
+Módulo diccionario con inserción en O(1)  
+
+
+
+
+{\ttfamily \#include $<$trie.\-h$>$}
+
+
+
+Diagrama de colaboración para Trie$<$ K, S $>$\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{classTrie__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classTrie_1_1const__iterator}{const\-\_\-iterator}
+\item 
+class \hyperlink{classTrie_1_1iterator}{iterator}
+\item 
+struct \hyperlink{structTrie_1_1Nodo}{Nodo}
+\end{DoxyCompactItemize}
+\subsection*{Tipos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTrie_ae78bf68a4e51b38ce8ecd614bfcf9c24}{using {\bfseries K} = string}\label{classTrie_ae78bf68a4e51b38ce8ecd614bfcf9c24}
+
+\item 
+\hypertarget{classTrie_a721da5ee301497d84f2c1ec25b41a615}{using {\bfseries key\-\_\-type} = K}\label{classTrie_a721da5ee301497d84f2c1ec25b41a615}
+
+\item 
+\hypertarget{classTrie_a5d269bf4e543df76f997c52ac4b15189}{using {\bfseries mapped\-\_\-type} = S}\label{classTrie_a5d269bf4e543df76f997c52ac4b15189}
+
+\item 
+\hypertarget{classTrie_a8ba1bae33ef6bf522eb018dad765b8a3}{using {\bfseries value\-\_\-type} = pair$<$ const K, S $>$}\label{classTrie_a8ba1bae33ef6bf522eb018dad765b8a3}
+
+\item 
+\hypertarget{classTrie_a81d6e7abc535542d9a1550fbb284c617}{using {\bfseries size\-\_\-type} = size\-\_\-t}\label{classTrie_a81d6e7abc535542d9a1550fbb284c617}
+
+\item 
+\hypertarget{classTrie_ae46e816425def34615334b51b49e69f6}{using {\bfseries iterator} = typename \hyperlink{classTrie_1_1iterator}{Trie\-::iterator}}\label{classTrie_ae46e816425def34615334b51b49e69f6}
+
+\item 
+\hypertarget{classTrie_a0be15185f3a536976e20da62e9e57ea6}{using {\bfseries const\-\_\-iterator} = typename \hyperlink{classTrie_1_1const__iterator}{Trie\-::const\-\_\-iterator}}\label{classTrie_a0be15185f3a536976e20da62e9e57ea6}
+
+\end{DoxyCompactItemize}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTrie_a41f0865fb41246aa707139eba04769d7}{Trie} ()
+\begin{DoxyCompactList}\small\item\em Crea un diccionario vacio. \end{DoxyCompactList}\item 
+\hyperlink{classTrie_a633ac90cdec93ea8b9e7e53df703e720}{Trie} (const \hyperlink{classTrie}{Trie}$<$ K, S $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Constructor por copia. \end{DoxyCompactList}\item 
+pair$<$ \hyperlink{classTrie_1_1iterator}{iterator}, bool $>$ \hyperlink{classTrie_ac9e770501743cdddadb5337c2afd6bd3}{insert} (const value\-\_\-type \&v)
+\begin{DoxyCompactList}\small\item\em Define o redefine una relación en el diccionario. \end{DoxyCompactList}\item 
+\hyperlink{classTrie_1_1iterator}{iterator} \hyperlink{classTrie_a5e77c556d9ea44ad58e7720579cf6356}{fast\-\_\-insert} (const value\-\_\-type \&v)
+\begin{DoxyCompactList}\small\item\em Define una nueva relación en el diccionario. \end{DoxyCompactList}\item 
+size\-\_\-type \hyperlink{classTrie_ad028c84aa33e37835b7ca28ed3378e98}{size} () const 
+\begin{DoxyCompactList}\small\item\em Tamaño del diccionario. \end{DoxyCompactList}\item 
+S \& \hyperlink{classTrie_ac13ebb92558e11324856ad6f54cf03c4}{at} (const K \&key)
+\begin{DoxyCompactList}\small\item\em Devuelve el significado relacionado con la clave. \end{DoxyCompactList}\item 
+bool \hyperlink{classTrie_ad010dfe65cae2e4fac78ec36b76aa452}{empty} () const 
+\begin{DoxyCompactList}\small\item\em True si el diccionario está vacío. \end{DoxyCompactList}\item 
+\hyperlink{classTrie_1_1iterator}{iterator} \hyperlink{classTrie_a283dd74c28dbd89170d0a6c1070df7a1}{find} (const K \&k)
+\begin{DoxyCompactList}\small\item\em Devuelve un iterador relacionado a la clave buscada. End si no está definida. \end{DoxyCompactList}\item 
+\hyperlink{classTrie_1_1const__iterator}{const\-\_\-iterator} \hyperlink{classTrie_a87ff3465e7a68808adbed990372f9adf}{find} (const K \&k) const 
+\begin{DoxyCompactList}\small\item\em Devuelve un iterador const relacionado a la clave buscada. End si no está definida. \end{DoxyCompactList}\item 
+\hyperlink{classTrie_1_1iterator}{iterator} \hyperlink{classTrie_a46ff79fbdf4bc9b41d00a8bd249cf982}{begin} ()
+\begin{DoxyCompactList}\small\item\em Devuelve un iterador al inicio del diccionario. \end{DoxyCompactList}\item 
+\hyperlink{classTrie_1_1iterator}{iterator} \hyperlink{classTrie_ac7804a9427e5368793f18f02dcdf4140}{end} ()
+\begin{DoxyCompactList}\small\item\em Devuelve un iterador a la posición pasando-\/el-\/último. \end{DoxyCompactList}\item 
+\hyperlink{classTrie_1_1const__iterator}{const\-\_\-iterator} \hyperlink{classTrie_a68fe48b7794a86441af9855d5e99d856}{begin} () const 
+\begin{DoxyCompactList}\small\item\em Devuelve un iterador const al inicio del diccionario. \end{DoxyCompactList}\item 
+\hyperlink{classTrie_1_1const__iterator}{const\-\_\-iterator} \hyperlink{classTrie_ac2b1fb8c1a173a46af45415dd0bd7abb}{end} () const 
+\begin{DoxyCompactList}\small\item\em Devuelve un iterador const a la posición pasando-\/el-\/último. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{classTrie_a234d4939fdf3278fd2395ba90d6b9773}{count} (const K \&k) const 
+\begin{DoxyCompactList}\small\item\em Cantidad de apariciones de la clave. \end{DoxyCompactList}\item 
+const S \& \hyperlink{classTrie_a97f6c7eb4db7f545364cde047a9ebc0e}{at} (const K \&key) const 
+\begin{DoxyCompactList}\small\item\em Devuelve el significado relacionado con la clave. \end{DoxyCompactList}\item 
+size\-\_\-type \hyperlink{classTrie_affffdacc57ef546af2a1e72076ed90e3}{erase} (const K \&key)
+\begin{DoxyCompactList}\small\item\em Elimina el significado del diccionario. Devuelve la cantidad de elementos elminados. \end{DoxyCompactList}\item 
+\hyperlink{classTrie}{Trie} \& \hyperlink{classTrie_aec0e26545ce41199eabed9483ea6bccd}{operator=} (const \hyperlink{classTrie}{Trie} \&other)
+\begin{DoxyCompactList}\small\item\em Operador asignación del diccionario. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTrie_a8ec366e26c8e54678e93eefb28487c87}{\hyperlink{structTrie_1_1Nodo}{Nodo} $\ast$ {\bfseries \-\_\-raiz}}\label{classTrie_a8ec366e26c8e54678e93eefb28487c87}
+
+\item 
+\hypertarget{classTrie_a734f044a90ba210c48a8839ee8024b59}{size\-\_\-type {\bfseries \-\_\-tamano}}\label{classTrie_a734f044a90ba210c48a8839ee8024b59}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+\subsubsection*{template$<$class K, class S$>$class Trie$<$ K, S $>$}
+
+Módulo diccionario con inserción en O(1) 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em K} & tipo paramétrico para la clave \\
+\hline
+{\em S} & tipo paramétrico para el significado\\
+\hline
+\end{DoxyTemplParams}
+Se espera que K tenga\-:
+\begin{DoxyItemize}
+\item operator==
+\item Constructor por copia
+\end{DoxyItemize}
+
+Se espera que S tenga\-:
+\begin{DoxyItemize}
+\item Constructor por copoa
+\end{DoxyItemize}
+
+{\bfseries se explica con} T\-A\-D Diccionario(\-K, S) 
+
+\subsection{Documentación del constructor y destructor}
+\hypertarget{classTrie_a41f0865fb41246aa707139eba04769d7}{\index{Trie@{Trie}!Trie@{Trie}}
+\index{Trie@{Trie}!Trie@{Trie}}
+\subsubsection[{Trie}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class S $>$ {\bf Trie}$<$ K, S $>$\-::{\bf Trie} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTrie_a41f0865fb41246aa707139eba04769d7}
+
+
+Crea un diccionario vacio. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries this} = vacio
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(1)
+\end{DoxyDescription}\hypertarget{classTrie_a633ac90cdec93ea8b9e7e53df703e720}{\index{Trie@{Trie}!Trie@{Trie}}
+\index{Trie@{Trie}!Trie@{Trie}}
+\subsubsection[{Trie}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class S$>$ {\bf Trie}$<$ K, S $>$\-::{\bf Trie} (
+\begin{DoxyParamCaption}
+\item[{const {\bf Trie}$<$ K, S $>$ \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classTrie_a633ac90cdec93ea8b9e7e53df703e720}
+
+
+Constructor por copia. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries this} es una copia de other. No hay aliasing.
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(\#claves(ohter) $\ast$ (copy(\-Clave) + copy(\-Significado)))
+\end{DoxyDescription}
+
+\subsection{Documentación de las funciones miembro}
+\hypertarget{classTrie_ac13ebb92558e11324856ad6f54cf03c4}{\index{Trie@{Trie}!at@{at}}
+\index{at@{at}!Trie@{Trie}}
+\subsubsection[{at}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class S $>$ S \& {\bf Trie}$<$ K, S $>$\-::at (
+\begin{DoxyParamCaption}
+\item[{const K \&}]{key}
+\end{DoxyParamCaption}
+)}}\label{classTrie_ac13ebb92558e11324856ad6f54cf03c4}
+
+
+Devuelve el significado relacionado con la clave. 
+
+El significado se devuelve por referencia modificable.
+
+\begin{DoxyPrecond}{Precondición}
+def?(key, {\bfseries this}) 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries res} = obtener({\bfseries this}, k)
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(\#claves({\bfseries this}))
+\end{DoxyDescription}\hypertarget{classTrie_a97f6c7eb4db7f545364cde047a9ebc0e}{\index{Trie@{Trie}!at@{at}}
+\index{at@{at}!Trie@{Trie}}
+\subsubsection[{at}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class S $>$ const S \& {\bf Trie}$<$ K, S $>$\-::at (
+\begin{DoxyParamCaption}
+\item[{const K \&}]{key}
+\end{DoxyParamCaption}
+) const}}\label{classTrie_a97f6c7eb4db7f545364cde047a9ebc0e}
+
+
+Devuelve el significado relacionado con la clave. 
+
+El significado se devuelve por referencia no-\/modificable.
+
+\begin{DoxyPrecond}{Precondición}
+def?(key, {\bfseries this}) 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries res} = obtener({\bfseries this}, k)
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(\#claves({\bfseries this}))
+\end{DoxyDescription}\hypertarget{classTrie_a46ff79fbdf4bc9b41d00a8bd249cf982}{\index{Trie@{Trie}!begin@{begin}}
+\index{begin@{begin}!Trie@{Trie}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class S $>$ {\bf Trie}$<$ K, S $>$\-::{\bf iterator} {\bf Trie}$<$ K, S $>$\-::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTrie_a46ff79fbdf4bc9b41d00a8bd249cf982}
+
+
+Devuelve un iterador al inicio del diccionario. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries res} apunta al inicio del diccionario
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(1)
+\end{DoxyDescription}\hypertarget{classTrie_a68fe48b7794a86441af9855d5e99d856}{\index{Trie@{Trie}!begin@{begin}}
+\index{begin@{begin}!Trie@{Trie}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class S $>$ {\bf Trie}$<$ K, S $>$\-::{\bf const\-\_\-iterator} {\bf Trie}$<$ K, S $>$\-::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classTrie_a68fe48b7794a86441af9855d5e99d856}
+
+
+Devuelve un iterador const al inicio del diccionario. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries res} apunta al inicio del diccionario
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(1)
+\end{DoxyDescription}\hypertarget{classTrie_a234d4939fdf3278fd2395ba90d6b9773}{\index{Trie@{Trie}!count@{count}}
+\index{count@{count}!Trie@{Trie}}
+\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class S $>$ size\-\_\-t {\bf Trie}$<$ K, S $>$\-::count (
+\begin{DoxyParamCaption}
+\item[{const K \&}]{k}
+\end{DoxyParamCaption}
+) const}}\label{classTrie_a234d4939fdf3278fd2395ba90d6b9773}
+
+
+Cantidad de apariciones de la clave. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries if} def?({\bfseries this}, k) {\bfseries then} {\bfseries res} = 1 {\bfseries else} {\bfseries res} = 0 {\bfseries fi} 
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(\#claves({\bfseries this}) $\ast$ cmp(\-Clave)
+\end{DoxyDescription}\hypertarget{classTrie_ad010dfe65cae2e4fac78ec36b76aa452}{\index{Trie@{Trie}!empty@{empty}}
+\index{empty@{empty}!Trie@{Trie}}
+\subsubsection[{empty}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class S $>$ bool {\bf Trie}$<$ K, S $>$\-::empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classTrie_ad010dfe65cae2e4fac78ec36b76aa452}
+
+
+True si el diccionario está vacío. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries res} = $\emptyset$?(claves({\bfseries this}))
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(1)
+\end{DoxyDescription}\hypertarget{classTrie_ac7804a9427e5368793f18f02dcdf4140}{\index{Trie@{Trie}!end@{end}}
+\index{end@{end}!Trie@{Trie}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class S $>$ {\bf Trie}$<$ K, S $>$\-::{\bf iterator} {\bf Trie}$<$ K, S $>$\-::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTrie_ac7804a9427e5368793f18f02dcdf4140}
+
+
+Devuelve un iterador a la posición pasando-\/el-\/último. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries res} apunta a la posición pasando-\/el-\/último
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(1)
+\end{DoxyDescription}\hypertarget{classTrie_ac2b1fb8c1a173a46af45415dd0bd7abb}{\index{Trie@{Trie}!end@{end}}
+\index{end@{end}!Trie@{Trie}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class S $>$ {\bf Trie}$<$ K, S $>$\-::{\bf const\-\_\-iterator} {\bf Trie}$<$ K, S $>$\-::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classTrie_ac2b1fb8c1a173a46af45415dd0bd7abb}
+
+
+Devuelve un iterador const a la posición pasando-\/el-\/último. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries res} apunta a la posición pasando-\/el-\/último
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(1)
+\end{DoxyDescription}\hypertarget{classTrie_affffdacc57ef546af2a1e72076ed90e3}{\index{Trie@{Trie}!erase@{erase}}
+\index{erase@{erase}!Trie@{Trie}}
+\subsubsection[{erase}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class S $>$ {\bf Trie}$<$ K, S $>$\-::size\-\_\-type {\bf Trie}$<$ K, S $>$\-::erase (
+\begin{DoxyParamCaption}
+\item[{const K \&}]{key}
+\end{DoxyParamCaption}
+)}}\label{classTrie_affffdacc57ef546af2a1e72076ed90e3}
+
+
+Elimina el significado del diccionario. Devuelve la cantidad de elementos elminados. 
+
+\begin{DoxyPrecond}{Precondición}
+d == {\bfseries this} $\land$ def?(key, {\bfseries this}) 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries this} == borrar(key, d) $\land$ {\bfseries res} = 1
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(\#claves({\bfseries this}))
+\end{DoxyDescription}\hypertarget{classTrie_a5e77c556d9ea44ad58e7720579cf6356}{\index{Trie@{Trie}!fast\-\_\-insert@{fast\-\_\-insert}}
+\index{fast\-\_\-insert@{fast\-\_\-insert}!Trie@{Trie}}
+\subsubsection[{fast\-\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class S$>$ {\bf Trie}$<$ K, S $>$\-::{\bf iterator} {\bf Trie}$<$ K, S $>$\-::fast\-\_\-insert (
+\begin{DoxyParamCaption}
+\item[{const value\-\_\-type \&}]{v}
+\end{DoxyParamCaption}
+)}}\label{classTrie_a5e77c556d9ea44ad58e7720579cf6356}
+
+
+Define una nueva relación en el diccionario. 
+
+\begin{DoxyPrecond}{Precondición}
+d = {\bfseries this} $\land$ $\lnot$ def?( $\pi_1$(v), {\bfseries this}) 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries this} = definir(d, $\pi_1$(v), $\pi_2$(v)) $\land$ {\bfseries res} es un iterador que apunta a la relación recién definida
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(copy(v))
+\end{DoxyDescription}\hypertarget{classTrie_a283dd74c28dbd89170d0a6c1070df7a1}{\index{Trie@{Trie}!find@{find}}
+\index{find@{find}!Trie@{Trie}}
+\subsubsection[{find}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class S $>$ {\bf Trie}$<$ K, S $>$\-::{\bf iterator} {\bf Trie}$<$ K, S $>$\-::find (
+\begin{DoxyParamCaption}
+\item[{const K \&}]{k}
+\end{DoxyParamCaption}
+)}}\label{classTrie_a283dd74c28dbd89170d0a6c1070df7a1}
+
+
+Devuelve un iterador relacionado a la clave buscada. End si no está definida. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+
+\begin{DoxyItemize}
+\item def?(k, {\bfseries this}) $\Rightarrow$ $\pi_1$({\bfseries res}) = k $\land$ $\pi_2$({\bfseries res}) = obtener(k, {\bfseries this}) $\lor$
+\item def?(k, {\bfseries this}) $\Rightarrow$ {\bfseries res} es end
+\end{DoxyItemize}
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(\#claves({\bfseries this}))
+\end{DoxyDescription}\hypertarget{classTrie_a87ff3465e7a68808adbed990372f9adf}{\index{Trie@{Trie}!find@{find}}
+\index{find@{find}!Trie@{Trie}}
+\subsubsection[{find}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class S $>$ {\bf Trie}$<$ K, S $>$\-::{\bf const\-\_\-iterator} {\bf Trie}$<$ K, S $>$\-::find (
+\begin{DoxyParamCaption}
+\item[{const K \&}]{k}
+\end{DoxyParamCaption}
+) const}}\label{classTrie_a87ff3465e7a68808adbed990372f9adf}
+
+
+Devuelve un iterador const relacionado a la clave buscada. End si no está definida. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+
+\begin{DoxyItemize}
+\item def?(k, {\bfseries this}) $\Rightarrow$ $\pi_1$({\bfseries res}) = k $\land$ $\pi_2$({\bfseries res}) = obtener(k, {\bfseries this}) $\lor$
+\item def?(k, {\bfseries this}) $\Rightarrow$ {\bfseries res} es end
+\end{DoxyItemize}
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(\#claves({\bfseries this}))
+\end{DoxyDescription}\hypertarget{classTrie_ac9e770501743cdddadb5337c2afd6bd3}{\index{Trie@{Trie}!insert@{insert}}
+\index{insert@{insert}!Trie@{Trie}}
+\subsubsection[{insert}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class S$>$ pair$<$ typename {\bf Trie}$<$ K, S $>$\-::{\bf iterator}, bool $>$ {\bf Trie}$<$ K, S $>$\-::insert (
+\begin{DoxyParamCaption}
+\item[{const value\-\_\-type \&}]{v}
+\end{DoxyParamCaption}
+)}}\label{classTrie_ac9e770501743cdddadb5337c2afd6bd3}
+
+
+Define o redefine una relación en el diccionario. 
+
+\begin{DoxyPrecond}{Precondición}
+d = {\bfseries this} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries this} = definir(d, $\pi_1$(v), $\pi_2$(v)) $\land$ {\bfseries res} es una tupla con el primer elemento un iterador a la relación definida y el segúndo elemento indica si $\pi_1$(v) no era clave del diccionario
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(\#claves({\bfseries this}) + copy(v))
+\end{DoxyDescription}\hypertarget{classTrie_aec0e26545ce41199eabed9483ea6bccd}{\index{Trie@{Trie}!operator=@{operator=}}
+\index{operator=@{operator=}!Trie@{Trie}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K, class S$>$ {\bf Trie}$<$ K, S $>$ \& {\bf Trie}$<$ K, S $>$\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Trie}$<$ K, S $>$ \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classTrie_aec0e26545ce41199eabed9483ea6bccd}
+
+
+Operador asignación del diccionario. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries this} == other $\land$ {\bfseries res} es referencia a {\bfseries this}
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(\#claves({\bfseries this}) + \#claves(other) $\ast$ (copy(\-Clave) + copy(\-Significado)))
+\end{DoxyDescription}\hypertarget{classTrie_ad028c84aa33e37835b7ca28ed3378e98}{\index{Trie@{Trie}!size@{size}}
+\index{size@{size}!Trie@{Trie}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class K , class S $>$ {\bf Trie}$<$ K, S $>$\-::size\-\_\-type {\bf Trie}$<$ K, S $>$\-::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classTrie_ad028c84aa33e37835b7ca28ed3378e98}
+
+
+Tamaño del diccionario. 
+
+\begin{DoxyPrecond}{Precondición}
+true 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+{\bfseries res} = \#clave({\bfseries this})
+\end{DoxyPostcond}
+
+\begin{DoxyDescription}
+\item[Complejidad Temporal]$O$(1)
+\end{DoxyDescription}
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\-:\begin{DoxyCompactItemize}
+\item 
+src/trie.\-h\item 
+src/Trie.\-hpp\end{DoxyCompactItemize}

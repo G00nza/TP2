@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/gsaenz/TP2/src/Restriccion.cpp" "/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/correrTests.dir/src/Restriccion.cpp.o"
   "/home/gsaenz/TP2/src/Tabla.cpp" "/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/correrTests.dir/src/Tabla.cpp.o"
   "/home/gsaenz/TP2/src/const_iterador_registros.cpp" "/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/correrTests.dir/src/const_iterador_registros.cpp.o"
+  "/home/gsaenz/TP2/tests/Trie_test.cpp" "/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/correrTests.dir/tests/Trie_test.cpp.o"
   "/home/gsaenz/TP2/tests/base_de_datos_test.cpp" "/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/correrTests.dir/tests/base_de_datos_test.cpp.o"
   "/home/gsaenz/TP2/tests/dato_test.cpp" "/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/correrTests.dir/tests/dato_test.cpp.o"
   "/home/gsaenz/TP2/tests/linear_map_tests.cpp" "/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/correrTests.dir/tests/linear_map_tests.cpp.o"

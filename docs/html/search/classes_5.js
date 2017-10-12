@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['registro',['Registro',['../classRegistro.html',1,'']]],
-  ['restriccion',['Restriccion',['../classRestriccion.html',1,'']]]
+  ['nodo',['Nodo',['../structTrie_1_1Nodo.html',1,'Trie']]]
 ];

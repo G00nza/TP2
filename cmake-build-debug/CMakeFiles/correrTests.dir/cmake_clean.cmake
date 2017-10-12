@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/correrTests.dir/tests/Trie_test.cpp.o"
   "CMakeFiles/correrTests.dir/tests/base_de_datos_test.cpp.o"
   "CMakeFiles/correrTests.dir/tests/dato_test.cpp.o"
   "CMakeFiles/correrTests.dir/tests/linear_map_tests.cpp.o"
