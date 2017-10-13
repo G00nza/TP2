@@ -234,11 +234,11 @@ bool string_map<T>::const_iterator::operator!=(const string_map<T>::const_iterat
     return not (*this == other);
 }
 
-template<typename T>
+/*template<typename T>
 string_map<T>::const_iterator::const_iterator(
         const typename string_map<T>::const_iterator& _it)
         : it(_it) {};
-
+*/
 
 // iterator methods
 
@@ -246,15 +246,15 @@ template<typename T>
 string_map<T>::iterator::iterator(const typename string_map<T>::iterator& other)
         : it(other.it) {}
 
-template<typename T>
+/*template<typename T>
 string_map<T>::iterator::iterator(const typename string_map<T>::iterator& _it)
         : it(_it) {};
-
-//template<typename T>
-//typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
-//    it++;
-//    return *this;
-//}
+*/
+/*template<typename T>
+typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
+    it++;
+    return *this;
+}*/
 
 template<typename T>
 const typename string_map<T>::iterator::value_type &string_map<T>::iterator::operator*() const {
