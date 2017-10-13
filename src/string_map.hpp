@@ -195,20 +195,23 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type& key) {
                 break;
             }
         }
-    }
-    if (actual != _raiz) {
-        actual->padre->_hijos.erase(actual->padre->_hijos.begin() + posicions.back());
-        actual->padre->_claves.erase(actual->padre->_claves.begin() + posicions.back());
-        delete actual;
-    } else  {
-        if(_raiz->_obtener != NULL) {
-            _raiz->_hijos.erase(_raiz->_hijos.begin() + posicions.back());
-            _raiz->_hijos.erase(_raiz->_hijos.begin() + posicions.back());
-        } else{
-            _raiz = new Nodo;
+        if (actual != _raiz) {
+            actual->padre->_hijos.erase(actual->padre->_hijos.begin() + posicions.back());
+            actual->padre->_claves.erase(actual->padre->_claves.begin() + posicions.back());
             delete actual;
+        } else  {
+            if(_raiz->_obtener != NULL) {
+                _raiz->_hijos.erase(_raiz->_hijos.begin() + posicions.back());
+                _raiz->_hijos.erase(_raiz->_hijos.begin() + posicions.back());
+            } else{
+                _raiz = new Nodo;
+                delete actual;
+            }
         }
+    } else{
+        actual->_obtener = NULL;
     }
+
     return _tamano--;
 }
 

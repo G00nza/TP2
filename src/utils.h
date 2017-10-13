@@ -30,7 +30,7 @@ bool seteq(vector<T> v1, vector<T> v2) {
     return subset(v1, v2) and subset(v2, v1);
 }
 
-template<class T>
+/*template<class T>
 std::ostream &operator<<(ostream &os, const list<T> &l) {
   os << "[";
   for (auto e : l) {
@@ -44,6 +44,6 @@ template<class A, class B>
 std::ostream &operator<<(ostream &os, const pair<A, B> &p) {
   os << "(" << p.first << ", " << p.second << ")";
   return os;
-}
+}*/
 
 #endif //UTILS_H
