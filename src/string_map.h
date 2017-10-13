@@ -4,6 +4,7 @@
 #include <cassert>
 #include <string>
 #include <vector>
+//#include "string_map_iterators.h"
 
 using std::string;
 using std::vector;
@@ -19,18 +20,14 @@ using std::pair;
 template < typename T >
 class string_map {
     struct Nodo;
-
-    class iterator;
-    class const_iterator;
 public:
     typedef string key_type;
     typedef T mapped_type;
     typedef std::pair<const key_type, mapped_type> value_type;
     typedef size_t size_type;
 
-
-
-    
+    class iterator;
+    class const_iterator;
 
     /** @brief Construye mapa vacio
      *
@@ -199,16 +196,17 @@ private:
     };
     size_type _tamano;
 
-    class iterator{
+    /*class iterator{
         Nodo* _valorIt;
         friend class string_map;
-    };
-    class const_iterator{
+    };*/
+    /*class const_iterator{
         Nodo* _valorIt;
         friend class string_map;
-    };
+    };*/
 };
 
 #include "string_map.hpp"
+#include "string_map_iterators.h"
 
 #endif //STRING_MAP_STRING_MAP_H

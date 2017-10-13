@@ -119,7 +119,7 @@ typename string_map<T>::iterator string_map<T>::find(const key_type &k) {
         }
         camino.erase(0);
     }
-    it = actual->_obtener;
+    it._valorIt = actual;
     return it;
 }
 
@@ -146,7 +146,7 @@ string_map<T>::find(const key_type &k) const {
         }
         camino.erase(0);
     }
-    it = actual->_obtener;
+    it._valorIt = actual;
     return it;
 }
 
@@ -154,7 +154,9 @@ string_map<T>::find(const key_type &k) const {
 //si no  => 0
 template < typename T >
 size_t string_map<T>::count(const key_type &key) const{
-    return find(key)    != end();
+    return 0;
+    //implementar
+    //return find(key) != end();
 }
 
 template < typename T >
@@ -227,18 +229,19 @@ bool string_map<T>::empty() const {
 
 template < typename T >
 typename string_map<T>::mapped_type& string_map<T>::at(const key_type& key) {
-    return find(key);
+    return *find(key)._valorIt->_obtener;
 }
 
 template < typename T >
 typename string_map<T>::iterator string_map<T>::begin() {
-    auto it = _raiz->_obtener;
+    string_map<T>::iterator it;
+    it._valorIt = _raiz;
     if (_tamano > 0) {
         Nodo* actual = _raiz;
         while (actual->_claves.size() > 0){
             actual = actual->_hijos[0];
         }
-        it = actual->_obtener;
+        it._valorIt = actual;
     }
     return it;
 }
