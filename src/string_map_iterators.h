@@ -11,11 +11,9 @@ using namespace std;
 template<class T>
 class string_map<T>::const_iterator {
 public:
-    using value_type = string_map::value_type;
-    using iterator_category = std::forward_iterator_tag;
+    using value_type = const string_map<T>::value_type;
     using reference = value_type&;
     using pointer = value_type*;
-    using difference_type = std::ptrdiff_t;
 
     /**
      * @brief Constructor por copia del iterador.
@@ -40,7 +38,7 @@ public:
      *
      * \complexity{\O(1)}
      */
-    string_map::const_iterator &operator++();
+    typename string_map::const_iterator &operator++();
 
     /**
      * @brief Desreferencia el puntero
@@ -92,7 +90,8 @@ private:
     /**
      * @brief El iterador es puntero a Nodo.
      */
-    Nodo* it;
+    const_iterator (Nodo* n) : _nodo (n) {};
+    Nodo* _nodo;
 
 
 };
@@ -100,11 +99,9 @@ private:
 template<class T>
 class string_map<T>::iterator {
 public:
-    using value_type = const string_map::value_type;
-    using iterator_category = std::forward_iterator_tag;
+    using value_type = const string_map<T>::value_type;
     using reference = value_type&;
     using pointer = value_type*;
-    using difference_type = std::ptrdiff_t;
 
     /**
      * @brief Constructor por copia del iterador.
@@ -112,6 +109,20 @@ public:
      * \complexity{\O(1)}
      */
     iterator(const typename string_map<T>::iterator&);
+
+    /**
+     * @brief Constructor por refernecia a Nodo.
+     *
+     * \complexity{\O(1)}
+     */
+    iterator(const typename string_map<T>::Nodo*);
+
+    /**
+     * @brief Constructor por copia del iterador.
+     *
+     * \complexity{\O(1)}
+     */
+    iterator& operator=(const typename string_map<T>::iterator&);
 
     /**
      * @brief Avanza el iterador una posición.
@@ -122,7 +133,7 @@ public:
      *
      * \complexity{\O(1)}
      */
-    string_map::iterator &operator++();
+    typename string_map::iterator &operator++();
 
     /**
      * @brief Desreferencia el puntero
@@ -174,7 +185,8 @@ private:
     /**
      * @brief El iterador es puntero a Nodo.
      */
-    Nodo* it;
+    iterator (Nodo* n) : _nodo (n) {};
+    Nodo* _nodo;
 };
 
 
@@ -184,11 +196,11 @@ private:
 
 template<typename T>
 string_map<T>::const_iterator::const_iterator(
-        const typename string_map<T>::const_iterator &other) : it(other.it) {}
+        const typename string_map<T>::const_iterator &other) : _nodo(other._nodo) {}
 
 template<typename T>
 string_map<T>::const_iterator::const_iterator(
-        const typename string_map<T>::iterator &other) : it(other.it) {}
+        const typename string_map<T>::iterator &other) : _nodo(other._nodo) {}
 
 
 //.end() esta contenido en el trie
@@ -216,17 +228,17 @@ typename string_map<T>::const_iterator &string_map<T>::const_iterator::operator+
 
 template<typename T>
 const typename string_map<T>::const_iterator::value_type &string_map<T>::const_iterator::operator*() const {
-    return it->first;
+    return *(make_pair(_nodo._camino , _nodo.obtener));
 }
 
 template<typename T>
 const typename string_map<T>::const_iterator::value_type *string_map<T>::const_iterator::operator->() const {
-    return &it->first;
+    return make_pair(_nodo._camino , _nodo.obtener);
 }
 
 template<typename T>
 bool string_map<T>::const_iterator::operator==(const string_map<T>::const_iterator &other) const {
-    return it == other.it;
+    return _nodo == other._nodo;
 }
 
 template<typename T>
@@ -240,16 +252,34 @@ string_map<T>::const_iterator::const_iterator(
         : it(_it) {};
 */
 
+
+
+
+
+
 // iterator methods
 
+
+
 template<typename T>
-string_map<T>::iterator::iterator(const typename string_map<T>::iterator& other)
-        : it(other.it) {}
+string_map<T>::iterator::iterator(
+        const typename string_map<T>::iterator& other) : _nodo(other._nodo) {};
+
+template<typename T>
+string_map<T>::iterator::iterator(
+        const typename string_map<T>::Nodo* nodo) : _nodo(nodo) {};
+
+template<typename T>
+typename string_map<T>::iterator& string_map<T>::iterator::operator=(const string_map<T>::iterator& other){
+    return *this = other;
+}
 
 /*template<typename T>
 string_map<T>::iterator::iterator(const typename string_map<T>::iterator& _it)
         : it(_it) {};
 */
+
+//implementar
 /*template<typename T>
 typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
     it++;
@@ -258,30 +288,30 @@ typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
 
 template<typename T>
 const typename string_map<T>::iterator::value_type &string_map<T>::iterator::operator*() const {
-    return it->first;
+    return *(make_pair(_nodo._camino, _nodo._obtener));
 }
 
 template<typename T>
 const typename string_map<T>::iterator::value_type *string_map<T>::iterator::operator->() const {
-    return &it->first;
+    return make_pair(_nodo._camino, _nodo._obtener);
 }
 
 template<typename T>
 bool string_map<T>::iterator::operator==(const string_map<T>::iterator &other) const {
-    return it == other.it;
+    return _nodo == other._nodo;
 }
 
 template<typename T>
 bool string_map<T>::iterator::operator!=(const string_map<T>::iterator &other) const {
-    return not (*this == other);
+    return not (this == other);
 }
 
 template<typename T>
 typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
-    if(*this._hijos.size() > 0) {
-        this = *this._hijos[0];
-        while (*this._hijos.size() > 0 && *this._obtener != nullptr) {
-            this = *this._hijos[0];
+    if(*this->_hijos.size() > 0) {
+        this = *this->_hijos[0];
+        while (*this->_hijos.size() > 0 && *this->_obtener != nullptr) {
+            this = *this->_hijos[0];
         }
     }else{
         while(*this->padre != nullptr){

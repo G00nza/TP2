@@ -108,19 +108,19 @@ public:
      *
      *  \complexity{\O(S)}
      */
-   iterator begin();
+    iterator begin();
 
     /**  @brief iterador al fin de la coleccion
      *
      *  \complexity{\O(S)}
      */
-   iterator end();
+    iterator end();
 
     /// Versiones const de begin/end
-   const_iterator begin() const;
-   const_iterator end() const;
-   //const_iterator cbegin() const;
-   //const_iterator cend() const;
+    const_iterator begin() const;
+    const_iterator end() const;
+    //const_iterator cbegin() const;
+    //const_iterator cend() const;
 
     /** @brief busca una clave
      *  @param key clave a buscar
@@ -128,7 +128,7 @@ public:
      *
      *  \complexity{\O(S)}
      */
-   iterator find(const key_type &key);
+    iterator find(const key_type &key);
 
     /** @brief busca una clave
      *  @param key clave a buscar
@@ -136,7 +136,7 @@ public:
      *
      *  \complexity{\O(S)}
      */
-   const_iterator find(const key_type &key) const;
+    const_iterator find(const key_type &key) const;
 
     /** @brief insercion
      *
@@ -193,8 +193,12 @@ private:
         T* _obtener;
         Nodo* padre;
         string _camino;
+
     };
     size_type _tamano;
+
+    friend class iterator;
+    friend class const_iterator;
 
     /*class iterator{
         Nodo* _valorIt;
