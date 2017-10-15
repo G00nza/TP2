@@ -63,7 +63,7 @@ class linear_set {
    * \pre true
    * \post \P{this} es una copia de other. No hay aliasing.
    *
-   * \complexity{\O(#claves(ohter) * copy(T))}
+   * \complexity{\O(#(other) * copy(T))}
    */
   linear_set(const linear_set<T> &other);
 

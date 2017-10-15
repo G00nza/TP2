@@ -16,8 +16,34 @@ void BaseDeDatos::crearTabla(const string &nombre,
 void BaseDeDatos::agregarRegistro(const Registro &r, const string &nombre) {
     Tabla &t = _tablas.at(nombre);
     t.agregarRegistro(r);
-    //actualizar indices
+
+    if (_indices.count(nombre) == 1){
+        string_map<Indice> indices_tabla = _indices.at(nombre);
+        for (auto it : t.campos()){
+            if (indices_tabla.count(it) == 1){
+                agregarAIndice(indices_tabla.at(it), r, it);
+            }
+        }
+    }
 }
+
+void BaseDeDatos::agregarAIndice(BaseDeDatos::Indice &indice, const Registro &registro, const string &campo) {
+    bool insertado = false;
+    for (auto it : indice) {
+        if (it.first == registro.dato(campo)) {
+            linear_set<Registro> nuevo_conj = indice.at(it.first);
+            nuevo_conj.fast_insert(registro);
+            insertado = true;
+        }
+    }
+
+    if (!insertado){
+        linear_set<Registro> nuevo_conj = linear_set<Registro>();
+        nuevo_conj.fast_insert(registro);
+        indice.fast_insert(make_pair(registro.dato(campo), nuevo_conj));
+    }
+}
+
 
 const linear_set<string> &BaseDeDatos::tablas() const { return _nombres_tablas; }
 
@@ -40,17 +66,17 @@ bool BaseDeDatos::registroValido(const Registro &r,
     bool camposIguales = true;
 
     for (auto it : t.campos() ) { //O(C)
-        camposIguales &= r.campos().count(*it);
+        camposIguales &= r.campos().count(it);
     }
 
     for (auto it : r.campos() ) { // O(C)
-        camposIguales &= t.tipos().count(*it);
+        camposIguales &= t.tipos().count(it);
     }
 
     bool mismosTipos = true;
     if (camposIguales) { //O(C)
         for (auto it : t.campos() ) {
-            mismosTipos &= t.tipoCampo(*it).esNat() && r.dato(*it).esNat();
+            mismosTipos &= t.tipoCampo(it).esNat() && r.dato(it).esNat();
         }
     }
 
@@ -184,3 +210,4 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
 
     _indices.insert(make_pair(nombre, map_indices));
 }
+

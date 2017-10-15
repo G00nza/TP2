@@ -73,7 +73,7 @@ public:
      *      puedoInsertar?(r, dameTabla(\P{this}))
      * \post \P{this} = insertarEntrada(r, nombre, db)
      *
-     * \complexity{\O(T + copy(reg))}
+     * \complexity{\O(copy(reg) + C*(L+m))}
      */
     void agregarRegistro(const Registro &r, const string &nombre);
 
@@ -285,6 +285,24 @@ private:
      *       tipo?(\P2(\P{res})[i]) = tipoCampo(\P1(\P{res})[i], t)
      */
     pair<vector<string>, vector<Dato> > _tipos_tabla(const Tabla &t);
+
+
+    /**
+    * @brief Obtiene los campos y tipos de una tabla.
+    *
+    * @param indice Indice a modificar
+    * @param registro Registro a agregar
+    * @param campo nombre del campo del indice
+    *
+    * \pre (\FORALL r: Registro) ((\EXISTS d: Dato) def?(d, indice) \LAND obtener(d, indice) = r) \IMPLIES
+    *      campos(r) = campos(registro) \LAND (\FORALL c: campo) c \IN campos(r) \IMPLIES tipo(valor(c,r)) = tipo(valor(c, registro))
+    *
+    * \post (def?(valor(campo, registro), indice) \IMPLIES indice = definir(valor(campo, registro), Ag(registro, obtener(valor(campo,registro))), indice) )\LAND
+    *       ¬def?(valor(campo, registro), indice) \IMPLIES indice = definir(valor(campo, registro), registro)
+    *
+    *
+    */
+    void agregarAIndice(Indice& indice, const Registro &registro, const string &campo);
     /** @} */
 };
 
