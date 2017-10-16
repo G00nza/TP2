@@ -193,6 +193,8 @@ private:
         T* _obtener;
         Nodo* padre;
         string _camino;
+        bool _definido = false;
+        int _posEnPadre;
 
     };
     size_type _tamano;

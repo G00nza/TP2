@@ -11,7 +11,7 @@ using namespace std;
 template<class T>
 class string_map<T>::const_iterator {
 public:
-    using value_type = const string_map<T>::value_type;
+    using value_type = string_map<T>::value_type;
     using reference = value_type&;
     using pointer = value_type*;
 
@@ -99,7 +99,7 @@ private:
 template<class T>
 class string_map<T>::iterator {
 public:
-    using value_type = const string_map<T>::value_type;
+    using value_type = string_map<T>::value_type;
     using reference = value_type&;
     using pointer = value_type*;
 
@@ -133,7 +133,7 @@ public:
      *
      * \complexity{\O(1)}
      */
-    typename string_map::iterator &operator++();
+    iterator &operator++();
 
     /**
      * @brief Desreferencia el puntero
@@ -145,7 +145,9 @@ public:
      *
      * \complexity{\O(1)}
      */
-    const value_type &operator*() const;
+    value_type &operator*();
+
+    bool definido()const;
 
     /**
      * @brief Operador flechita
@@ -206,21 +208,21 @@ string_map<T>::const_iterator::const_iterator(
 //.end() esta contenido en el trie
 template<typename T>
 typename string_map<T>::const_iterator &string_map<T>::const_iterator::operator++() {
-    if(*this._hijos.size() > 0) {
-        this = *this._hijos[0];
-        while (*this._hijos.size() > 0 && *this._obtener != nullptr) {
-            this = *this._hijos[0];
+    if(_nodo->_hijos.size() > 0) {
+        this = _nodo->_hijos[0];
+        while (_nodo->_hijos.size() > 0 && _nodo->_obtener != nullptr) {
+            this = _nodo->_hijos[0];
         }
     }else{
-        while(*this->padre != nullptr){
-            if (*this->padre->_hijos.size()-1 > *this->padre->_hijos.find(*this)){
-                this = *this->padre->_hijos.find(*this)+1;
+        while(_nodo->padre != nullptr){
+            if (_nodo->padre->_hijos.size()-1 > _nodo->padre->_hijos.find(*this)){
+                this = _nodo->padre->_hijos.find(*this)+1;
                 break;
             }
-            this = this->padre;
+            this = _nodo->padre;
         }
-        while (*this._hijos.size() > 0 && *this._obtener != nullptr) {
-            this = *this._hijos[0];
+        while (_nodo->_hijos.size() > 0 && _nodo->_obtener != nullptr) {
+            this = _nodo->_hijos[0];
         }
     }
     return this;
@@ -228,12 +230,12 @@ typename string_map<T>::const_iterator &string_map<T>::const_iterator::operator+
 
 template<typename T>
 const typename string_map<T>::const_iterator::value_type &string_map<T>::const_iterator::operator*() const {
-    return *(make_pair(_nodo._camino , _nodo.obtener));
+    return *(make_pair(_nodo->_camino , _nodo->obtener));
 }
 
 template<typename T>
 const typename string_map<T>::const_iterator::value_type *string_map<T>::const_iterator::operator->() const {
-    return make_pair(_nodo._camino , _nodo.obtener);
+    return make_pair(_nodo->_camino , _nodo->obtener);
 }
 
 template<typename T>
@@ -287,45 +289,63 @@ typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
 }*/
 
 template<typename T>
-const typename string_map<T>::iterator::value_type &string_map<T>::iterator::operator*() const {
-    return *(make_pair(_nodo._camino, _nodo._obtener));
+typename string_map<T>::iterator::value_type &string_map<T>::iterator::operator*() {
+    return *(make_pair(_nodo->_camino, _nodo->_obtener));
 }
 
 template<typename T>
 const typename string_map<T>::iterator::value_type *string_map<T>::iterator::operator->() const {
-    return make_pair(_nodo._camino, _nodo._obtener);
+    return make_pair(_nodo->_camino, _nodo->_obtener);
 }
 
 template<typename T>
 bool string_map<T>::iterator::operator==(const string_map<T>::iterator &other) const {
-    return _nodo == other._nodo;
+    return *this == *other;
 }
 
 template<typename T>
 bool string_map<T>::iterator::operator!=(const string_map<T>::iterator &other) const {
-    return not (this == other);
+    return not (this->operator==( other));
 }
 
 template<typename T>
 typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
-    if(*this->_hijos.size() > 0) {
-        this = *this->_hijos[0];
-        while (*this->_hijos.size() > 0 && *this->_obtener != nullptr) {
-            this = *this->_hijos[0];
+    if(_nodo->_hijos.size() > 0) {
+        this->_nodo = _nodo->_hijos[0];
+        while (_nodo->_hijos.size() > 0 && _nodo->_obtener != nullptr) {
+            this->_nodo = _nodo->_hijos[0];
         }
     }else{
-        while(*this->padre != nullptr){
-            if (*this->padre->_hijos.size()-1 > *this->padre->_hijos.find(*this)){
-                this = *this->padre->_hijos.find(*this)+1;
+        while(_nodo->padre != nullptr){
+            if (_nodo->padre->_hijos.size()-1 > findpos(_nodo->padre->_hijos, _nodo)){
+                _nodo = _nodo->padre->_hijos[findpos(_nodo->padre->_hijos, _nodo)+1];
                 break;
             }
-            this = this->padre;
+            this->_nodo = _nodo->padre;
         }
-        while (*this._hijos.size() > 0 && *this._obtener != nullptr) {
-            this = *this._hijos[0];
+        while (_nodo->_hijos.size() > 0 && _nodo->_obtener != nullptr) {
+            this->_nodo = _nodo->_hijos[0];
         }
     }
     return this;
+}
+
+template<typename T>
+bool string_map<T>::iterator::definido() const{
+    return _nodo->_definido;
+}
+
+//Hacer interfaz???
+template<typename T>
+int findpos (vector<T> s, T e){
+    int res = 0;
+    while (res < s.size()){
+        if (s[res] == e){
+            return res;
+        }
+        res++;
+    }
+    return res;
 }
 
 

@@ -66,6 +66,8 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
     } else {
         pertenece = true;
         _tamano++;
+        actual->_definido = true;
+        actual->_posEnPadre = actual->padre->_claves.size()-1;
     }
     actual->_obtener = v.second;
     actual->_camino = v.first;
@@ -218,7 +220,7 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
 
 template<typename T>
 const typename string_map<T>::mapped_type &string_map<T>::at(const key_type &key) const {
-    return find(key);
+    return find(key)->second;
 }
 
 template<typename T>
@@ -228,20 +230,16 @@ bool string_map<T>::empty() const {
 
 template<typename T>
 typename string_map<T>::mapped_type &string_map<T>::at(const key_type &key) {
-    return *find(key)->second;
+    return (*find(key)).second;
 }
 
 template<typename T>
 typename string_map<T>::iterator string_map<T>::begin() {
-    string_map<T>::iterator it;
-    it._nodo = _raiz;
-    if ((it->first) != NULL) {}
-    if (_tamano > 0) {
-        Nodo *actual = _raiz;
-        while (actual->_claves.size() > 0) {
-            actual = actual->_hijos[0];
+    string_map<T>::iterator it(_raiz);
+    if (!it.definido()) {
+        if (_tamano > 0) {
+            ++it;
         }
-        it._nodo = actual;
     }
     return it;
 }
@@ -303,7 +301,7 @@ template<typename T>
 typename string_map<T>::mapped_type &string_map<T>::operator[](const key_type &key) {
     mapped_type nada;
     //auto res = ;
-    return insert(make_pair(key, nada)).first->second;
+    return (*(insert(make_pair(key, nada)).first)).second;
 }
 
 template<typename T>
