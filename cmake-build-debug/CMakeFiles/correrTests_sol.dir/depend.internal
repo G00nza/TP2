@@ -230,6 +230,9 @@ CMakeFiles/correrTests_sol.dir/tests/string_map_test.cpp.o
  ../tests/google-test/include/gtest/internal/gtest-type-util.h
  /home/gsaenz/TP2/src/Dato.h
  /home/gsaenz/TP2/src/string_map.h
+ /home/gsaenz/TP2/src/string_map.hpp
+ /home/gsaenz/TP2/src/string_map_iterators.h
+ /home/gsaenz/TP2/src/utils.h
  /home/gsaenz/TP2/tests/string_map_test.cpp
 CMakeFiles/correrTests_sol.dir/tests/tabla_test.cpp.o
  ../tests/google-test/include/gtest/gtest-death-test.h

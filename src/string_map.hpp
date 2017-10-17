@@ -54,7 +54,9 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
             Nodo *nuevo = new Nodo;
             actual->_hijos.push_back(nuevo);
             nuevo->padre = actual;
-
+            for (int k = 0; k < j ; ++k) {
+                nuevo->_camino = v.first[k];
+            }
             actual = nuevo;
         } else {
             actual = actual->_hijos[pos];
@@ -69,7 +71,7 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
         actual->_definido = true;
         actual->_posEnPadre = actual->padre->_claves.size()-1;
     }
-    actual->_obtener = v.second;
+    *actual->_obtener = v.second;
     actual->_camino = v.first;
     string_map<T>::iterator it(actual);
 
@@ -120,7 +122,7 @@ typename string_map<T>::iterator string_map<T>::find(const key_type &k) {
         }
         camino.erase(0);
     }
-    it.it = actual;
+    it._nodo = actual;
     return it;
 }
 
@@ -147,7 +149,7 @@ string_map<T>::find(const key_type &k) const {
         }
         camino.erase(0);
     }
-    it.it = actual;
+    it._nodo = actual;
     return it;
 }
 
@@ -236,10 +238,12 @@ typename string_map<T>::mapped_type &string_map<T>::at(const key_type &key) {
 template<typename T>
 typename string_map<T>::iterator string_map<T>::begin() {
     string_map<T>::iterator it(_raiz);
-    if (!it.definido()) {
-        if (_tamano > 0) {
-            ++it;
+    if (_tamano > 0) {
+        Nodo *actual = _raiz;
+        while (actual->_claves.size() > 0 && !actual->_definido) {
+            actual = actual->_hijos[0];
         }
+        it._nodo = actual;
     }
     return it;
 }
@@ -254,20 +258,23 @@ typename string_map<T>::iterator string_map<T>::end() {
 
 template<typename T>
 typename string_map<T>::const_iterator string_map<T>::begin() const {
-    auto it = _raiz->_obtener;
+    string_map<T>::const_iterator it(_raiz);
     if (_tamano > 0) {
         Nodo *actual = _raiz;
-        while (actual->_claves.size() > 0) {
+        while (actual->_claves.size() > 0 && !actual->_definido) {
             actual = actual->_hijos[0];
         }
-        it = actual->_obtener;
+        it._nodo = actual;
     }
     return it;
 }
 
 template<typename T>
 typename string_map<T>::const_iterator string_map<T>::end() const {
-    auto it = NULL;
+    string_map<T>::const_iterator it(_raiz);
+    while (it._nodo->_hijos.size() > 0){
+        it._nodo = it._nodo->_hijos.back();
+    }
     return it;
 }
 

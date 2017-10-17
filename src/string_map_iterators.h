@@ -22,6 +22,8 @@ public:
      */
     const_iterator(const typename string_map<T>::const_iterator&);
 
+    const_iterator(const typename string_map<T>::Nodo*);
+
     /**
      * @brief Conversión desde iterator
      *
@@ -159,7 +161,7 @@ public:
      *
      * \complexity{\O(1)}
      */
-    const value_type* operator->() const;
+    value_type* operator->() ;
 
     /**
      * @brief Comparación entre iteradores 
@@ -199,6 +201,10 @@ private:
 template<typename T>
 string_map<T>::const_iterator::const_iterator(
         const typename string_map<T>::const_iterator &other) : _nodo(other._nodo) {}
+template<typename T>
+string_map<T>::const_iterator::const_iterator(
+        const typename string_map<T>::Nodo* nodo) : _nodo(nodo) {};
+
 
 template<typename T>
 string_map<T>::const_iterator::const_iterator(
@@ -208,34 +214,34 @@ string_map<T>::const_iterator::const_iterator(
 //.end() esta contenido en el trie
 template<typename T>
 typename string_map<T>::const_iterator &string_map<T>::const_iterator::operator++() {
-    if(_nodo->_hijos.size() > 0) {
-        this = _nodo->_hijos[0];
-        while (_nodo->_hijos.size() > 0 && _nodo->_obtener != nullptr) {
-            this = _nodo->_hijos[0];
+    if(this->_nodo->_hijos.size() > 0) {
+        this->_nodo = this->_nodo->_hijos[0];
+        while (this->_nodo->_hijos.size() > 0 && this->_nodo->_definido) {
+            this->_nodo = this->_nodo->_hijos[0];
         }
     }else{
-        while(_nodo->padre != nullptr){
-            if (_nodo->padre->_hijos.size()-1 > _nodo->padre->_hijos.find(*this)){
-                this = _nodo->padre->_hijos.find(*this)+1;
+        while(this->_nodo->padre != nullptr){
+            if (this->_nodo->padre->_hijos.size()-1 > findpos(this->_nodo->padre->_hijos, this->_nodo)){
+                this->_nodo = this->_nodo->padre->_hijos[findpos(this->_nodo->padre->_hijos, this->_nodo)+1];
                 break;
             }
-            this = _nodo->padre;
+            this->_nodo = this->_nodo->padre;
         }
-        while (_nodo->_hijos.size() > 0 && _nodo->_obtener != nullptr) {
-            this = _nodo->_hijos[0];
+        while (this->_nodo->_hijos.size() > 0 && this->_nodo->_definido) {
+            this->_nodo = this->_nodo->_hijos[0];
         }
     }
-    return this;
+    return *this;
 }
 
 template<typename T>
 const typename string_map<T>::const_iterator::value_type &string_map<T>::const_iterator::operator*() const {
-    return *(make_pair(_nodo->_camino , _nodo->obtener));
+    return *(make_pair(_nodo->_camino , _nodo->_obtener));
 }
 
 template<typename T>
 const typename string_map<T>::const_iterator::value_type *string_map<T>::const_iterator::operator->() const {
-    return make_pair(_nodo->_camino , _nodo->obtener);
+    return make_pair(_nodo->_camino , _nodo->_obtener);
 }
 
 template<typename T>
@@ -276,31 +282,21 @@ typename string_map<T>::iterator& string_map<T>::iterator::operator=(const strin
     return *this = other;
 }
 
-/*template<typename T>
-string_map<T>::iterator::iterator(const typename string_map<T>::iterator& _it)
-        : it(_it) {};
-*/
 
-//implementar
-/*template<typename T>
-typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
-    it++;
-    return *this;
-}*/
 
 template<typename T>
 typename string_map<T>::iterator::value_type &string_map<T>::iterator::operator*() {
-    return *(make_pair(_nodo->_camino, _nodo->_obtener));
+    return (make_pair(_nodo->_camino, *_nodo->_obtener));
 }
 
 template<typename T>
-const typename string_map<T>::iterator::value_type *string_map<T>::iterator::operator->() const {
-    return make_pair(_nodo->_camino, _nodo->_obtener);
+typename string_map<T>::iterator::value_type *string_map<T>::iterator::operator->(){
+    return &(make_pair(_nodo->_camino, *_nodo->_obtener));
 }
 
 template<typename T>
 bool string_map<T>::iterator::operator==(const string_map<T>::iterator &other) const {
-    return *this == *other;
+    return *this == other._nodo;
 }
 
 template<typename T>
@@ -310,24 +306,24 @@ bool string_map<T>::iterator::operator!=(const string_map<T>::iterator &other) c
 
 template<typename T>
 typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
-    if(_nodo->_hijos.size() > 0) {
-        this->_nodo = _nodo->_hijos[0];
-        while (_nodo->_hijos.size() > 0 && _nodo->_obtener != nullptr) {
-            this->_nodo = _nodo->_hijos[0];
+    if(this->_nodo->_hijos.size() > 0) {
+        this->_nodo = this->_nodo->_hijos[0];
+        while (this->_nodo->_hijos.size() > 0 && this->_nodo->_definido) {
+            this->_nodo = this->_nodo->_hijos[0];
         }
     }else{
-        while(_nodo->padre != nullptr){
-            if (_nodo->padre->_hijos.size()-1 > findpos(_nodo->padre->_hijos, _nodo)){
-                _nodo = _nodo->padre->_hijos[findpos(_nodo->padre->_hijos, _nodo)+1];
+        while(this->_nodo->padre != nullptr){
+            if (this->_nodo->padre->_hijos.size()-1 > findpos(this->_nodo->padre->_hijos, this->_nodo)){
+                this->_nodo = this->_nodo->padre->_hijos[findpos(this->_nodo->padre->_hijos, this->_nodo)+1];
                 break;
             }
-            this->_nodo = _nodo->padre;
+            this->_nodo = this->_nodo->padre;
         }
-        while (_nodo->_hijos.size() > 0 && _nodo->_obtener != nullptr) {
-            this->_nodo = _nodo->_hijos[0];
+        while (this->_nodo->_hijos.size() > 0 && this->_nodo->_definido) {
+            this->_nodo = this->_nodo->_hijos[0];
         }
     }
-    return this;
+    return *this;
 }
 
 template<typename T>
