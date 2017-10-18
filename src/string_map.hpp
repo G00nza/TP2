@@ -54,25 +54,27 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
             Nodo *nuevo = new Nodo;
             actual->_hijos.push_back(nuevo);
             nuevo->padre = actual;
+            string aux;
             for (int k = 0; k < j ; ++k) {
-                nuevo->_camino = v.first[k];
+                aux.push_back(v.first[k]);
             }
+            nuevo->_camino = new string(aux);
             actual = nuevo;
         } else {
             actual = actual->_hijos[pos];
         }
         camino.erase(0);
     }
-    if (actual->_obtener != NULL) {
+    if (actual->_definido) {
         pertenece = false;
     } else {
         pertenece = true;
         _tamano++;
         actual->_definido = true;
         actual->_posEnPadre = actual->padre->_claves.size()-1;
+        //*actual->_camino = v.first;//me parece que esta de mas
     }
     *actual->_obtener = v.second;
-    actual->_camino = v.first;
     string_map<T>::iterator it(actual);
 
     return make_pair(it, pertenece);
@@ -313,7 +315,7 @@ typename string_map<T>::mapped_type &string_map<T>::operator[](const key_type &k
 
 template<typename T>
 typename string_map<T>::iterator string_map<T>::erase(string_map<T>::iterator pos) {
-    string sacar = pos._nodo->_camino;
+    string sacar = *(pos._nodo->_camino);
     erase(sacar);
     return begin();
 }

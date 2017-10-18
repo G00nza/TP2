@@ -192,11 +192,11 @@ private:
         vector <Nodo*> _hijos;
         T* _obtener;
         Nodo* padre;
-        string _camino;
+        string* _camino;
         bool _definido = false;
         int _posEnPadre;
-
     };
+
     size_type _tamano;
 
     friend class iterator;
