@@ -177,7 +177,7 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
     unsigned long iteraciones = camino.size();
     Nodo *actual = _raiz;
     int pos = 0;
-    vector<int> posicions;
+    //vector<int> posicions;
     for (int j = 0; j < iteraciones; ++j) {
         for (int i = 0; i < actual->_claves.size(); ++i) {
             if (camino[0] == actual->_claves[i]) {
@@ -186,11 +186,12 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
         }
         actual = actual->_hijos[pos];
         camino.erase(0);
-        posicions.push_back(pos);
+        //posicions.push_back(pos);
     }
-    if (actual->_hijos.size() > 0) {
+    if(actual->_hijos.size())
+/*    if (actual->_hijos.size() == 0) {
         //sacar letra en padre
-        while (actual != _raiz) {
+        while (actual != _raiz && !actual->_definido) {
             if (actual->padre->_hijos.size() == 1) {
                 Nodo *aux = actual;
                 actual->padre->_hijos.erase(actual->padre->_hijos.begin());
@@ -217,9 +218,12 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
         }
     } else {
         actual->_obtener = NULL;
+        actual->_definido = false;
+        actual->v->second = NULL;
     }
 
     return _tamano--;
+*/
 }
 
 template<typename T>

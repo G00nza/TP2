@@ -16,18 +16,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="580aedad-7e0e-411c-8ad6-a9eee674ace8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/33" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/31" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/30" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/32" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/20" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/string_map.hpp" afterPath="$PROJECT_DIR$/src/string_map.hpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/base_de_datos_test.cpp" afterPath="$PROJECT_DIR$/tests/base_de_datos_test.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/string_map_iterators.h" afterPath="$PROJECT_DIR$/src/string_map_iterators.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/correrTests_sol.dir/tests/base_de_datos_test.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/correrTests_sol.dir/tests/base_de_datos_test.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/string_map.h" afterPath="$PROJECT_DIR$/src/string_map.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/tests/google-test/CMakeFiles/" />
@@ -39,57 +28,28 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.42136338">
+    <splitter split-orientation="horizontal" split-proportion="0.56199676">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="string_map.hpp" pinned="false" current-in-tab="false">
+          <file leaf-file-name="string_map.hpp" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/string_map.hpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4608">
-                  <caret line="256" column="19" lean-forward="false" selection-start-line="256" selection-start-column="19" selection-end-line="256" selection-end-column="19" />
+                <state relative-caret-position="386">
+                  <caret line="190" column="28" lean-forward="false" selection-start-line="190" selection-start-column="28" selection-end-line="190" selection-end-column="28" />
                   <folding>
-                    <element signature="e#6810#6824#0" expanded="true" />
+                    <element signature="e#341#353#0" expanded="true" />
+                    <element signature="e#4923#6183#0" expanded="false" />
+                    <element signature="e#6941#6955#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="base_de_datos_test.cpp" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tests/base_de_datos_test.cpp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4788">
-                  <caret line="266" column="8" lean-forward="false" selection-start-line="266" selection-start-column="7" selection-end-line="266" selection-end-column="8" />
-                  <folding>
-                    <element signature="e#26332#31170#0" expanded="true" />
-                    <marker date="1508372405887" expanded="true" signature="26362:26471" ph="{...}" />
-                    <marker date="1508372405887" expanded="true" signature="26511:26965" ph="{...}" />
-                    <marker date="1508372405887" expanded="true" signature="27005:27350" ph="{...}" />
-                    <marker date="1508372405887" expanded="true" signature="27392:29236" ph="{...}" />
-                    <marker date="1508372405887" expanded="true" signature="27551:27820" ph="/.../" />
-                    <marker date="1508372405887" expanded="true" signature="29279:31170" ph="{...}" />
-                    <marker date="1508372405887" expanded="true" signature="29475:29760" ph="/.../" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="linear_set_tests.cpp" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tests/linear_set_tests.cpp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1782">
-                  <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#0#24#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="string_map.h" pinned="false" current-in-tab="true">
+          <file leaf-file-name="string_map.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/string_map.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="27">
-                  <caret line="101" column="4" lean-forward="true" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
+                <state relative-caret-position="317">
+                  <caret line="157" column="14" lean-forward="false" selection-start-line="157" selection-start-column="14" selection-end-line="157" selection-end-column="14" />
                   <folding>
                     <element signature="e#684#756#0" expanded="false" />
                     <element signature="e#780#850#0" expanded="false" />
@@ -118,98 +78,10 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="linear_set_iterators.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/linear_set_iterators.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1170">
-                  <caret line="65" column="28" lean-forward="false" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
-                  <folding>
-                    <element signature="e#606#692#0" expanded="false" />
-                    <element signature="e#763#839#0" expanded="false" />
-                    <element signature="e#904#1157#0" expanded="false" />
-                    <element signature="e#1205#1499#0" expanded="false" />
-                    <element signature="e#1542#1815#0" expanded="false" />
-                    <element signature="e#1859#2062#0" expanded="false" />
-                    <element signature="e#2135#2341#0" expanded="false" />
-                    <element signature="e#2455#2534#0" expanded="false" />
-                    <element signature="e#3137#3223#0" expanded="false" />
-                    <element signature="e#3282#3535#0" expanded="false" />
-                    <element signature="e#3577#3861#0" expanded="false" />
-                    <element signature="e#3904#4177#0" expanded="false" />
-                    <element signature="e#4221#4424#0" expanded="false" />
-                    <element signature="e#4491#4697#0" expanded="false" />
-                    <element signature="e#4807#4886#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="linear_map.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/linear_map.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="576">
-                  <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="31" />
-                  <folding>
-                    <element signature="e#102#432#0" expanded="false" />
-                    <element signature="e#767#892#0" expanded="false" />
-                    <element signature="e#912#1114#0" expanded="false" />
-                    <element signature="e#1163#1529#0" expanded="false" />
-                    <element signature="e#1585#1879#0" expanded="false" />
-                    <element signature="e#1930#2062#0" expanded="false" />
-                    <element signature="e#2092#2350#0" expanded="false" />
-                    <element signature="e#2377#2532#0" expanded="false" />
-                    <element signature="e#2590#2977#0" expanded="false" />
-                    <element signature="e#3012#3405#0" expanded="false" />
-                    <element signature="e#3450#3620#0" expanded="false" />
-                    <element signature="e#3644#3825#0" expanded="false" />
-                    <element signature="e#3849#4025#0" expanded="false" />
-                    <element signature="e#4061#4248#0" expanded="false" />
-                    <element signature="e#4282#4490#0" expanded="false" />
-                    <element signature="e#4528#4789#0" expanded="false" />
-                    <element signature="e#4829#5096#0" expanded="false" />
-                    <element signature="e#5135#5384#0" expanded="false" />
-                    <element signature="e#5440#5561#0" expanded="false" />
-                    <element signature="e#5625#6378#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="linear_set.h" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/linear_set.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="216">
-                  <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-                  <folding>
-                    <element signature="e#128#336#0" expanded="false" />
-                    <element signature="e#511#637#0" expanded="false" />
-                    <element signature="e#657#853#0" expanded="false" />
-                    <element signature="e#911#1162#0" expanded="false" />
-                    <element signature="e#1235#1411#0" expanded="false" />
-                    <element signature="e#1457#1778#0" expanded="false" />
-                    <element signature="e#1828#2040#0" expanded="false" />
-                    <element signature="e#2089#2299#0" expanded="false" />
-                    <element signature="e#2340#2484#0" expanded="false" />
-                    <element signature="e#2512#2641#0" expanded="false" />
-                    <element signature="e#2671#2918#0" expanded="false" />
-                    <element signature="e#2954#3288#0" expanded="false" />
-                    <element signature="e#3321#3521#0" expanded="false" />
-                    <element signature="e#3581#3687#0" expanded="false" />
-                    <element signature="e#3744#3909#0" expanded="false" />
-                    <element signature="e#3933#4114#0" expanded="false" />
-                    <element signature="e#4136#4307#0" expanded="false" />
-                    <element signature="e#4343#4530#0" expanded="false" />
-                    <element signature="e#4574#4865#0" expanded="false" />
-                    <element signature="e#5001#5026#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="string_map_iterators.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/string_map_iterators.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4932">
+                <state relative-caret-position="524">
                   <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
                   <folding>
                     <element signature="e#2695#2789#0" expanded="false" />
@@ -223,6 +95,16 @@
                     <element signature="e#4782#4838#0" expanded="false" />
                     <element signature="e#6268#6280#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="string_map_test.cpp" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/tests/string_map_test.cpp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="54">
+                  <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -249,9 +131,10 @@
       <list>
         <option value="$PROJECT_DIR$/src/string_map.h" />
         <option value="$PROJECT_DIR$/src/string_map_iterators.h" />
-        <option value="$PROJECT_DIR$/src/string_map.hpp" />
         <option value="$PROJECT_DIR$/tests/base_de_datos_test.cpp" />
         <option value="$PROJECT_DIR$/tests/linear_set_tests.cpp" />
+        <option value="$PROJECT_DIR$/src/linear_set.h" />
+        <option value="$PROJECT_DIR$/src/string_map.hpp" />
       </list>
     </option>
   </component>
@@ -340,6 +223,7 @@
       <workItem from="1508264102850" duration="5871000" />
       <workItem from="1508353435587" duration="3681000" />
       <workItem from="1508371983037" duration="992000" />
+      <workItem from="1508373183287" duration="1914000" />
     </task>
     <servers />
   </component>
@@ -350,9 +234,18 @@
     <history-entry file="correrTests_sol - 2017.10.18 at 21h 20m 09s.xml">
       <configuration name="correrTests_sol" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="correrTests_sol - 2017.10.18 at 21h 35m 46s.xml">
+      <configuration name="correrTests_sol" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="correrTests_sol - 2017.10.18 at 21h 52m 15s.xml">
+      <configuration name="correrTests_sol" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="correrTests_sol - 2017.10.18 at 21h 52m 45s.xml">
+      <configuration name="correrTests_sol" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10544000" />
+    <option name="totallyTimeSpent" value="12458000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="442" y="29" width="1865" height="1092" extended-state="6" />
@@ -360,17 +253,17 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -387,7 +280,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -397,7 +290,9 @@
         <state relative-caret-position="4608">
           <caret line="256" column="19" lean-forward="false" selection-start-line="256" selection-start-column="19" selection-end-line="256" selection-end-column="19" />
           <folding>
-            <element signature="e#6810#6824#0" expanded="true" />
+            <element signature="e#341#353#0" expanded="true" />
+            <element signature="e#4923#6183#0" expanded="false" />
+            <element signature="e#6941#6955#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -408,13 +303,13 @@
           <caret line="266" column="8" lean-forward="false" selection-start-line="266" selection-start-column="7" selection-end-line="266" selection-end-column="8" />
           <folding>
             <element signature="e#26332#31170#0" expanded="true" />
-            <marker date="1508372405887" expanded="true" signature="26362:26471" ph="{...}" />
-            <marker date="1508372405887" expanded="true" signature="26511:26965" ph="{...}" />
-            <marker date="1508372405887" expanded="true" signature="27005:27350" ph="{...}" />
-            <marker date="1508372405887" expanded="true" signature="27392:29236" ph="{...}" />
-            <marker date="1508372405887" expanded="true" signature="27551:27820" ph="/.../" />
-            <marker date="1508372405887" expanded="true" signature="29279:31170" ph="{...}" />
-            <marker date="1508372405887" expanded="true" signature="29475:29760" ph="/.../" />
+            <marker date="1508373060328" expanded="true" signature="26362:26471" ph="{...}" />
+            <marker date="1508373060328" expanded="true" signature="26511:26755" ph="{...}" />
+            <marker date="1508373060328" expanded="true" signature="27005:27350" ph="{...}" />
+            <marker date="1508373060328" expanded="true" signature="29130:29242" ph="{...}" />
+            <marker date="1508373060328" expanded="true" signature="27551:27820" ph="/.../" />
+            <marker date="1508373060328" expanded="true" signature="29285:31176" ph="{...}" />
+            <marker date="1508373060328" expanded="true" signature="29481:29766" ph="/.../" />
           </folding>
         </state>
       </provider>
@@ -562,7 +457,9 @@
         <state relative-caret-position="1242">
           <caret line="69" column="12" lean-forward="true" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
           <folding>
-            <element signature="e#6810#6824#0" expanded="true" />
+            <element signature="e#341#353#0" expanded="true" />
+            <element signature="e#4923#6183#0" expanded="false" />
+            <element signature="e#6941#6955#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -700,7 +597,9 @@
         <state relative-caret-position="4680">
           <caret line="260" column="36" lean-forward="false" selection-start-line="260" selection-start-column="36" selection-end-line="260" selection-end-column="36" />
           <folding>
-            <element signature="e#6810#6824#0" expanded="true" />
+            <element signature="e#341#353#0" expanded="true" />
+            <element signature="e#4923#6183#0" expanded="false" />
+            <element signature="e#6941#6955#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -818,9 +717,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/base_de_datos_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4788">
+          <caret line="266" column="8" lean-forward="false" selection-start-line="266" selection-start-column="7" selection-end-line="266" selection-end-column="8" />
+          <folding>
+            <element signature="e#26332#31170#0" expanded="true" />
+            <marker date="1508373060328" expanded="true" signature="26362:26471" ph="{...}" />
+            <marker date="1508373060328" expanded="true" signature="26511:26755" ph="{...}" />
+            <marker date="1508373060328" expanded="true" signature="27005:27350" ph="{...}" />
+            <marker date="1508373060328" expanded="true" signature="29130:29242" ph="{...}" />
+            <marker date="1508373060328" expanded="true" signature="27551:27820" ph="/.../" />
+            <marker date="1508373060328" expanded="true" signature="29285:31176" ph="{...}" />
+            <marker date="1508373060328" expanded="true" signature="29481:29766" ph="/.../" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/linear_set_tests.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1782">
+          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dato.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-942">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/string_map.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="157" column="14" lean-forward="false" selection-start-line="157" selection-start-column="14" selection-end-line="157" selection-end-column="14" />
+          <folding>
+            <element signature="e#684#756#0" expanded="false" />
+            <element signature="e#780#850#0" expanded="false" />
+            <element signature="e#875#953#0" expanded="false" />
+            <element signature="e#995#1074#0" expanded="false" />
+            <element signature="e#1127#1209#0" expanded="false" />
+            <element signature="e#1343#1473#0" expanded="false" />
+            <element signature="e#1682#1882#0" expanded="false" />
+            <element signature="e#1938#2141#0" expanded="false" />
+            <element signature="e#2189#2398#0" expanded="false" />
+            <element signature="e#2541#2726#0" expanded="false" />
+            <element signature="e#2754#2839#0" expanded="false" />
+            <element signature="e#3041#3200#0" expanded="false" />
+            <element signature="e#3246#3411#0" expanded="false" />
+            <element signature="e#3469#3778#0" expanded="false" />
+            <element signature="e#3841#3998#0" expanded="false" />
+            <element signature="e#4046#4288#0" expanded="false" />
+            <element signature="e#4328#4557#0" expanded="false" />
+            <element signature="e#4611#4794#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/7/bits/stl_pair.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="330" column="0" lean-forward="false" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/linear_set_iterators.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
+        <state relative-caret-position="-630">
           <caret line="65" column="28" lean-forward="false" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
           <folding>
             <element signature="e#606#692#0" expanded="false" />
@@ -844,7 +813,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/linear_map.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
+        <state relative-caret-position="306">
           <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="31" />
           <folding>
             <element signature="e#102#432#0" expanded="false" />
@@ -871,93 +840,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/string_map_iterators.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4932">
-          <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
-          <folding>
-            <element signature="e#2695#2789#0" expanded="false" />
-            <element signature="e#2850#2943#0" expanded="false" />
-            <element signature="e#3000#3094#0" expanded="false" />
-            <element signature="e#3166#3435#0" expanded="false" />
-            <element signature="e#3469#3771#0" expanded="false" />
-            <element signature="e#3833#4124#0" expanded="false" />
-            <element signature="e#4161#4378#0" expanded="false" />
-            <element signature="e#4449#4669#0" expanded="false" />
-            <element signature="e#4782#4838#0" expanded="false" />
-            <element signature="e#6268#6280#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/base_de_datos_test.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4788">
-          <caret line="266" column="8" lean-forward="false" selection-start-line="266" selection-start-column="7" selection-end-line="266" selection-end-column="8" />
-          <folding>
-            <element signature="e#26332#31170#0" expanded="true" />
-            <marker date="1508372405887" expanded="true" signature="26362:26471" ph="{...}" />
-            <marker date="1508372405887" expanded="true" signature="26511:26965" ph="{...}" />
-            <marker date="1508372405887" expanded="true" signature="27005:27350" ph="{...}" />
-            <marker date="1508372405887" expanded="true" signature="27392:29236" ph="{...}" />
-            <marker date="1508372405887" expanded="true" signature="27551:27820" ph="/.../" />
-            <marker date="1508372405887" expanded="true" signature="29279:31170" ph="{...}" />
-            <marker date="1508372405887" expanded="true" signature="29475:29760" ph="/.../" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/linear_set_tests.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1782">
-          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/string_map.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4608">
-          <caret line="256" column="19" lean-forward="false" selection-start-line="256" selection-start-column="19" selection-end-line="256" selection-end-column="19" />
-          <folding>
-            <element signature="e#6810#6824#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/string_map.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="101" column="4" lean-forward="true" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
-          <folding>
-            <element signature="e#684#756#0" expanded="false" />
-            <element signature="e#780#850#0" expanded="false" />
-            <element signature="e#875#953#0" expanded="false" />
-            <element signature="e#995#1074#0" expanded="false" />
-            <element signature="e#1127#1209#0" expanded="false" />
-            <element signature="e#1343#1473#0" expanded="false" />
-            <element signature="e#1682#1882#0" expanded="false" />
-            <element signature="e#1938#2141#0" expanded="false" />
-            <element signature="e#2189#2398#0" expanded="false" />
-            <element signature="e#2541#2726#0" expanded="false" />
-            <element signature="e#2754#2839#0" expanded="false" />
-            <element signature="e#3041#3200#0" expanded="false" />
-            <element signature="e#3246#3411#0" expanded="false" />
-            <element signature="e#3469#3778#0" expanded="false" />
-            <element signature="e#3841#3998#0" expanded="false" />
-            <element signature="e#4046#4288#0" expanded="false" />
-            <element signature="e#4328#4557#0" expanded="false" />
-            <element signature="e#4611#4794#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/linear_set.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
           <folding>
             <element signature="e#128#336#0" expanded="false" />
             <element signature="e#511#637#0" expanded="false" />
@@ -979,6 +865,45 @@
             <element signature="e#4343#4530#0" expanded="false" />
             <element signature="e#4574#4865#0" expanded="false" />
             <element signature="e#5001#5026#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/string_map_iterators.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
+          <folding>
+            <element signature="e#2695#2789#0" expanded="false" />
+            <element signature="e#2850#2943#0" expanded="false" />
+            <element signature="e#3000#3094#0" expanded="false" />
+            <element signature="e#3166#3435#0" expanded="false" />
+            <element signature="e#3469#3771#0" expanded="false" />
+            <element signature="e#3833#4124#0" expanded="false" />
+            <element signature="e#4161#4378#0" expanded="false" />
+            <element signature="e#4449#4669#0" expanded="false" />
+            <element signature="e#4782#4838#0" expanded="false" />
+            <element signature="e#6268#6280#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/string_map_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/string_map.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="190" column="28" lean-forward="false" selection-start-line="190" selection-start-column="28" selection-end-line="190" selection-end-column="28" />
+          <folding>
+            <element signature="e#341#353#0" expanded="true" />
+            <element signature="e#4923#6183#0" expanded="false" />
+            <element signature="e#6941#6955#0" expanded="true" />
           </folding>
         </state>
       </provider>
