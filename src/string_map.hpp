@@ -25,6 +25,7 @@ string_map<T>::~string_map() {
     while (_tamano > 0) {
         erase(begin());
     }
+    delete (_raiz);
     _raiz = NULL;
 }
 
@@ -90,7 +91,9 @@ typename string_map<T>::iterator string_map<T>::fast_insert(const string_map<T>:
 
 template<typename T>
 string_map<T> &string_map<T>::operator=(const string_map<T> &other) {
-    this->~string_map();
+    //this->~string_map();
+    ~this;
+    *this = other;
     // COSAS MUY COMPLICADAS, COPIAR TODOS LOS NODOS Y SUB NODOS
     // HACER UNA SUB RUTINA QUE DADO UN NODO SE COPIEN TODOS LOS
     // SUB NODOS
@@ -188,7 +191,35 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
         camino.erase(0);
         //posicions.push_back(pos);
     }
-    if(actual->_hijos.size())
+    if (actual->_hijos.size() == 0) {
+        if (actual != _raiz) {//nunca puedo borrar la raiz
+            Nodo *borrar = actual;
+            actual = actual->padre;
+            actual->_claves.erase(actual->_claves.begin() + borrar->_posEnPadre);
+            actual->_hijos.erase(actual->_hijos.begin() + borrar->_posEnPadre);
+            delete borrar;
+            while (!actual->_definido && actual->_hijos.size() < 1 && actual != _raiz) {
+                Nodo *borrar = actual;
+                actual = actual->padre;
+                actual->_claves.erase(actual->_claves.begin() + borrar->_posEnPadre);
+                actual->_hijos.erase(actual->_hijos.begin() + borrar->_posEnPadre);
+                delete borrar;
+            }
+        }
+    } else{
+        actual->_definido = false;
+        delete (actual->_obtener);//ver que los iteradores no rompan agregando pre
+        delete (actual->v);
+        actual->_obtener = nullptr;
+    }
+    if (actual == _raiz) {
+        actual->_definido = false;
+        delete (actual->_obtener);
+        delete (actual->v);//ver que los iteradores no rompan agregando pre
+        actual->_obtener = nullptr;
+    }
+    _tamano --;
+    return _tamano;
 /*    if (actual->_hijos.size() == 0) {
         //sacar letra en padre
         while (actual != _raiz && !actual->_definido) {
@@ -225,6 +256,7 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
     return _tamano--;
 */
 }
+
 
 template<typename T>
 const typename string_map<T>::mapped_type &string_map<T>::at(const key_type &key) const {

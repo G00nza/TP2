@@ -195,7 +195,7 @@ private:
         string* _camino;
         bool _definido = false;
         int _posEnPadre;
-        value_type* v =  new pair<const string, T>(*_camino, *_obtener);
+        value_type* v =  new value_type (*_camino, *_obtener);
     };
 
     size_type _tamano;
