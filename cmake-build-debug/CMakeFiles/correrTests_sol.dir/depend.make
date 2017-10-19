@@ -229,9 +229,6 @@ CMakeFiles/correrTests_sol.dir/tests/string_map_test.cpp.o: ../tests/google-test
 CMakeFiles/correrTests_sol.dir/tests/string_map_test.cpp.o: ../tests/google-test/include/gtest/internal/gtest-type-util.h
 CMakeFiles/correrTests_sol.dir/tests/string_map_test.cpp.o: ../src/Dato.h
 CMakeFiles/correrTests_sol.dir/tests/string_map_test.cpp.o: ../src/string_map.h
-CMakeFiles/correrTests_sol.dir/tests/string_map_test.cpp.o: ../src/string_map.hpp
-CMakeFiles/correrTests_sol.dir/tests/string_map_test.cpp.o: ../src/string_map_iterators.h
-CMakeFiles/correrTests_sol.dir/tests/string_map_test.cpp.o: ../src/utils.h
 CMakeFiles/correrTests_sol.dir/tests/string_map_test.cpp.o: ../tests/string_map_test.cpp
 
 CMakeFiles/correrTests_sol.dir/tests/tabla_test.cpp.o: ../tests/google-test/include/gtest/gtest-death-test.h

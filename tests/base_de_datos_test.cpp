@@ -556,7 +556,7 @@ TEST_F(DBAlumnos, crit_simple_tipo) {
   EXPECT_TRUE(db.criterioValido({{Rdif("LU_A", 5)}}, "libretas"));
   EXPECT_TRUE(db.criterioValido({{Rdif("LU", "A")}}, "alumnos"));
 }
-/*
+
 TEST_F(DBAlumnos, crit_doble_nombre) {
   // ==
   EXPECT_FALSE(db.criterioValido({{Rig("LU_A", 5), Rig("LU_X", 5)}},
@@ -600,7 +600,7 @@ TEST_F(DBAlumnos, crit_doble_tipo) {
   EXPECT_TRUE(db.criterioValido({{Rdif("LU", ""), Rig("OS", "")}},
                                  "alumnos"));
 }
-*/
+
 // ## Uso Criterio
 TEST_F(DBAlumnos, uso_un_criterio) {
   db.busqueda({Rig("OS", "A")}, "alumnos");
@@ -703,7 +703,7 @@ TEST_F(DBAlumnos, join_sin_repetidos) {
 
   int count = 0;
   for (auto it = begin; it != end; it++) {
-    EXPECT_EQ(it->campos(), nuevos_campos);
+    EXPECT_EQ((*it).campos(), nuevos_campos);
     count++;
   }
 
@@ -719,7 +719,7 @@ TEST_F(DBAlumnos, join_repetidos_uno) {
 
   linear_set<string> nuevos_campos({"LU_N", "LU_A", "LU", "Materia"});
   for (auto it = begin; it != end; it++) {
-    EXPECT_EQ(it->campos(), nuevos_campos);
+    EXPECT_EQ((*it).campos(), nuevos_campos);
   }
 
   linear_set<Registro> join(begin, end);
@@ -770,7 +770,7 @@ TEST_F(DBAlumnos, join_repetidos_ambos) {
   linear_set<string> nuevos_campos({"X", "Y", "Z"});
   for (auto it = begin; it != end; it++) {
     cout << *it << endl;
-    EXPECT_EQ(it->campos(), nuevos_campos);
+    EXPECT_EQ((*it).campos(), nuevos_campos);
   }
 
   linear_set<Registro> join(begin, end);

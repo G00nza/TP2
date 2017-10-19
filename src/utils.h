@@ -44,6 +44,6 @@ template<class A, class B>
 std::ostream &operator<<(ostream &os, const pair<A, B> &p) {
   os << "(" << p.first << ", " << p.second << ")";
   return os;
-}*/
-
+}
+*/
 #endif //UTILS_H

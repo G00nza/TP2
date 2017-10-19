@@ -1,22 +1,22 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/gsaenz/TP2/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1dc88/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1dc88.dir/build.make CMakeFiles/cmTC_1dc88.dir/build
-make[1]: se ingresa al directorio «/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/CMakeTmp»
-Building C object CMakeFiles/cmTC_1dc88.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_1dc88.dir/CheckSymbolExists.c.o   -c /home/gsaenz/TP2/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_1dc88
-/opt/clion-2017.2/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1dc88.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_1dc88.dir/CheckSymbolExists.c.o  -o cmTC_1dc88 
-CMakeFiles/cmTC_1dc88.dir/CheckSymbolExists.c.o: En la función `main':
+Run Build Command:"/usr/bin/make" "cmTC_27d95/fast"
+/usr/bin/make -f CMakeFiles/cmTC_27d95.dir/build.make CMakeFiles/cmTC_27d95.dir/build
+make[1]: se ingresa al directorio «/home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/CMakeFiles/CMakeTmp»
+Building C object CMakeFiles/cmTC_27d95.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_27d95.dir/CheckSymbolExists.c.o   -c /home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_27d95
+/opt/clion-2017.2/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_27d95.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_27d95.dir/CheckSymbolExists.c.o  -o cmTC_27d95 
+CMakeFiles/cmTC_27d95.dir/CheckSymbolExists.c.o: En la función `main':
 CheckSymbolExists.c:(.text+0x16): referencia a `pthread_create' sin definir
 collect2: error: ld returned 1 exit status
-make[1]: *** [cmTC_1dc88] Error 1
-make[1]: se sale del directorio «/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/CMakeTmp»
-make: *** [cmTC_1dc88/fast] Error 2
+make[1]: *** [cmTC_27d95] Error 1
+make[1]: se sale del directorio «/home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/CMakeFiles/CMakeTmp»
+make: *** [cmTC_27d95/fast] Error 2
 
-File /home/gsaenz/TP2/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -32,20 +32,20 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/gsaenz/TP2/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7885b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_7885b.dir/build.make CMakeFiles/cmTC_7885b.dir/build
-make[1]: se ingresa al directorio «/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/CMakeTmp»
-Building C object CMakeFiles/cmTC_7885b.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_7885b.dir/CheckFunctionExists.c.o   -c /opt/clion-2017.2/bin/cmake/share/cmake-3.8/Modules/CheckFunctionExists.c
-Linking C executable cmTC_7885b
-/opt/clion-2017.2/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7885b.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_7885b.dir/CheckFunctionExists.c.o  -o cmTC_7885b -lpthreads 
+Run Build Command:"/usr/bin/make" "cmTC_b1d13/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b1d13.dir/build.make CMakeFiles/cmTC_b1d13.dir/build
+make[1]: se ingresa al directorio «/home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/CMakeFiles/CMakeTmp»
+Building C object CMakeFiles/cmTC_b1d13.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_b1d13.dir/CheckFunctionExists.c.o   -c /opt/clion-2017.2/bin/cmake/share/cmake-3.8/Modules/CheckFunctionExists.c
+Linking C executable cmTC_b1d13
+/opt/clion-2017.2/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b1d13.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_b1d13.dir/CheckFunctionExists.c.o  -o cmTC_b1d13 -lpthreads 
 /usr/bin/ld: no se puede encontrar -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [cmTC_7885b] Error 1
-make[1]: se sale del directorio «/home/gsaenz/TP2/cmake-build-debug/CMakeFiles/CMakeTmp»
-make: *** [cmTC_7885b/fast] Error 2
+make[1]: *** [cmTC_b1d13] Error 1
+make[1]: se sale del directorio «/home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/CMakeFiles/CMakeTmp»
+make: *** [cmTC_b1d13/fast] Error 2
 
 

@@ -251,12 +251,15 @@ typename string_map<T>::iterator string_map<T>::begin() {
 }
 
 //hacer que el iterador end sea el ultimo
-/*
+
 template < typename T >
 typename string_map<T>::iterator string_map<T>::end() {
-    auto it = NULL;
+    string_map<T>::iterator it(_raiz);
+    while (it._nodo->_hijos.size() > 0){
+        it._nodo = it._nodo->_hijos.back();
+    }
     return it;
-}*/
+}
 
 template<typename T>
 typename string_map<T>::const_iterator string_map<T>::begin() const {
@@ -314,16 +317,16 @@ typename string_map<T>::mapped_type &string_map<T>::operator[](const key_type &k
 }
 
 template<typename T>
-typename string_map<T>::iterator string_map<T>::erase(string_map<T>::iterator pos) {
+typename string_map<T>::iterator string_map<T>::erase(iterator pos) {
     string sacar = *(pos._nodo->_camino);
     erase(sacar);
     return begin();
 }
 
-/*void string_map::clear() {
-    this->~string_map();
-    _raiz = string_map()._raiz;
-}*/
+template<typename T>
+void string_map<T>::clear() {
+
+}
 
 
 

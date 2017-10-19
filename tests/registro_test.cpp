@@ -5,7 +5,7 @@
 using namespace std;
 
 TEST(registro_test, generadores) {
-    Registro({"LU", "Año", "Nombre", "Carrera"}, {datoNat(182), datoNat(18), datoStr("March"), datoStr("Computacion")});
+    Registro({"LU", "LU_A", "Nombre", "Carrera"}, {datoNat(182), datoNat(18), datoStr("March"), datoStr("Computacion")});
     Registro({}, {});
 }
 
@@ -18,7 +18,7 @@ TEST(registro_test, campos) {
 }
 
 TEST(registro_test, dato) {
-    Registro r({"LU", "Año", "Nombre", "Carrera"}, {datoNat(182), datoNat(18), datoStr("March"), datoStr("Computacion")});
+    Registro r({"LU", "LU_A", "Nombre", "Carrera"}, {datoNat(182), datoNat(18), datoStr("March"), datoStr("Computacion")});
 
     EXPECT_EQ(r.dato("LU").esNat(), true);
     EXPECT_EQ(r.dato("LU").esString(), false);
@@ -29,26 +29,26 @@ TEST(registro_test, dato) {
 }
 
 TEST(registro_test, ig_obs) {
-    Registro r1({"LU", "Año"}, {datoNat(1), datoStr("a")});
-    Registro r2({"LU", "Año"}, {datoNat(1), datoStr("a")});
+    Registro r1({"LU", "LU_A"}, {datoNat(1), datoStr("a")});
+    Registro r2({"LU", "LU_A"}, {datoNat(1), datoStr("a")});
 
     // Iguales
     EXPECT_TRUE(r1 == r2);
 
     // Distinto orden
-    Registro r3({"Año", "LU"}, {datoStr("a"), datoNat(1)});
+    Registro r3({"LU_A", "LU"}, {datoStr("a"), datoNat(1)});
     EXPECT_TRUE(r1 == r3);
 
     // Distinto tipo
-    Registro r4({"Año", "LU"}, {datoNat(2), datoNat(1)});
+    Registro r4({"LU_A", "LU"}, {datoNat(2), datoNat(1)});
     EXPECT_FALSE(r1 == r4);
 
     // Distinto valor
-    Registro r5({"LU", "Año"}, {datoNat(2), datoStr("a")});
+    Registro r5({"LU", "LU_A"}, {datoNat(2), datoStr("a")});
     EXPECT_FALSE(r1 == r5);
 
     // Más campos
-    Registro r6({"LU", "Año", "Nombre"}, 
+    Registro r6({"LU", "LU_A", "Nombre"}, 
             {datoNat(2), datoStr("a"), datoStr("b")});
     EXPECT_FALSE(r1 == r6);
 }

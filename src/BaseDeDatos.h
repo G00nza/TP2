@@ -29,8 +29,6 @@ class BaseDeDatos {
 public:
   /** @brief Criterio de búsqueda para una base de datos */
   typedef linear_set<Restriccion> Criterio;
-    /**@brief Indice es el dicc (Dato, Conj (registro)) */
-  typedef linear_map <Dato, linear_set<Registro> > Indice;
 
   /**
    * @brief Inicializa una base de datos sin tablas.
@@ -176,20 +174,6 @@ private:
      *       * \LAND criterioValido(c, n, db)
      *     * ) \LAND
      *     * obtener(c, _uso_criterios) > 0
-     *   * \FORALL (t : string) def?(t , _indices) \IMPLIES def?(t , _tablas) \LAND
-     *     * \LNOT vacio?(claves(obtener(t, _indices))) \LAND
-     *     * (
-     *       * \FORALL (c : string) def? (c , obtener(t , _indices)) \IMPLIES
-     *         *  c \IN campos(obtener(t , _tablas)) \LAND
-     *         * (
-     *           * \FORALL (d : Dato) def?(d, obtener(c, obtener(t , _indices))) \IMPLIES
-     *             *  \LNOT vacio?(obtener(d, obtener(c, obtener(t , _indices)))) \LAND
-     *             * (
-     *               * \FORALL (r : Registro) r \IN obtener(d, obtener(c, obtener(t , _indices))) \IMPLIES
-     *                 *  r \IN registros (obtener(t, _tablas)) \LAND valor(c, r) = d
-     *             * )
-     *         * )
-     *     * )
      *
      * abs: basededatos \TO BaseDeDatos\n
      * abs(bd) \EQUIV bd' \|
@@ -198,10 +182,7 @@ private:
      *    * obtener(nt, _tablas) = dameTabla(nt, bd') \LAND
      *  * (\FORALL c : criterio) 
      *    * (usoCriterio(c, bd') == 0 \LAND \LNOT def?(c, _uso_criterios)) \LOR
-     *    * (usoCriterio(c, db') == obtener(c, _uso_criterios)) \LAND
-     *  * (\FORALL t : string) t \IN tablas(bd') \LAND
-     *  * (\FORALL c : string) c \IN campos(dameTabla(t, bd'))
-     *    * tieneIndice?(t, c, bd') == def?(c, obtener(t, _indices)) 
+     *    * (usoCriterio(c, db') == obtener(c, _uso_criterios))
      */
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -209,7 +190,6 @@ private:
     linear_set<string> _nombres_tablas;
     linear_map<string, Tabla> _tablas;
     linear_map<Criterio, int> _uso_criterios;
-    linear_map<string, linear_map <string, Indice > > _indices;
     /** @} */
 
     /** @{ */

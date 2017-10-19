@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=gnu++11 -ggdb3 -g -g   -std=gnu++11
 
 CXX_DEFINES = -DPOST_SOLUCION
 
-CXX_INCLUDES = -I/home/gsaenz/TP2/tests/google-test/include 
+CXX_INCLUDES = -I/home/gsaenz/aed2-2c2017-tp2/tests/google-test/include 
 

@@ -236,12 +236,12 @@ typename string_map<T>::const_iterator &string_map<T>::const_iterator::operator+
 
 template<typename T>
 const typename string_map<T>::const_iterator::value_type &string_map<T>::const_iterator::operator*() const {
-    return *(make_pair(*_nodo->_camino , *_nodo->_obtener));
+    return *_nodo->v;
 }
 
 template<typename T>
 const typename string_map<T>::const_iterator::value_type *string_map<T>::const_iterator::operator->() const {
-    return make_pair(*_nodo->_camino , *_nodo->_obtener);
+    return _nodo->v;
 }
 
 template<typename T>
@@ -282,16 +282,14 @@ typename string_map<T>::iterator& string_map<T>::iterator::operator=(const strin
     return *this = other;
 }
 
-
-
 template<typename T>
 typename string_map<T>::iterator::value_type &string_map<T>::iterator::operator*() {
-    return (make_pair(_nodo->_camino, _nodo->_obtener));
+    return *_nodo->v;
 }
 
 template<typename T>
 typename string_map<T>::iterator::value_type *string_map<T>::iterator::operator->(){
-    return (make_pair(_nodo->_camino, _nodo->_obtener));
+    return _nodo->v;
 }
 
 template<typename T>

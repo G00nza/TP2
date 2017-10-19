@@ -43,10 +43,10 @@ RM = /opt/clion-2017.2/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gsaenz/TP2
+CMAKE_SOURCE_DIR = /home/gsaenz/aed2-2c2017-tp2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gsaenz/TP2/cmake-build-debug
+CMAKE_BINARY_DIR = /home/gsaenz/aed2-2c2017-tp2/cmake-build-debug
 
 # Utility rule file for doc_doxygen.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/gsaenz/TP2/cmake-build-debug
 include CMakeFiles/doc_doxygen.dir/progress.make
 
 CMakeFiles/doc_doxygen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/gsaenz/TP2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating API documentation with Doxygen"
-	/usr/bin/doxygen /home/gsaenz/TP2/cmake-build-debug/docs/Doxyfile
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating API documentation with Doxygen"
+	/usr/bin/doxygen /home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/docs/Doxyfile
 
 doc_doxygen: CMakeFiles/doc_doxygen
 doc_doxygen: CMakeFiles/doc_doxygen.dir/build.make
@@ -72,6 +72,6 @@ CMakeFiles/doc_doxygen.dir/clean:
 .PHONY : CMakeFiles/doc_doxygen.dir/clean
 
 CMakeFiles/doc_doxygen.dir/depend:
-	cd /home/gsaenz/TP2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gsaenz/TP2 /home/gsaenz/TP2 /home/gsaenz/TP2/cmake-build-debug /home/gsaenz/TP2/cmake-build-debug /home/gsaenz/TP2/cmake-build-debug/CMakeFiles/doc_doxygen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/gsaenz/aed2-2c2017-tp2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gsaenz/aed2-2c2017-tp2 /home/gsaenz/aed2-2c2017-tp2 /home/gsaenz/aed2-2c2017-tp2/cmake-build-debug /home/gsaenz/aed2-2c2017-tp2/cmake-build-debug /home/gsaenz/aed2-2c2017-tp2/cmake-build-debug/CMakeFiles/doc_doxygen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/doc_doxygen.dir/depend
 
