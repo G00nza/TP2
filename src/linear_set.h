@@ -97,7 +97,7 @@ class linear_set {
    * \post (x \IN \P{this} \LAND \P{res} = 1) \LOR (x \NOT \IN \P{this} \LAND
    * \P{res} = 0)
    *
-   * \complexity{\O(n) * cmp(T)}
+   * \complexity{\O(n * cmp(T))}
    */
   size_type count(const T& x) const;
 

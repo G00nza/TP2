@@ -147,7 +147,9 @@ public:
      * 
      * \complexity{\O(S + copy(value_type))}
      */
-    pair<iterator,bool> insert(const value_type &value);
+
+    //ESTO NO ES VOID
+    void insert(const value_type &value);
 
     /** @brief eliminar una clave
      *  @param key clave a eliminar

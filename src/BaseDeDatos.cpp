@@ -10,7 +10,7 @@ void BaseDeDatos::crearTabla(const string &nombre,
                              const vector<string> &campos,
                              const vector<Dato> &tipos) {
     _nombres_tablas.fast_insert(nombre);
-    _tablas.insert(make_pair(nombre, Tabla(claves, campos, tipos)));
+    _tablas.insert(pair<string, Tabla>(nombre, Tabla(claves, campos, tipos)));
 }
 
 void BaseDeDatos::agregarRegistro(const Registro &r, const string &nombre) {
@@ -28,20 +28,20 @@ void BaseDeDatos::agregarRegistro(const Registro &r, const string &nombre) {
 }
 
 void BaseDeDatos::agregarAIndice(BaseDeDatos::Indice &indice, const Registro &registro, const string &campo) {
-    bool insertado = false;
-    for (auto it : indice) {
-        if (it.first == registro.dato(campo)) {
-            linear_set<Registro> nuevo_conj = indice.at(it.first);
-            nuevo_conj.fast_insert(registro);
-            insertado = true;
-        }
-    }
 
-    if (!insertado){
+    auto it = indice.find(registro.dato(campo));
+    if (it != indice.end()) {
+        if (it->first == registro.dato(campo)) {
+            linear_set<Registro> nuevo_conj = indice.at(it->first);
+            nuevo_conj.fast_insert(registro);
+            indice.insert(make_pair(registro.dato(campo), nuevo_conj));
+        }
+    } else {
         linear_set<Registro> nuevo_conj = linear_set<Registro>();
         nuevo_conj.fast_insert(registro);
-        indice.fast_insert(make_pair(registro.dato(campo), nuevo_conj));
+        indice.insert(make_pair(registro.dato(campo), nuevo_conj));
     }
+
 }
 
 
@@ -188,7 +188,7 @@ linear_set<BaseDeDatos::Criterio> BaseDeDatos::top_criterios() const {
 void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
     Tabla t = dameTabla(nombre);
 
-    string_map<Indice> map_indices = string_map<Indice>();
+    string_map<Indice> nuevos_indices = string_map<Indice>();
     Indice indice = Indice();
     //Testear si sirve pasarle una tabla que ya tiene indice en ese campo
     auto it = t.registros_begin();
@@ -198,7 +198,6 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
         if (indice.find((*it).dato(campo)) == indice.end()) {
             linear_set<Registro> nuevo_conj_registros = linear_set<Registro>();
             nuevo_conj_registros.fast_insert(*it);
-            indice.fast_insert(make_pair((*it).dato(campo), nuevo_conj_registros));
         } else {
             linear_set<Registro> conj_registros = indice.at((*it).dato(campo));
             conj_registros.fast_insert((*it));
@@ -206,8 +205,43 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
         }
         ++it;
     }
-    map_indices.insert(make_pair(campo, indice));
+    nuevos_indices.insert(make_pair(campo, indice));
 
-    _indices.insert(make_pair(nombre, map_indices));
+    _indices.insert(make_pair(nombre, nuevos_indices));
+
+    if (t.tipoCampo(campo).esNat()) {
+        linear_set<int> datos = linear_set<int>();
+        while (it != t.registros_end()) {
+            int dato_actual = (*it).dato(campo).valorNat();
+            datos.insert(dato_actual);
+            if (get<0>(indice).find(dato_actual) == get<0>(indice).end()) {
+                linear_set<const Registro &> nuevo_conj_registros = linear_set<const Registro &>();
+                const Registro &actual = *it;
+                nuevo_conj_registros.fast_insert(actual);
+                indice.insert(make_pair(dato_actual, nuevo_conj_registros));
+            } else {
+                linear_set<const Registro &> conj_registros = get<0>(indice).at(dato_actual);
+                conj_registros.fast_insert((*it));
+                indice.insert(make_pair(dato_actual, conj_registros));
+            }
+            ++it;
+        }
+    } else {
+        linear_set<string> datos = linear_set<string>();
+        while (it != t.registros_end()) {
+            string dato_actual = (*it).dato(campo).valorStr();
+            datos.insert(dato_actual);
+            if (get<1>(indice).find(dato_actual) == get<1>(indice).end()) {
+                linear_set<const Registro &> nuevo_conj_registros = linear_set<const Registro &>();
+                const Registro &actual = *it;
+                nuevo_conj_registros.fast_insert(actual);
+                indice.insert(make_pair(dato_actual, nuevo_conj_registros));
+            } else {
+                linear_set<const Registro &> conj_registros = get<1>(indice).at(dato_actual);
+                conj_registros.fast_insert((*it));
+                indice.insert(make_pair(dato_actual, conj_registros));
+            }
+            ++it;
+        }
+    }
 }
-

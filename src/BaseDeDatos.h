@@ -9,6 +9,7 @@
 #include <utility>
 #include <list>
 #include <string>
+#include <map>
 #include "linear_map.h"
 #include "linear_set.h"
 #include "string_map.h"
@@ -32,7 +33,7 @@ class BaseDeDatos {
 public:
     /** @brief Criterio de búsqueda para una base de datos */
     typedef linear_set<Restriccion> Criterio;
-    typedef linear_map<Dato, linear_set<Registro> > Indice;
+    typedef tuple<map<int, linear_set<const Registro&> >, string_map<linear_set<const Registro&> >, bool > Indice;
     /**
      * @brief Inicializa una base de datos sin tablas.
      *
@@ -73,7 +74,7 @@ public:
      *      puedoInsertar?(r, dameTabla(\P{this}))
      * \post \P{this} = insertarEntrada(r, nombre, db)
      *
-     * \complexity{\O(copy(reg) + C*(L+m))}
+     * \complexity{\O(copy(reg) + C*(L+log(m)))}
      */
     void agregarRegistro(const Registro &r, const string &nombre);
 
@@ -137,7 +138,7 @@ public:
      * \pre tabla \IN tablas(\P{this})
      * \post \P{res} = criterioValido(c, nombre, \P{this})
      *
-     * \complexity{\O(T + cr * C)}
+     * \complexity{\O(cr * C)}
      */
     bool criterioValido(const Criterio &c, const string &nombre) const;
 
@@ -174,7 +175,7 @@ public:
      * \pre nombre \IN _nombres_tablas \LAND campo \IN campos(dameTabla(nombre,bd)) \LAND bd = bd'
      * \post tieneIndice?(nombre, campo, bd)
      *
-     * \complexity{\O(VER COMPLEJIDAD)}
+     * \complexity{\O(m[L+log(m)])} chamuyo (ver)
      */
     void crearIndice(const string &nombre, const string &campo);
 
@@ -288,11 +289,11 @@ private:
 
 
     /**
-    * @brief Obtiene los campos y tipos de una tabla.
+    * @brief Agrega un registro a un índice dado.
     *
     * @param indice Indice a modificar
     * @param registro Registro a agregar
-    * @param campo nombre del campo del indice
+    * @param campo Nombre del campo del indice
     *
     * \pre (\FORALL r: Registro) ((\EXISTS d: Dato) def?(d, indice) \LAND obtener(d, indice) = r) \IMPLIES
     *      campos(r) = campos(registro) \LAND (\FORALL c: campo) c \IN campos(r) \IMPLIES tipo(valor(c,r)) = tipo(valor(c, registro))
