@@ -33,7 +33,15 @@ class BaseDeDatos {
 public:
     /** @brief Criterio de búsqueda para una base de datos */
     typedef linear_set<Restriccion> Criterio;
+    /** @brief Indice para un campo dado, el bool es false si es sobre int, true si es sobre string */
     typedef tuple<map<int, linear_set<const Registro&> >, string_map<linear_set<const Registro&> >, bool > Indice;
+    /** @brief Join entre dos tablas
+     * Para cada clave del diccionario (registros de tabla1) tengo los registros de tabla2 que coinciden en el campo dado */
+    typedef linear_map<const Registro&, linear_set<const Registro&> > Join;
+
+    //habria que definir un join_begin y un join_end de tipo join_iterator
+    class join_iterator;
+
     /**
      * @brief Inicializa una base de datos sin tablas.
      *
@@ -179,6 +187,23 @@ public:
      */
     void crearIndice(const string &nombre, const string &campo);
 
+
+    /**
+     * @brief Crea un join entre las dos tablas y devuelve join_begin(res)
+     *
+     * @param tabla1 Nombre de la tabla 1
+     * @param tabla2 Nombre de la tabla 2
+     * @param campo Nombre del campo sobre el cual realizar el join
+     *
+     * \pre tabla1 \IN _nombres_tablas \LAND campo \IN campos(dameTabla(tabla1)) \LAND
+     *      tabla2 \IN _nombres_tablas \LAND campo \IN campos(dameTabla(tabla2)) \LAND
+     *      (tieneIndice?(tabla1, campo, bd) \OR tieneIndice?(tabla2, campo, bd))
+     * \post El iterador itera sobre los registros de join(t,t2,c,db) en un orden no definido
+     *
+     * \complexity{\O(n*[L+log(m)])}
+     */
+    join_iterator join(const string &tabla1, const string &tabla2,
+                       const string &campo);
 private:
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     /** \name Representación
@@ -224,6 +249,9 @@ private:
     string_map<Tabla> _tablas;
     linear_map<Criterio, int> _uso_criterios;
     string_map<string_map<Indice> >_indices;
+
+    //Decidi implementarlo como que se guarda un puntero al último Join hecho asi no se invalida el iterador que devuelve join
+    Join* _ultimo_join;
     /** @} */
 
     /** @{ */
@@ -304,6 +332,17 @@ private:
     *
     */
     void agregarAIndice(Indice& indice, const Registro &registro, const string &campo);
+
+    /**
+    * @brief Devuelve un iterador al primer registro de un join
+    *
+    * @param join Join sobre el cual queremos iterar
+    *
+    * \pre True
+    *
+    * \post Devuelve el iterador del join
+    */
+    join_iterator join_begin(Join join);
     /** @} */
 };
 

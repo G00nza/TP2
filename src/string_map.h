@@ -12,7 +12,7 @@ using std::pair;
 /**
  * Implementacion de map<string,T> sobre Trie
  * Asume de T:
- * - tiene constructor por copia 
+ * - tiene constructor por copia
  * - tiene operador ==
  * - solo permite utilizar el operator[] si T tiene constructor por defecto
  */
@@ -27,7 +27,7 @@ public:
 
     class iterator;
     class const_iterator;
-    
+
 
     /** @brief Construye mapa vacio
      *
@@ -95,7 +95,7 @@ public:
      *  @returns una referencia const a la definicion.
      *
      *  \complexity{\O(S)}
-     */ 
+     */
     const mapped_type& at(const key_type& key) const;
 
     /** @brief Vacia el mapa */
@@ -108,19 +108,19 @@ public:
      *
      *  \complexity{\O(S)}
      */
-   iterator begin();
+    iterator begin();
 
-    /*  @brief iterador al fin de la coleccion
+    /**  @brief iterador al fin de la coleccion
      *
      *  \complexity{\O(S)}
      */
-   iterator end();
+    iterator end();
 
     /// Versiones const de begin/end
-   const_iterator begin() const;
-   const_iterator end() const;
-   const_iterator cbegin() const;
-   const_iterator cend() const;
+    const_iterator begin() const;
+    const_iterator end() const;
+    const_iterator cbegin() const;
+    const_iterator cend() const;
 
     /** @brief busca una clave
      *  @param key clave a buscar
@@ -128,7 +128,7 @@ public:
      *
      *  \complexity{\O(S)}
      */
-   iterator find(const key_type &key);
+    iterator find(const key_type &key);
 
     /** @brief busca una clave
      *  @param key clave a buscar
@@ -136,7 +136,7 @@ public:
      *
      *  \complexity{\O(S)}
      */
-   const_iterator find(const key_type &key) const;
+    const_iterator find(const key_type &key) const;
 
     /** @brief insercion
      *
@@ -144,11 +144,12 @@ public:
      * @returns un par con un iterador al par clave-significado agregado o
      * modificado y un bool que indica si la clave se insertó como una clave
      * nueva.
-     * 
+     *
      * \complexity{\O(S + copy(value_type))}
      */
 
-    //ESTO NO ES VOID
+    //ESTO NO ES VOID le pongo void xq si no no compila xq no estan los iteradores de string map
+    //pair<iterator, bool>
     void insert(const value_type &value);
 
     /** @brief eliminar una clave

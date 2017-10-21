@@ -10,7 +10,7 @@ void BaseDeDatos::crearTabla(const string &nombre,
                              const vector<string> &campos,
                              const vector<Dato> &tipos) {
     _nombres_tablas.fast_insert(nombre);
-    _tablas.insert(pair<string, Tabla>(nombre, Tabla(claves, campos, tipos)));
+    _tablas.insert(make_pair(nombre, Tabla(claves, campos, tipos)));
 }
 
 void BaseDeDatos::agregarRegistro(const Registro &r, const string &nombre) {
@@ -198,7 +198,7 @@ linear_set<BaseDeDatos::Criterio> BaseDeDatos::top_criterios() const {
 }
 
 void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
-    Tabla t = dameTabla(nombre);
+    const Tabla &t = dameTabla(nombre);
 
     string_map<Indice> nuevos_indices = string_map<Indice>();
     Indice indice = Indice();
@@ -246,4 +246,40 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
     nuevos_indices.insert(make_pair(campo, indice));
     _indices.insert(make_pair(nombre, nuevos_indices));
 
+}
+
+BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string &tabla2, const string &campo) {
+    //Si tabla2 no tiene indices doy vuelta las cosas, tabla1 tendra indice por precondicion
+    if (_indices.count(tabla2) == 0  or _indices.at(tabla2).count(campo) == 0) {
+        return join(tabla2, tabla1, campo);
+    }
+
+    //Ahora si, tabla2 seguro tiene indice
+    const Tabla& t1 = dameTabla(tabla1);
+    const Tabla& t2 = dameTabla(tabla2);
+    Indice indice = _indices.at(tabla2).at(campo);
+    Join res;
+    auto it = t1.registros_begin();
+    if (!get<2>(indice)) {
+        while (it != t1.registros_end()) {
+            int dato_actual = it->dato(campo).valorNat();
+            auto find_dato = get<0>(indice).find(dato_actual);
+            if (find_dato != get<0>(indice).end()) {
+                res.fast_insert(make_pair(*it, get<0>(indice).at(dato_actual)));
+            }
+            ++it;
+        }
+    } else {
+        while (it != t1.registros_end()) {
+            string dato_actual = it->dato(campo).valorStr();
+            auto find_dato = get<1>(indice).find(dato_actual);
+            if (find_dato != get<1>(indice).end()) {
+                res.fast_insert(make_pair(*it, get<1>(indice).at(dato_actual)));
+            }
+            ++it;
+        }
+    }
+    *_ultimo_join = res;
+    //Habría que implementar un join_begin y un join_end ¡NO USAR join.begin() PORQUE ESE ESE EL ITERADOR DE LINEAR MAP Y NO NOS SIRVE!
+    return join_begin(*_ultimo_join);
 }
