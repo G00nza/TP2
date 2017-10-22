@@ -31,7 +31,10 @@ string_map<T>::~string_map() {
 
 template<typename T>
 string_map<T>::string_map(const string_map<T> &other) : string_map() {
-    *this = other;
+    const_iterator it = other.begin();
+    while (it != other.end()) {
+        this->insert(*it);
+    }
 }
 
 
@@ -54,6 +57,7 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
             actual->_claves.push_back(camino[0]);
             Nodo *nuevo = new Nodo;
             actual->_hijos.push_back(nuevo);
+            nuevo->_posEnPadre = actual->_hijos.size()-1;
             nuevo->padre = actual;
             string aux;
             for (int k = 0; k < j ; ++k) {
@@ -73,30 +77,20 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
         _tamano++;
         actual->_definido = true;
         actual->_posEnPadre = actual->padre->_claves.size()-1;
-        //*actual->_camino = v.first;//me parece que esta de mas
     }
     *actual->_obtener = v.second;
     string_map<T>::iterator it(actual);
-
     return make_pair(it, pertenece);
 }
-
-
-/*
-template < typename T >
-typename string_map<T>::iterator string_map<T>::fast_insert(const string_map<T>::value_type& v) {
-    auto it = insert(v).first;
-    return it;
-}*/
 
 template<typename T>
 string_map<T> &string_map<T>::operator=(const string_map<T> &other) {
     //this->~string_map();
-    ~this;
-    *this = other;
-    // COSAS MUY COMPLICADAS, COPIAR TODOS LOS NODOS Y SUB NODOS
-    // HACER UNA SUB RUTINA QUE DADO UN NODO SE COPIEN TODOS LOS
-    // SUB NODOS
+    this->clear();
+    const_iterator it = other.begin();
+    while (it != other.end()){
+        this->insert(*it);
+    }
     return *this;
 }
 
@@ -147,7 +141,7 @@ string_map<T>::find(const key_type &k) const {
                 pos = i;
             }
         }
-        if (!pertenece) {
+            if (!pertenece) {
             return it;
         } else {
             actual = actual->_hijos[pos];
@@ -162,7 +156,7 @@ string_map<T>::find(const key_type &k) const {
 //si no  => 0
 template<typename T>
 size_t string_map<T>::count(const key_type &key) const {
-    return 0;
+    return (*find(key)).first == key;
     //implementar
     //return find(key) != end();
 }
@@ -268,7 +262,7 @@ bool string_map<T>::empty() const {
     return _tamano == 0;
 }
 
-template<typename T>
+template<typename T> // Esta duplicada y no rompe?
 typename string_map<T>::mapped_type &string_map<T>::at(const key_type &key) {
     return (*find(key)).second;
 }
@@ -285,8 +279,6 @@ typename string_map<T>::iterator string_map<T>::begin() {
     }
     return it;
 }
-
-//hacer que el iterador end sea el ultimo
 
 template < typename T >
 typename string_map<T>::iterator string_map<T>::end() {
@@ -348,7 +340,9 @@ bool string_map<T>::igualDeNodo(string_map<T>::Nodo &n1, string_map<T>::Nodo &n2
 template<typename T>
 typename string_map<T>::mapped_type &string_map<T>::operator[](const key_type &key) {
     mapped_type nada;
-    //auto res = ;
+    if (count(key) == 1){
+        return at(key);
+    }
     return (*(insert(make_pair(key, nada)).first)).second;
 }
 
@@ -360,8 +354,10 @@ typename string_map<T>::iterator string_map<T>::erase(iterator pos) {
 }
 
 template<typename T>
-void string_map<T>::clear() {
-
+void string_map<T>::clear(){
+    while (_tamano > 0) {
+        erase(begin());
+    }
 }
 
 
