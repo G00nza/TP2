@@ -689,20 +689,23 @@ TEST_F(DBAlumnos, crit_doble_otro_bool) {
 // * Join repetidos dos lados
 // * Join campos repetidos
 
+#ifdef POST_SOLUCION
 TEST_F(DBAlumnos, join_vacio) {
+ db.crearIndice("alumnos", "LU");
  auto begin = db.join("alumnos", "ex_alumnos", "LU");
  auto end = db.join_end(); 
  EXPECT_EQ(begin, end);
 }
 
 TEST_F(DBAlumnos, join_sin_repetidos) {
+  db.crearIndice("alumnos", "LU");
   auto begin = db.join("libretas", "alumnos", "LU");
   auto end = db.join_end();
   linear_set<string> nuevos_campos({"LU_N", "LU_A", "LU", "Nombre", "Editor", "OS"});
 
   int count = 0;
   for (auto it = begin; it != end; it++) {
-    EXPECT_EQ(it->campos(), nuevos_campos);
+    EXPECT_EQ((*it).campos(), nuevos_campos);
     count++;
   }
 
@@ -713,12 +716,13 @@ TEST_F(DBAlumnos, join_sin_repetidos) {
 }
 
 TEST_F(DBAlumnos, join_repetidos_uno) {
+  db.crearIndice("libretas", "LU");
   auto begin = db.join("libretas", "materias", "LU");
   auto end = db.join_end();
 
   linear_set<string> nuevos_campos({"LU_N", "LU_A", "LU", "Materia"});
   for (auto it = begin; it != end; it++) {
-    EXPECT_EQ(it->campos(), nuevos_campos);
+    EXPECT_EQ((*it).campos(), nuevos_campos);
   }
 
   linear_set<Registro> join(begin, end);
@@ -763,13 +767,14 @@ TEST_F(DBAlumnos, join_repetidos_ambos) {
   t_join.agregarRegistro(Registro({"X", "Y", "Z"}, 
                                   {Dato(3), Dato(2), Dato("C")}));
 
+  db2.crearIndice("T1", "Y");
+  db2.crearIndice("T2", "Y");
   auto begin = db2.join("T1", "T2", "Y");
   auto end = db2.join_end();
 
   linear_set<string> nuevos_campos({"X", "Y", "Z"});
   for (auto it = begin; it != end; it++) {
-    cout << *it << endl;
-    EXPECT_EQ(it->campos(), nuevos_campos);
+    EXPECT_EQ((*it).campos(), nuevos_campos);
   }
 
   linear_set<Registro> join(begin, end);
@@ -819,6 +824,9 @@ TEST_F(DBAlumnos, join_campos_repetidos) {
   t_join_b.agregarRegistro(Registro({"X", "Y", "Z"}, 
                                     {Dato(3), Dato(2), Dato("C")}));
 
+  db2.crearIndice("T1", "X");
+  db2.crearIndice("T2", "Z");
+  db2.crearIndice("T2", "Y");
   auto begin = db2.join("T1", "T2", "Y");
   auto end = db2.join_end();
 
@@ -831,3 +839,4 @@ TEST_F(DBAlumnos, join_campos_repetidos) {
   linear_set<Registro> join_b(begin, end);
   EXPECT_EQ(join_b, t_join_b.registros());
 }
+#endif // POST_SOLUCION

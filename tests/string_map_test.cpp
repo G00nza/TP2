@@ -3,6 +3,7 @@
 #include "../src/string_map.h"
 #include "../src/Dato.h"
 
+#ifdef POST_SOLUCION
 TEST(string_map_test, test_constructor) {
     string_map<int> m1,m2;
     string_map<int> m3(m1);
@@ -224,3 +225,4 @@ TEST(string_map_test, no_default) {
   EXPECT_NE(dato_map.find("March"), dato_map.end());
   EXPECT_NE(dato_map.find("EvilMarch"), dato_map.end());
 }
+#endif // POST_SOLUCION

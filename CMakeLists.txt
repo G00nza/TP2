@@ -12,14 +12,19 @@ file(GLOB SOURCE_FILES src/*.cpp src/*.h)
 # Leemos todos los archivos de test en ./tests
 file(GLOB TEST_SOURCES tests/*.cpp)
 
-#add_subdirectory(tests/google-test)
+add_subdirectory(tests/google-test)
 
 
 # Creamos el ejecutable para correr los tests
 add_executable(correrTests ${TEST_SOURCES} ${SOURCE_FILES})
 
+# Creamos el ejecutable para correr los tests
+add_executable(correrTests_sol ${TEST_SOURCES} ${SOURCE_FILES})
+target_compile_definitions(correrTests_sol PRIVATE POST_SOLUCION)
+
 # Necesitamos asociar los archivos del framework de testing
 target_link_libraries(correrTests gtest gtest_main)
+target_link_libraries(correrTests_sol gtest gtest_main)
 
 add_test(correrTests correrTests)
 
