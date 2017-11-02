@@ -4,6 +4,7 @@
 #include <cassert>
 #include <string>
 #include <vector>
+//#include "string_map_iterators.h"
 
 using std::string;
 using std::vector;
@@ -12,22 +13,21 @@ using std::pair;
 /**
  * Implementacion de map<string,T> sobre Trie
  * Asume de T:
- * - tiene constructor por copia
+ * - tiene constructor por copia 
  * - tiene operador ==
  * - solo permite utilizar el operator[] si T tiene constructor por defecto
  */
 template < typename T >
 class string_map {
+    struct Nodo;
 public:
     typedef string key_type;
     typedef T mapped_type;
     typedef std::pair<const key_type, mapped_type> value_type;
     typedef size_t size_type;
 
-
     class iterator;
     class const_iterator;
-
 
     /** @brief Construye mapa vacio
      *
@@ -95,7 +95,7 @@ public:
      *  @returns una referencia const a la definicion.
      *
      *  \complexity{\O(S)}
-     */
+     */ 
     const mapped_type& at(const key_type& key) const;
 
     /** @brief Vacia el mapa */
@@ -119,8 +119,8 @@ public:
     /// Versiones const de begin/end
     const_iterator begin() const;
     const_iterator end() const;
-    const_iterator cbegin() const;
-    const_iterator cend() const;
+    //const_iterator cbegin() const;
+    //const_iterator cend() const;
 
     /** @brief busca una clave
      *  @param key clave a buscar
@@ -144,13 +144,10 @@ public:
      * @returns un par con un iterador al par clave-significado agregado o
      * modificado y un bool que indica si la clave se insertó como una clave
      * nueva.
-     *
+     * 
      * \complexity{\O(S + copy(value_type))}
      */
-
-    //ESTO NO ES VOID le pongo void xq si no no compila xq no estan los iteradores de string map
-    //pair<iterator, bool>
-    void insert(const value_type &value);
+    pair<iterator,bool> insert(const value_type &value);
 
     /** @brief eliminar una clave
      *  @param key clave a eliminar
@@ -168,9 +165,55 @@ public:
      */
     iterator erase(iterator pos);
 
-private:
+    /** @brief Devuelve la posicion de c en v, v posee un tamaño acotado
+     *  @param v Vector
+     *  @param c Char
+     *  @pre c \IN v
+     *  @returns posicion en la cual se encuentra c
+     *
+     *  \complexity{\O(1)}
+     */
+    int posicion(vector <char> v, char c)const;
 
+    /** @brief se fija si dos ramas son iguales
+     *  @param n1 Nodo
+     *  @param n2 Nodo
+     *  @returns devuelve true si n1 == n2
+     *
+     *  \complexity{\O(cant nodos)}
+     */
+    bool igualDeNodo(Nodo& n1, Nodo& n2)const;
+
+private:
+    Nodo* _raiz;
+
+    struct Nodo{
+        vector <char> _claves;
+        vector <Nodo*> _hijos;
+        T* _obtener;
+        Nodo* padre;
+        string* _camino;
+        bool _definido = false;
+        int _posEnPadre;
+        value_type* v =  new value_type (*_camino, *_obtener);
+    };
+
+    size_type _tamano;
+
+    friend class iterator;
+    friend class const_iterator;
+
+    /*class iterator{
+        Nodo* _valorIt;
+        friend class string_map;
+    };*/
+    /*class const_iterator{
+        Nodo* _valorIt;
+        friend class string_map;
+    };*/
 };
 
+#include "string_map.hpp"
+#include "string_map_iterators.h"
 
 #endif //STRING_MAP_STRING_MAP_H

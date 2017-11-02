@@ -34,13 +34,13 @@ public:
     /** @brief Criterio de búsqueda para una base de datos */
     typedef linear_set<Restriccion> Criterio;
     /** @brief Indice para un campo dado, el bool es false si es sobre int, true si es sobre string */
-    typedef tuple<map<int, linear_set<const Registro&> >, string_map<linear_set<const Registro&> >, bool > Indice;
+    typedef tuple<map<int, linear_set<const Registro*> >, string_map<linear_set<const Registro*> >, bool > Indice;
     /** @brief Join entre dos tablas
      * Para cada clave del diccionario (registros de tabla1) tengo los registros de tabla2 que coinciden en el campo dado */
-    typedef linear_map<const Registro&, linear_set<const Registro&> > Join;
+    typedef linear_map<const Registro*, linear_set<const Registro*> > Join;
 
     //habria que definir un join_begin y un join_end de tipo join_iterator
-    class join_iterator;
+    typedef pair<const Registro*, const Registro*> join_iterator;
 
     /**
      * @brief Inicializa una base de datos sin tablas.

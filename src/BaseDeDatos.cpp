@@ -3,6 +3,7 @@
 #include <tuple>
 #include <algorithm>
 
+
 BaseDeDatos::BaseDeDatos() {};
 
 void BaseDeDatos::crearTabla(const string &nombre,
@@ -32,24 +33,24 @@ void BaseDeDatos::agregarAIndice(BaseDeDatos::Indice &indice, const Registro &re
         string valor_en_campo = registro.dato(campo).valorStr();
         auto it = get<1>(indice).find(valor_en_campo);
         if (it != get<1>(indice).end()) {
-            linear_set<const Registro&> nuevo_conj = indice.at(it->first);
-            nuevo_conj.fast_insert(registro);
+            linear_set<const Registro*> nuevo_conj = get<1>(indice).at(it->first);
+            nuevo_conj.fast_insert(&registro);
             get<1>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
         } else {
-            linear_set<const Registro&> nuevo_conj = linear_set<const Registro&>();
-            nuevo_conj.fast_insert(registro);
+            linear_set<const Registro*> nuevo_conj = linear_set<const Registro*>();
+            nuevo_conj.fast_insert(&registro);
             get<1>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
         }
     } else {
         int valor_en_campo = registro.dato(campo).valorNat();
         auto it = get<0>(indice).find(valor_en_campo);
         if (it != get<0>(indice).end()) {
-            linear_set<const Registro&> nuevo_conj = indice.at(it->first);
-            nuevo_conj.fast_insert(registro);
+            linear_set<const Registro*> nuevo_conj = get<0>(indice).at(it->first);
+            nuevo_conj.fast_insert(&registro);
             get<0>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
         } else {
-            linear_set<const Registro&> nuevo_conj = linear_set<const Registro&>();
-            nuevo_conj.fast_insert(registro);
+            linear_set<const Registro*> nuevo_conj = linear_set<const Registro*>();
+            nuevo_conj.fast_insert(&registro);
             get<0>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
         }
     }
@@ -211,13 +212,12 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
             int dato_actual = (*it).dato(campo).valorNat();
             datos.insert(dato_actual);
             if (get<0>(indice).count(dato_actual) == 0) {
-                linear_set<const Registro &> nuevo_conj_registros = linear_set<const Registro &>();
-                const Registro &actual = *it;
-                nuevo_conj_registros.fast_insert(actual);
+                linear_set<const Registro*> nuevo_conj_registros = linear_set<const Registro*>();
+                nuevo_conj_registros.fast_insert(&*it);
                 get<0>(indice).insert(make_pair(dato_actual, nuevo_conj_registros));
             } else {
-                linear_set<const Registro &> conj_registros = get<0>(indice).at(dato_actual);
-                conj_registros.fast_insert((*it));
+                linear_set<const Registro*> conj_registros = get<0>(indice).at(dato_actual);
+                conj_registros.fast_insert(&*it);
                 get<0>(indice).insert(make_pair(dato_actual, conj_registros));
             }
             ++it;
@@ -229,13 +229,12 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
             string dato_actual = (*it).dato(campo).valorStr();
             datos.insert(dato_actual);
             if (get<1>(indice).count(dato_actual) == 0) {
-                linear_set<const Registro &> nuevo_conj_registros = linear_set<const Registro &>();
-                const Registro &actual = *it;
-                nuevo_conj_registros.fast_insert(actual);
+                linear_set<const Registro*> nuevo_conj_registros = linear_set<const Registro*>();
+                nuevo_conj_registros.fast_insert(&*it);
                 get<1>(indice).insert(make_pair(dato_actual, nuevo_conj_registros));
             } else {
-                linear_set<const Registro &> conj_registros = get<1>(indice).at(dato_actual);
-                conj_registros.fast_insert((*it));
+                linear_set<const Registro*> conj_registros = get<1>(indice).at(dato_actual);
+                conj_registros.fast_insert(&*it);
                 get<1>(indice).insert(make_pair(dato_actual, conj_registros));
             }
             ++it;
@@ -265,7 +264,7 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
             int dato_actual = it->dato(campo).valorNat();
             auto find_dato = get<0>(indice).find(dato_actual);
             if (find_dato != get<0>(indice).end()) {
-                res.fast_insert(make_pair(*it, get<0>(indice).at(dato_actual)));
+                res.fast_insert(make_pair(&*it, get<0>(indice).at(dato_actual)));
             }
             ++it;
         }
@@ -274,7 +273,7 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
             string dato_actual = it->dato(campo).valorStr();
             auto find_dato = get<1>(indice).find(dato_actual);
             if (find_dato != get<1>(indice).end()) {
-                res.fast_insert(make_pair(*it, get<1>(indice).at(dato_actual)));
+                res.fast_insert(make_pair(&*it, get<1>(indice).at(dato_actual)));
             }
             ++it;
         }
@@ -283,3 +282,45 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
     //Habría que implementar un join_begin y un join_end ¡NO USAR join.begin() PORQUE ESE ESE EL ITERADOR DE LINEAR MAP Y NO NOS SIRVE!
     return join_begin(*_ultimo_join);
 }
+
+BaseDeDatos::join_iterator BaseDeDatos::join_begin (Join join){
+    const Registro* first = join.begin()->first;
+    const Registro* second = *(join.begin()->second.begin());
+    return make_pair(first, second);
+}
+
+//BaseDeDatos::join_iterator BaseDeDatos::join_end (){
+//
+//}
+//
+//BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(){
+//    if (this->second != this->second.end()){
+//        this->second++;
+//    }else{
+//        this->first++;
+//        this->second = at(*(this->first)).begin();/////HAY QUE HACER UN OBTENER!!!!!!!!!!!
+//    }
+//    return *this;
+//}
+//
+//
+//Registro BaseDeDatos::join_iterator::operator *(){
+//    vector<string> campos = {};
+//    vector<Dato> datos = {};
+//    typename string_map::iterator it_datos1 = (this->first).datos().begin();//iterador string_map sobre (this->first).datos()
+//    for(typename linear_set::iterator it_campos1 = (this->first).campos().begin(); it_campos1 != (this->first).campos().end(); it_campos1++ ){ //iterador linear_set sobre (this->first).campos()
+//        campos.push_back(*it_campos1);
+//        datos.push_back(*it_datos1);
+//        it_datos1++;
+//    }
+//    typename string_map::iterator it_datos2 = (this->second).datos().begin();//iterador string_map sobre (this->second).datos()
+//    for(typename linear_set::iterator it_campos2 = (this->second).campos().begin(); it_campos2 != (this->second).campos().end(); it_campos2++){ //iterador linear_set sobre (this->second).campos()
+//        if (!pertenece(*it_campos2, campos)){
+//            campos.push_back(*it_campos2);
+//            datos.push_back(*it_datos2);
+//        }
+//        it_datos2++;
+//    }
+//    Registro res(campos, datos);
+//    return res;
+//}
