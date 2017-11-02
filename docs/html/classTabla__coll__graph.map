@@ -1,7 +1,0 @@
-<map id="Tabla" name="Tabla">
-<area shape="rect" id="node2" href="$classlinear__map.html" title="linear_map\&lt; string,\l Dato \&gt;" alt="" coords="5,113,139,154"/>
-<area shape="rect" id="node3" href="$classlinear__set.html" title="linear_set\&lt; Registro \&gt;" alt="" coords="163,120,313,147"/>
-<area shape="rect" id="node4" href="$classlinear__map.html" title="linear_map\&lt; Registro,\l bool \&gt;" alt="" coords="163,6,313,47"/>
-<area shape="rect" id="node5" href="$classlinear__set.html" title="linear_set\&lt; string \&gt;" alt="" coords="338,120,472,147"/>
-<area shape="rect" id="node6" href="$classlinear__map.html" title="linear_map\&lt; string,\l bool \&gt;" alt="" coords="339,6,472,47"/>
-</map>
