@@ -12,7 +12,7 @@ file(GLOB SOURCE_FILES src/*.cpp src/*.h)
 # Leemos todos los archivos de test en ./tests
 file(GLOB TEST_SOURCES tests/*.cpp)
 
-add_subdirectory(tests/google-test)
+#add_subdirectory(tests/google-test)
 
 
 # Creamos el ejecutable para correr los tests
