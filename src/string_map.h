@@ -188,14 +188,20 @@ private:
     Nodo* _raiz;
 
     struct Nodo{
+        Nodo(){
+            _definido = false;
+            _camino = new string("");
+            _obtener = new T();
+            v = new value_type(*_camino, *_obtener);
+        }
         vector <char> _claves;
         vector <Nodo*> _hijos;
         T* _obtener;
         Nodo* padre;
         string* _camino;
-        bool _definido = false;
+        bool _definido;
         int _posEnPadre;
-        value_type* v =  new value_type (*_camino, *_obtener);
+        value_type* v;
     };
 
     size_type _tamano;

@@ -15,6 +15,16 @@ class Dato {
 public:
 
     /**
+     * @brief Constructor sin parametros para un dato trivial
+     *
+     *
+     * \pre true
+     * \post true
+     * \complexity{\O(1)}*/
+    Dato();
+
+
+    /**
      * @brief Constructor de dato con valor nat
      *
      * @param valorNat valor natural del dato

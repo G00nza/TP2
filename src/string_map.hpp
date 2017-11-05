@@ -204,13 +204,13 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
     } else{
         actual->_definido = false;
         delete (actual->_obtener);//ver que los iteradores no rompan agregando pre
-        delete (actual->v);
+        //delete (actual->v);
         actual->_obtener = nullptr;
     }
     if (actual == _raiz) {
         actual->_definido = false;
         delete (actual->_obtener);
-        delete (actual->v);//ver que los iteradores no rompan agregando pre
+        //delete (actual->v);//ver que los iteradores no rompan agregando pre
         actual->_obtener = nullptr;
     }
     _tamano --;

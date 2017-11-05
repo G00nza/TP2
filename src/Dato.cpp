@@ -4,6 +4,11 @@
 
 using namespace std;
 
+
+Dato::Dato(): _valorNat(), _valorStr(), _esNat() {
+}
+
+
 Dato::Dato(int valorNat) :
         _valorNat(valorNat), _valorStr(""), _esNat(true) {};
 

@@ -31,22 +31,33 @@ public:
   // Forward declaration
   class const_iterador_registros;
 
-  /**
-   * @brief Inicializa una tabla sin registros y con la descripción parámetro.
-   *
-   * @param claves Subconjunto de los campos que son claves.
-   * @param campos Conjunto de nombres de claves. El órden se corresponde con 
-   * el de datos
-   * @param tipos  Conjunto de datos cuyo tipo define el tipo admisible en cada
-   * campo. El valor de los datos se ignora.
-   * 
-   * \pre \LNOT \EMPTYSET ?(c) \LAND 
-   *      \FORALL (c: campo) c \in claves \IMPLIES esta?(c, campos) \LAND
-   *      long(campos) = long(tipos) \LAND sinRepetidos(campos)
-   * \post \P{res} = nuevaTabla(claves, nuevoRegistro(campos, tipos))
-   *
-   * \complexity{\O(long(campos) * (copy(campo) + copy(dato)))}
-   */
+    /**
+    * @brief Constructor sin parametros de una tabla trivial.
+    *
+    * \pre true
+    * \post true
+    *
+    * \complexity{\O(1)}
+    */
+    Tabla() {
+    }
+
+    /**
+     * @brief Inicializa una tabla sin registros y con la descripción parámetro.
+     *
+     * @param claves Subconjunto de los campos que son claves.
+     * @param campos Conjunto de nombres de claves. El órden se corresponde con
+     * el de datos
+     * @param tipos  Conjunto de datos cuyo tipo define el tipo admisible en cada
+     * campo. El valor de los datos se ignora.
+     *
+     * \pre \LNOT \EMPTYSET ?(c) \LAND
+     *      \FORALL (c: campo) c \in claves \IMPLIES esta?(c, campos) \LAND
+     *      long(campos) = long(tipos) \LAND sinRepetidos(campos)
+     * \post \P{res} = nuevaTabla(claves, nuevoRegistro(campos, tipos))
+     *
+     * \complexity{\O(long(campos) * (copy(campo) + copy(dato)))}
+     */
   Tabla(const linear_set<string> &claves, const vector<string> &campos,
         const vector<Dato> &tipos);
 
