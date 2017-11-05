@@ -194,10 +194,18 @@ private:
             _obtener = new T();
             v = new value_type(*_camino, *_obtener);
         }
+        Nodo(bool definido,const string camino, T& obtener, Nodo* padre, int posEnPadre){
+            _definido = definido;
+            _camino = new string(camino);
+            _obtener = new T(obtener);
+            v = new value_type(*_camino, *_obtener);
+            _padre = padre;
+            _posEnPadre = posEnPadre;
+        }
         vector <char> _claves;
         vector <Nodo*> _hijos;
         T* _obtener;
-        Nodo* padre;
+        Nodo* _padre;
         string* _camino;
         bool _definido;
         int _posEnPadre;
