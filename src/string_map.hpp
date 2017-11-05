@@ -102,25 +102,20 @@ typename string_map<T>::size_type string_map<T>::size() const {
 
 template<typename T>
 typename string_map<T>::iterator string_map<T>::find(const key_type &k) {
-    string camino = k;
-    unsigned long iteraciones = camino.size();
-    bool pertenece = false;
     Nodo *actual = _raiz;
-    int pos;
     auto it = end();
-    for (int j = 0; j < iteraciones; ++j) {
-        for (int i = 0; i < actual->_claves.size(); ++i) {
-            if (camino[0] == actual->_claves[i]) {
-                pertenece = true;
-                pos = i;
+    for (int i = 0; i < k.size(); ++i) {
+        int j = 0;
+        while (j < actual->_hijos.size()) {
+            if (k[i] == actual->_hijos[j]->_camino->back()) {
+                actual = actual->_hijos[j];
+                break;
             }
+            j++;
         }
-        if (!pertenece) {
+        if (j == actual->_hijos.size()) {
             return it;
-        } else {
-            actual = actual->_hijos[pos];
         }
-        camino.erase(0);
     }
     it._nodo = actual;
     return it;
@@ -129,25 +124,20 @@ typename string_map<T>::iterator string_map<T>::find(const key_type &k) {
 template<typename T>
 typename string_map<T>::const_iterator
 string_map<T>::find(const key_type &k) const {
-    string camino = k;
-    unsigned long iteraciones = camino.size();
-    bool pertenece = false;
     Nodo *actual = _raiz;
-    int pos;
     auto it = end();
-    for (int j = 0; j < iteraciones; ++j) {
-        for (int i = 0; i < actual->_claves.size(); ++i) {
-            if (camino[0] == actual->_claves[i]) {
-                pertenece = true;
-                pos = i;
+    for (int i = 0; i < k.size(); ++i) {
+        int j = 0;
+        while (j < actual->_hijos.size()) {
+            if (k[i] == actual->_hijos[j]->_camino->back()) {
+                actual = actual->_hijos[j];
+                break;
             }
+            j++;
         }
-            if (!pertenece) {
+        if (j == actual->_hijos.size()) {
             return it;
-        } else {
-            actual = actual->_hijos[pos];
         }
-        camino.erase(0);
     }
     it._nodo = actual;
     return it;
