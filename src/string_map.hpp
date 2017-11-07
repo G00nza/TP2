@@ -32,10 +32,11 @@ string_map<T>::~string_map() {
 
 template<typename T>
 string_map<T>::string_map(const string_map<T> &other) : string_map() {
-//    const_iterator it = other.begin();
-//    while (it != other.end()) {
-//        this->insert(*it);
-//    }
+   const_iterator it = other.begin();
+   while (it != other.end()) {
+       this->insert(*it);
+        ++it;
+    }
 }
 
 
@@ -179,13 +180,13 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
     if (actual->_hijos.size() == 0) {
         if (actual != _raiz) {//nunca puedo borrar la raiz
             Nodo *borrar = actual;
-            actual = actual->padre;
+            actual = actual->_padre;
             actual->_claves.erase(actual->_claves.begin() + borrar->_posEnPadre);
             actual->_hijos.erase(actual->_hijos.begin() + borrar->_posEnPadre);
             delete borrar;
             while (!actual->_definido && actual->_hijos.size() < 1 && actual != _raiz) {
                 Nodo *borrar = actual;
-                actual = actual->padre;
+                actual = actual->_padre;
                 actual->_claves.erase(actual->_claves.begin() + borrar->_posEnPadre);
                 actual->_hijos.erase(actual->_hijos.begin() + borrar->_posEnPadre);
                 delete borrar;
@@ -253,7 +254,7 @@ bool string_map<T>::empty() const {
     return _tamano == 0;
 }
 
-template<typename T> // Esta duplicada y no rompe?
+template<typename T>
 typename string_map<T>::mapped_type &string_map<T>::at(const key_type &key) {
     return (*find(key)).second;
 }
@@ -263,7 +264,7 @@ typename string_map<T>::iterator string_map<T>::begin() {
     string_map<T>::iterator it(_raiz);
     if (_tamano > 0) {
         Nodo *actual = _raiz;
-        while (actual->_claves.size() > 0 && !actual->_definido) {
+        while (actual->_hijos.size() > 0 && !actual->_definido) {
             actual = actual->_hijos[0];
         }
         it._nodo = actual;
@@ -285,7 +286,7 @@ typename string_map<T>::const_iterator string_map<T>::begin() const {
     string_map<T>::const_iterator it(_raiz);
     if (_tamano > 0) {
         Nodo *actual = _raiz;
-        while (actual->_claves.size() > 0 && !actual->_definido) {
+        while (actual->_hijos.size() > 0 && !actual->_definido) {
             actual = actual->_hijos[0];
         }
         it._nodo = actual;
