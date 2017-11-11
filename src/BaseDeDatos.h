@@ -29,18 +29,15 @@ using namespace std;
  * **se explica con** TAD BaseDeDatos
  */
 class BaseDeDatos {
+    class Join;
+    struct join_iterator;
 
 public:
     /** @brief Criterio de búsqueda para una base de datos */
     typedef linear_set<Restriccion> Criterio;
     /** @brief Indice para un campo dado, el bool es false si es sobre int, true si es sobre string */
     typedef tuple<map<int, linear_set<const Registro*> >, string_map<linear_set<const Registro*> >, bool > Indice;
-    /** @brief Join entre dos tablas
-     * Para cada clave del diccionario (registros de tabla1) tengo los registros de tabla2 que coinciden en el campo dado */
-    typedef linear_map<const Registro*, linear_set<const Registro*> > Join;
 
-    //habria que definir un join_begin y un join_end de tipo join_iterator
-    typedef pair<const Registro*, const Registro*> join_iterator;
 
     /**
      * @brief Inicializa una base de datos sin tablas.
@@ -343,6 +340,47 @@ private:
     * \post Devuelve el iterador del join
     */
     join_iterator join_begin(Join join);
+
+    /** @brief Join entre dos tablas*/
+    class Join {
+
+        /** @brief Devuelve un iterador al primer par de registros del Join*/
+        join_iterator begin();
+
+        /** @brief Devuelve un iterador al ultimo par de registros del Join*/
+        join_iterator end();
+
+    private:
+
+        /** @brief Conjunto con los registros de la tabla1*/
+        linear_set<const Registro*> tabla1;
+
+        /** @brief Conjunto con los registros de la tabla2 que coinciden con cada registro de la tabla1*/
+        linear_set<linear_set<const Registro*>* >tabla2;
+
+
+        friend class BaseDeDatos;
+    };
+
+    struct join_iterator {
+
+        /** @brief Constructor del iterador*/
+        join_iterator(pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v): v(v){};
+
+        /** @brief Par de registros tabla1,tabla2*/
+        pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v;
+
+        /** @brief Operador avanzar*/
+        join_iterator operator++();
+
+
+        /** @brief Devuelve el registro del Join entre las dos tablas sobre el cual estoy iterando*/
+        Registro operator*();
+
+        friend class BaseDeDatos;
+
+    };
+
     /** @} */
 };
 

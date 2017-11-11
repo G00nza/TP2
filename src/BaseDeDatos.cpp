@@ -258,35 +258,42 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
     const Tabla& t2 = dameTabla(tabla2);
     Indice indice = _indices.at(tabla2).at(campo);
     Join res;
+    //Itero sobre los registros de la tabla 1
     auto it = t1.registros_begin();
+    //En caso de estar tratando con un campo nat:
     if (!get<2>(indice)) {
         while (it != t1.registros_end()) {
-            int dato_actual = it->dato(campo).valorNat();
-            auto find_dato = get<0>(indice).find(dato_actual);
-            if (find_dato != get<0>(indice).end()) {
-                res.fast_insert(make_pair(&*it, get<0>(indice).at(dato_actual)));
+            int dato_actual = it->dato(campo).valorNat(); //Me fijo que valor tiene el registro actual en el campo
+            auto find_dato = get<0>(indice).find(dato_actual); //Busco que registros tienen ese valor en la tabla2
+            if (find_dato != get<0>(indice).end()) { //Si hay registros con ese valor en la tabla dos:
+                res.tabla1.fast_insert(&*it); //Agrego un puntero al registro de la tabla1 y al conjunto de registros de la tabla2
+                res.tabla2.fast_insert(&find_dato->second);
             }
             ++it;
         }
     } else {
+        //En caso de estar tratando con un campo string (misma idea):
         while (it != t1.registros_end()) {
             string dato_actual = it->dato(campo).valorStr();
             auto find_dato = get<1>(indice).find(dato_actual);
             if (find_dato != get<1>(indice).end()) {
-                res.fast_insert(make_pair(&*it, get<1>(indice).at(dato_actual)));
+                res.tabla1.fast_insert(&*it);
+                res.tabla2.fast_insert(&find_dato->second);
             }
             ++it;
         }
     }
     *_ultimo_join = res;
-    //Habría que implementar un join_begin y un join_end ¡NO USAR join.begin() PORQUE ESE ESE EL ITERADOR DE LINEAR MAP Y NO NOS SIRVE!
-    return join_begin(*_ultimo_join);
+    return _ultimo_join->begin();
 }
 
-BaseDeDatos::join_iterator BaseDeDatos::join_begin (Join join){
-    const Registro* first = join.begin()->first;
-    const Registro* second = *(join.begin()->second.begin());
-    return make_pair(first, second);
+BaseDeDatos::join_iterator BaseDeDatos::Join::begin (){
+    auto first = tabla1.begin();
+    auto second = (*tabla2.begin())->begin();
+    return join_iterator(make_pair(first, second));
+}
+
+BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(){
 }
 
 //BaseDeDatos::join_iterator BaseDeDatos::join_end (){

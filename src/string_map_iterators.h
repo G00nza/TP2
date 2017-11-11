@@ -220,12 +220,12 @@ typename string_map<T>::const_iterator &string_map<T>::const_iterator::operator+
             this->_nodo = this->_nodo->_hijos[0];
         }
     }else{
-        while(this->_nodo->padre != nullptr){
-            if (this->_nodo->padre->_hijos.size()-1 > findpos(this->_nodo->padre->_hijos, this->_nodo)){
-                this->_nodo = this->_nodo->padre->_hijos[findpos(this->_nodo->padre->_hijos, this->_nodo)+1];
+        while(this->_nodo->_padre != nullptr){
+            if (this->_nodo->_padre->_hijos.size()-1 > findpos(this->_nodo->_padre->_hijos, this->_nodo)){
+                this->_nodo = this->_nodo->_padre->_hijos[findpos(this->_nodo->_padre->_hijos, this->_nodo)+1];
                 break;
             }
-            this->_nodo = this->_nodo->padre;
+            this->_nodo = this->_nodo->_padre;
         }
         while (this->_nodo->_hijos.size() > 0 && this->_nodo->_definido) {
             this->_nodo = this->_nodo->_hijos[0];
