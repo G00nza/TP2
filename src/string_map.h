@@ -165,27 +165,11 @@ public:
      */
     iterator erase(iterator pos);
 
-    /** @brief Devuelve la posicion de c en v, v posee un tamaño acotado
-     *  @param v Vector
-     *  @param c Char
-     *  @pre c \IN v
-     *  @returns posicion en la cual se encuentra c
-     *
-     *  \complexity{\O(1)}
-     */
-    int posicion(vector <Nodo*> v, char c) const ;
-
-    /** @brief se fija si dos sub-arboles son iguales
-     *  @param n1 Nodo
-     *  @param n2 Nodo
-     *  @returns devuelve true si n1 == n2
-     *
-     *  \complexity{\O(cant nodos)}
-     */
-    bool igualDeNodo(Nodo& n1, Nodo& n2)const;
 
 private:
     Nodo* _raiz;
+    Nodo* _end = nullptr ;//new Nodo("");
+
 
     struct Nodo{
         Nodo(string camino){
@@ -193,12 +177,13 @@ private:
             _camino = new string(camino);
             _obtener = new T();
             v = new value_type(*_camino, *_obtener);
+            padre = nullptr;
         }
         ~Nodo(){
             delete _camino;
             delete _obtener;
-            delete v;
-
+            //delete v;
+            //delete padre;
         }
         //vector <char> _claves;
         vector <Nodo*> _hijos;
