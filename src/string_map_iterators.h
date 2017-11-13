@@ -227,7 +227,7 @@ typename string_map<T>::const_iterator &string_map<T>::const_iterator::operator+
             }
             this->_nodo = this->_nodo->padre;
         }
-        while (this->_nodo->_hijos.size() > 0 && this->_nodo->_definido) {
+        while (this->_nodo->_hijos.size() > 0 && !this->_nodo->_definido) {
             this->_nodo = this->_nodo->_hijos[0];
         }
     }
@@ -317,7 +317,7 @@ typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
             }
             this->_nodo = this->_nodo->padre;
         }
-        while (this->_nodo->_hijos.size() > 0 && this->_nodo->_definido) {
+        while (this->_nodo->_hijos.size() > 0 && !this->_nodo->_definido) {
             this->_nodo = this->_nodo->_hijos[0];
         }
     }

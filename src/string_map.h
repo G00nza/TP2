@@ -65,7 +65,7 @@ public:
      *
      *  \complexity{\O(S)}
      */
-    size_type count(const key_type &key) const;
+    bool count(const key_type &key) const;
 
     /** @brief Devuelve cantidad de claves definidas */
     size_t size() const;
@@ -173,9 +173,9 @@ public:
      *
      *  \complexity{\O(1)}
      */
-    int posicion(vector <char> v, char c)const;
+    int posicion(vector <Nodo*> v, char c) const ;
 
-    /** @brief se fija si dos ramas son iguales
+    /** @brief se fija si dos sub-arboles son iguales
      *  @param n1 Nodo
      *  @param n2 Nodo
      *  @returns devuelve true si n1 == n2
@@ -188,24 +188,22 @@ private:
     Nodo* _raiz;
 
     struct Nodo{
-        Nodo(){
+        Nodo(string camino){
             _definido = false;
-            _camino = new string("");
+            _camino = new string(camino);
             _obtener = new T();
             v = new value_type(*_camino, *_obtener);
         }
-        Nodo(bool definido,const string camino, T& obtener, Nodo* padre, int posEnPadre){
-            _definido = definido;
-            _camino = new string(camino);
-            _obtener = new T(obtener);
-            v = new value_type(*_camino, *_obtener);
-            _padre = padre;
-            _posEnPadre = posEnPadre;
+        ~Nodo(){
+            delete _camino;
+            delete _obtener;
+            delete v;
+
         }
-        vector <char> _claves;
+        //vector <char> _claves;
         vector <Nodo*> _hijos;
-        T* _obtener;
-        Nodo* _padre;
+        T* _obtener;//ojo que obtener no se actualiza con v, esta de mas
+        Nodo* padre;
         string* _camino;
         bool _definido;
         int _posEnPadre;
