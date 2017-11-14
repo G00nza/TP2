@@ -65,7 +65,7 @@ public:
      *
      *  \complexity{\O(S)}
      */
-    size_type count(const key_type &key) const;
+    bool count(const key_type &key) const;
 
     /** @brief Devuelve cantidad de claves definidas */
     size_t size() const;
@@ -165,47 +165,30 @@ public:
      */
     iterator erase(iterator pos);
 
-    /** @brief Devuelve la posicion de c en v, v posee un tamaño acotado
-     *  @param v Vector
-     *  @param c Char
-     *  @pre c \IN v
-     *  @returns posicion en la cual se encuentra c
-     *
-     *  \complexity{\O(1)}
-     */
-    int posicion(vector <char> v, char c)const;
-
-    /** @brief se fija si dos ramas son iguales
-     *  @param n1 Nodo
-     *  @param n2 Nodo
-     *  @returns devuelve true si n1 == n2
-     *
-     *  \complexity{\O(cant nodos)}
-     */
-    bool igualDeNodo(Nodo& n1, Nodo& n2)const;
 
 private:
     Nodo* _raiz;
+    Nodo* _end = nullptr ;//new Nodo("");
+
 
     struct Nodo{
-        Nodo(){
+        Nodo(string camino){
             _definido = false;
-            _camino = new string("");
+            _camino = new string(camino);
             _obtener = new T();
             v = new value_type(*_camino, *_obtener);
+            padre = nullptr;
         }
-        Nodo(bool definido,const string camino, T& obtener, Nodo* padre, int posEnPadre){
-            _definido = definido;
-            _camino = new string(camino);
-            _obtener = new T(obtener);
-            v = new value_type(*_camino, *_obtener);
-            _padre = padre;
-            _posEnPadre = posEnPadre;
+        ~Nodo(){
+            delete _camino;
+            delete _obtener;
+            //delete v;
+            //delete padre;
         }
-        vector <char> _claves;
+        //vector <char> _claves;
         vector <Nodo*> _hijos;
-        T* _obtener;
-        Nodo* _padre;
+        T* _obtener;//ojo que obtener no se actualiza con v, esta de mas
+        Nodo* padre;
         string* _camino;
         bool _definido;
         int _posEnPadre;

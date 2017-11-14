@@ -293,7 +293,7 @@ BaseDeDatos::join_iterator BaseDeDatos::Join::begin (){
     return join_iterator(make_pair(first, second), tabla2);
 }
 
-BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(){
+BaseDeDatos::join_iterator& BaseDeDatos::join_iterator::operator++(){
     bool esUltimo = false;
     ++v.second;
     auto it = tabla2.begin();
@@ -319,59 +319,54 @@ BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(){
     return *this;
 }
 
-//Registro BaseDeDatos::join_iterator::operator*() {
-//    Registro tabla1 = *(*v.first);
-//    Registro tabla2 = *(*v.second);
-//    vector<string> campos;
-//    vector<Dato> datos;
-//    for (auto it : tabla1.campos()) {
-//        campos.push_back(it);
-//    }
-//    for (auto it : tabla2.campos()) {
-//        campos.push_back(it);
-//    }
-//    for(auto it : tabla1.datos()) {
-//        datos.push_back(*it);
-//    }
-//    for(auto it : tabla2.datos()) {
-//        datos.push_back(*it);
-//    }
-//    return Registro(campos, datos);
-//}
-//
+//esto es para que el compilador reconozca entre ++it e it++
+BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(int) {
+    join_iterator temp(*this);
+    operator++();
+    return temp;
+}
 
-//BaseDeDatos::join_iterator BaseDeDatos::join_end (){
-//
-//}
-//
-//BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(){
-//    if (this->second != this->second.end()){
-//        this->second++;
-//    }else{
-//        this->first++;
-//        this->second = at(*(this->first)).begin();/////HAY QUE HACER UN OBTENER!!!!!!!!!!!
-//    }
-//    return *this;
-//}
-//
-//
-//Registro BaseDeDatos::join_iterator::operator *(){
-//    vector<string> campos = {};
-//    vector<Dato> datos = {};
-//    typename string_map::iterator it_datos1 = (this->first).datos().begin();//iterador string_map sobre (this->first).datos()
-//    for(typename linear_set::iterator it_campos1 = (this->first).campos().begin(); it_campos1 != (this->first).campos().end(); it_campos1++ ){ //iterador linear_set sobre (this->first).campos()
-//        campos.push_back(*it_campos1);
-//        datos.push_back(*it_datos1);
-//        it_datos1++;
-//    }
-//    typename string_map::iterator it_datos2 = (this->second).datos().begin();//iterador string_map sobre (this->second).datos()
-//    for(typename linear_set::iterator it_campos2 = (this->second).campos().begin(); it_campos2 != (this->second).campos().end(); it_campos2++){ //iterador linear_set sobre (this->second).campos()
-//        if (!pertenece(*it_campos2, campos)){
-//            campos.push_back(*it_campos2);
-//            datos.push_back(*it_datos2);
-//        }
-//        it_datos2++;
-//    }
-//    Registro res(campos, datos);
-//    return res;
-//}
+
+Registro BaseDeDatos::join_iterator::operator*() const {
+    Registro tabla1 = *(*v.first);
+    Registro tabla2 = *(*v.second);
+    vector<string> campos;
+    vector<Dato> datos;
+    for (auto it : tabla1.campos()) {
+        campos.push_back(it);
+    }
+    for (auto it : tabla2.campos()) {
+        campos.push_back(it);
+    }
+    for(auto it : tabla1.datos()) {
+        datos.push_back(it.second);
+    }
+    for(auto it : tabla1.datos()) {
+        datos.push_back(it.second);
+    }
+    return Registro(campos, datos);
+}
+
+bool BaseDeDatos::join_iterator::operator==(const join_iterator &other) const {
+    return other.v == this->v;
+}
+
+bool BaseDeDatos::join_iterator::operator!=(const join_iterator &other) const {
+    return !(*this == other);
+}
+
+BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator=(const BaseDeDatos::join_iterator &other) {
+    return join_iterator(other);
+}
+
+BaseDeDatos::join_iterator BaseDeDatos::Join::end() {
+    auto res = this->begin();
+    res.v.first = tabla1.end();
+    res.v.second = linear_set<const Registro*>().begin();
+}
+
+BaseDeDatos::join_iterator BaseDeDatos::join_end() {
+    return _ultimo_join->end();
+}
+
+

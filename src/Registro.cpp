@@ -39,3 +39,7 @@ ostream &operator<<(ostream &os, const Registro &r) {
     //os << r._datos;
     return os;
 }
+
+const string_map<Dato> &Registro::datos() const {
+    return _datos;
+}

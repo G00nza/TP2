@@ -201,6 +201,17 @@ public:
      */
     join_iterator join(const string &tabla1, const string &tabla2,
                        const string &campo);
+
+    /**
+    * @brief Devuelve un iterador "end" del ultimo join realizado en la base de datos
+    *
+    * \pre True
+    *
+    * \post res = this._ultimo_join->end()
+     *
+    * \complexity{\O(1)}
+    */
+    join_iterator join_end();
 private:
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     /** \name Representación
@@ -330,16 +341,6 @@ private:
     */
     void agregarAIndice(Indice& indice, const Registro &registro, const string &campo);
 
-    /**
-    * @brief Devuelve un iterador al primer registro de un join
-    *
-    * @param join Join sobre el cual queremos iterar
-    *
-    * \pre True
-    *
-    * \post Devuelve el iterador del join
-    */
-    join_iterator join_begin(Join join);
 
     /** @brief Join entre dos tablas*/
     class Join {
@@ -368,18 +369,31 @@ private:
         join_iterator(pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v,
                       linear_set<linear_set<const Registro*>* >& tabla2 ): v(v), tabla2(tabla2){};
 
+        /** @brief Constructor por copia*/
+        join_iterator(const join_iterator &other): v(other.v), tabla2(other.tabla2){};
+
         /** @brief Par de registros tabla1,tabla2*/
         pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v;
 
         /** @brief Referencia a los conjuntos de la tabla2*/
         linear_set<linear_set<const Registro*>* >& tabla2;
 
-        /** @brief Operador avanzar*/
-        join_iterator operator++();
+        /** @brief Operador avanzar (prefix)*/
+        join_iterator& operator++();
 
+        /** @brief Operador avanzar (postfix) (El parametro int no se usa porque C++)*/
+        join_iterator operator++(int);
+
+        /** @brief Operador asignacion*/
+        join_iterator operator=(const join_iterator &other);
 
         /** @brief Devuelve el registro del Join entre las dos tablas sobre el cual estoy iterando*/
-        Registro operator*();
+        Registro operator*() const;
+
+        /** @brief Igualdad de iteradores*/
+        bool operator==(const join_iterator& other) const;
+        /** @brief Desigualdad de iteradores*/
+        bool operator!=(const join_iterator& other) const;
 
         friend class BaseDeDatos;
 
@@ -387,5 +401,6 @@ private:
 
     /** @} */
 };
+
 
 #endif
