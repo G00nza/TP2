@@ -356,7 +356,7 @@ private:
         linear_set<const Registro*> tabla1;
 
         /** @brief Conjunto con los registros de la tabla2 que coinciden con cada registro de la tabla1*/
-        linear_set<linear_set<const Registro*>* >tabla2;
+        linear_set<linear_set<const Registro*>* > tabla2;
 
 
         friend class BaseDeDatos;
@@ -365,10 +365,14 @@ private:
     struct join_iterator {
 
         /** @brief Constructor del iterador*/
-        join_iterator(pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v): v(v){};
+        join_iterator(pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v,
+                      linear_set<linear_set<const Registro*>* >& tabla2 ): v(v), tabla2(tabla2){};
 
         /** @brief Par de registros tabla1,tabla2*/
         pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v;
+
+        /** @brief Referencia a los conjuntos de la tabla2*/
+        linear_set<linear_set<const Registro*>* >& tabla2;
 
         /** @brief Operador avanzar*/
         join_iterator operator++();

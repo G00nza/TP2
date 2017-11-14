@@ -33,7 +33,7 @@ public:
     Registro(const vector<string>& campos, const vector<Dato>& datos);
 
     /**
-     * @brief Devuelve el dato asociado a un campo.
+     * @br*(ief Devuelve el dato asociado a un campo.
      *
      * Devuelve el dato por referencia no modificable.
      *

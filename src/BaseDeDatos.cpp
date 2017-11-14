@@ -290,11 +290,55 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
 BaseDeDatos::join_iterator BaseDeDatos::Join::begin (){
     auto first = tabla1.begin();
     auto second = (*tabla2.begin())->begin();
-    return join_iterator(make_pair(first, second));
+    return join_iterator(make_pair(first, second), tabla2);
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(){
+    bool esUltimo = false;
+    ++v.second;
+    auto it = tabla2.begin();
+    while (it != tabla2.end()) {
+        if (v.second == (*it)->end() ) {
+            esUltimo = true;
+            ++it;
+            break;
+        }
+        ++it;
+    }
+
+    if(esUltimo){
+        ++v.first;
+        if (it !=  tabla2.end()) {
+            v.second = (*it)->begin();
+        } else {
+            v.second = linear_set<const Registro*>().begin();
+        }
+
+    }
+
+    return *this;
 }
+
+//Registro BaseDeDatos::join_iterator::operator*() {
+//    Registro tabla1 = *(*v.first);
+//    Registro tabla2 = *(*v.second);
+//    vector<string> campos;
+//    vector<Dato> datos;
+//    for (auto it : tabla1.campos()) {
+//        campos.push_back(it);
+//    }
+//    for (auto it : tabla2.campos()) {
+//        campos.push_back(it);
+//    }
+//    for(auto it : tabla1.datos()) {
+//        datos.push_back(*it);
+//    }
+//    for(auto it : tabla2.datos()) {
+//        datos.push_back(*it);
+//    }
+//    return Registro(campos, datos);
+//}
+//
 
 //BaseDeDatos::join_iterator BaseDeDatos::join_end (){
 //
