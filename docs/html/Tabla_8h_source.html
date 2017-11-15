@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>TP2 AED2 - 2C-2017: Fichero Fuente src/Tabla.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TP2 AED2 - 2C-2017
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>&apos;typedefs&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Amigas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Tabla.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TABLA_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TABLA_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;linear_map.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;linear_set.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;Dato.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;Registro.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classTabla.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTabla.html">Tabla</a> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="comment">// Forward declaration</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keyword">class </span><a class="code" href="classTabla_1_1const__iterador__registros.html">const_iterador_registros</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classTabla.html#aa06ea30404464606d6f3b71c66a78809">   42</a></span>&#160;    <a class="code" href="classTabla.html#aa06ea30404464606d6f3b71c66a78809">Tabla</a>() {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <a class="code" href="classTabla.html">Tabla</a>(<span class="keyword">const</span> <a class="code" href="classlinear__set.html">linear_set&lt;string&gt;</a> &amp;claves, <span class="keyword">const</span> vector&lt;string&gt; &amp;campos,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">const</span> vector&lt;Dato&gt; &amp;tipos);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  const_iterador_registros agregarRegistro(<span class="keyword">const</span> <a class="code" href="classRegistro.html">Registro</a> &amp;r);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="keyword">const</span> <a class="code" href="classlinear__set.html">linear_set&lt;string&gt;</a> &amp;campos() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keyword">const</span> <a class="code" href="classDato.html">Dato</a> &amp;tipoCampo(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;campo) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  <span class="keyword">const</span> <a class="code" href="classlinear__set.html">linear_set&lt;string&gt;</a> &amp;claves() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  <span class="keyword">const</span> <a class="code" href="classlinear__set.html">linear_set&lt;Registro&gt;</a>&amp; registros() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <span class="keywordtype">int</span> cant_registros() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  const_iterador_registros registros_begin() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  const_iterador_registros registros_end() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keyword">const</span> <a class="code" href="classstring__map.html">string_map&lt;Dato&gt;</a>&amp; tipos() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <a class="code" href="classlinear__set.html">linear_set&lt;string&gt;</a> _claves;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <a class="code" href="classlinear__set.html">linear_set&lt;string&gt;</a> _campos;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <a class="code" href="classstring__map.html">string_map&lt;Dato&gt;</a> _tipos;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <a class="code" href="classlinear__set.html">linear_set&lt;Registro&gt;</a> _registros;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;};</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classTabla.html">Tabla</a>&amp;, <span class="keyword">const</span> <a class="code" href="classTabla.html">Tabla</a>&amp;);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="keywordtype">bool</span> operator!=(<span class="keyword">const</span> <a class="code" href="classTabla.html">Tabla</a>&amp;, <span class="keyword">const</span> <a class="code" href="classTabla.html">Tabla</a>&amp;);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#include &quot;const_iterador_registros.h&quot;</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#endif //TABLA_H</span></div>
+<div class="ttc" id="classRegistro_html"><div class="ttname"><a href="classRegistro.html">Registro</a></div><div class="ttdoc">Representa un registro de una tabla. </div><div class="ttdef"><b>Definition:</b> Registro.h:21</div></div>
+<div class="ttc" id="classTabla_html"><div class="ttname"><a href="classTabla.html">Tabla</a></div><div class="ttdoc">Representa una tabla de una base de datos. </div><div class="ttdef"><b>Definition:</b> Tabla.h:27</div></div>
+<div class="ttc" id="classTabla_1_1const__iterador__registros_html"><div class="ttname"><a href="classTabla_1_1const__iterador__registros.html">Tabla::const_iterador_registros</a></div><div class="ttdoc">Iterador de los registros de una tabla. </div><div class="ttdef"><b>Definition:</b> const_iterador_registros.h:7</div></div>
+<div class="ttc" id="classstring__map_html"><div class="ttname"><a href="classstring__map.html">string_map&lt; Dato &gt;</a></div></div>
+<div class="ttc" id="classlinear__set_html"><div class="ttname"><a href="classlinear__set.html">linear_set&lt; string &gt;</a></div></div>
+<div class="ttc" id="classDato_html"><div class="ttname"><a href="classDato.html">Dato</a></div><div class="ttdoc">Representa un Dato de una Base de Datos. </div><div class="ttdef"><b>Definition:</b> Dato.h:13</div></div>
+<div class="ttc" id="classTabla_html_aa06ea30404464606d6f3b71c66a78809"><div class="ttname"><a href="classTabla.html#aa06ea30404464606d6f3b71c66a78809">Tabla::Tabla</a></div><div class="ttdeci">Tabla()</div><div class="ttdoc">Constructor sin parametros de una tabla trivial. </div><div class="ttdef"><b>Definition:</b> Tabla.h:42</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

@@ -59,7 +59,6 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
             }
             Nodo *nuevo = new Nodo(auxNombre);
             actual->_hijos.push_back(nuevo);
-            nuevo->_posEnPadre = actual->_hijos.size()-1;
             nuevo->padre = actual;
             actual = nuevo;
         }
@@ -182,15 +181,13 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
         //nunca puedo borrar la raiz
         Nodo *borrar = actual;
         actual = actual->padre;
-        actual->_hijos.erase(actual->_hijos.begin() + borrar->_posEnPadre);
-        //actual->_hijos.erase(actual->_hijos.begin() + borrar->_posEnPadre);
+        actual->_hijos.erase(actual->_hijos.begin() + borrar->posEnPadre());
         delete borrar;
 
         while (!actual->_definido && actual->_hijos.size() == 0 && actual != _raiz) {
             Nodo *borrar = actual;
             actual = actual->padre;
-            actual->_hijos.erase(actual->_hijos.begin() + borrar->_posEnPadre);
-            //actual->_hijos.erase(actual->_hijos.begin() + borrar->_posEnPadre);
+            actual->_hijos.erase(actual->_hijos.begin() + borrar->posEnPadre());
             delete borrar;
         }
 
@@ -206,7 +203,7 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
         delete (actual->v);//ver que los iteradores no rompan agregando pre
         actual->_obtener = nullptr;
     }
-    _tamano --;
+    _tamano--;
     return _tamano;
 }
 

@@ -191,8 +191,14 @@ private:
         Nodo* padre;
         string* _camino;
         bool _definido;
-        int _posEnPadre;
         value_type* v;
+
+        int posEnPadre(){
+            for (int i = 0; i < padre->_hijos.size(); ++i) {
+                if (padre->_hijos[i] == this)
+                    return i;
+            }
+        }
     };
 
     size_type _tamano;

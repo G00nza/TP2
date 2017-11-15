@@ -1,0 +1,5 @@
+<map id="BaseDeDatos::Join" name="BaseDeDatos::Join">
+<area shape="rect" id="node2" href="$classlinear__map.html" title="linear_map\&lt; const Registro\l *, linear_set\&lt; const Registro * \&gt; \&gt;" alt="" coords="281,5,506,46"/>
+<area shape="rect" id="node3" href="$classlinear__set.html" title="linear_set\&lt; const_iterador\l_registro \&gt;" alt="" coords="307,70,479,111"/>
+<area shape="rect" id="node4" href="$classlinear__map.html" title="linear_map\&lt; const_iterador\l_registro, bool \&gt;" alt="" coords="5,70,184,111"/>
+</map>

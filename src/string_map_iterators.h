@@ -214,24 +214,24 @@ string_map<T>::const_iterator::const_iterator(
 //.end() esta contenido en el trie
 template<typename T>
 typename string_map<T>::const_iterator &string_map<T>::const_iterator::operator++() {
-    if(this->_nodo->_hijos.size() > 0) {
-        this->_nodo = this->_nodo->_hijos[0];
-        while (this->_nodo->_hijos.size() > 0 && this->_nodo->_definido) {
-            this->_nodo = this->_nodo->_hijos[0];
+    if(_nodo->_hijos.size() > 0) {
+        _nodo = _nodo->_hijos[0];
+        while (_nodo->_hijos.size() > 0 && !_nodo->_definido) {
+            _nodo = _nodo->_hijos[0];
         }
     }else{
-        while(this->_nodo->padre != nullptr){
-            if (this->_nodo->padre->_hijos.size()-1 > this->_nodo->_posEnPadre){
-                this->_nodo = this->_nodo->padre->_hijos[this->_nodo->_posEnPadre + 1];
+        while(_nodo->padre != nullptr){
+            if (_nodo->padre->_hijos.size()-1 > _nodo->posEnPadre()){
+                _nodo = this->_nodo->padre->_hijos[_nodo->posEnPadre() + 1];
                 break;
             }
-            this->_nodo = this->_nodo->padre;
+            _nodo = _nodo->padre;
         }
-        if (this->_nodo->padre == nullptr){
-            this->_nodo = this->_nodo->padre;
+        if (_nodo->padre == nullptr){
+            _nodo = this->_nodo->padre;
         }else {
-            while (this->_nodo->_hijos.size() > 0 && !this->_nodo->_definido) {
-                this->_nodo = this->_nodo->_hijos[0];
+            while (_nodo->_hijos.size() > 0 && !_nodo->_definido) {
+                _nodo = _nodo->_hijos[0];
             }
         }
     }
@@ -308,24 +308,24 @@ bool string_map<T>::iterator::operator!=(const string_map<T>::iterator &other) c
 
 template<typename T>
 typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
-    if(this->_nodo->_hijos.size() > 0) {
-        this->_nodo = this->_nodo->_hijos[0];
-        while (this->_nodo->_hijos.size() > 0 && this->_nodo->_definido) {
-            this->_nodo = this->_nodo->_hijos[0];
+    if(_nodo->_hijos.size() > 0) {
+        _nodo = _nodo->_hijos[0];
+        while (_nodo->_hijos.size() > 0 && !_nodo->_definido) {
+            _nodo = _nodo->_hijos[0];
         }
     }else{
-        while(this->_nodo->padre != nullptr){
-            if (this->_nodo->padre->_hijos.size()-1 > this->_nodo->_posEnPadre){
-                this->_nodo = this->_nodo->padre->_hijos[this->_nodo->_posEnPadre + 1];
+        while(_nodo->padre != nullptr){
+            if (_nodo->padre->_hijos.size()-1 > _nodo->posEnPadre()){
+                _nodo = this->_nodo->padre->_hijos[_nodo->posEnPadre() + 1];
                 break;
             }
-            this->_nodo = this->_nodo->padre;
+            _nodo = _nodo->padre;
         }
-        if (this->_nodo->padre != nullptr){
-            this->_nodo = this->_nodo->padre;
+        if (_nodo->padre != nullptr){
+            _nodo = _nodo->padre;
         }else {
-            while (this->_nodo->_hijos.size() > 0 && !this->_nodo->_definido) {
-                this->_nodo = this->_nodo->_hijos[0];
+            while (_nodo->_hijos.size() > 0 && !_nodo->_definido) {
+                _nodo = _nodo->_hijos[0];
             }
         }
     }

@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>TP2 AED2 - 2C-2017: Fichero Fuente src/string_map_iterators.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TP2 AED2 - 2C-2017
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>&apos;typedefs&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Amigas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">string_map_iterators.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TP2_STRING_MAP_ITERATORS_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TP2_STRING_MAP_ITERATORS_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;string_map.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;string_map.hpp&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classstring__map_1_1const__iterator.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classstring__map.html">string_map</a>&lt;T&gt;::<a class="code" href="classstring__map_1_1const__iterator.html">const_iterator</a> {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">using</span> value_type = string_map&lt;T&gt;::value_type;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">using</span> reference = value_type&amp;;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">using</span> pointer = value_type*;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classstring__map_1_1const__iterator.html">const_iterator</a>(<span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="classstring__map_1_1const__iterator.html">string_map&lt;T&gt;::const_iterator</a>&amp;);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classstring__map_1_1const__iterator.html">const_iterator</a>(<span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="structstring__map_1_1Nodo.html">string_map&lt;T&gt;::Nodo</a>*);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classstring__map_1_1const__iterator.html">const_iterator</a>(<span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a>&amp;);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">typename</span> <a class="code" href="classstring__map_1_1const__iterator.html">string_map::const_iterator</a> &amp;operator++();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> value_type &amp;operator*() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">const</span> value_type* operator-&gt;() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classstring__map_1_1const__iterator.html">string_map&lt;T&gt;::const_iterator</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">bool</span> operator!=(<span class="keyword">const</span> <a class="code" href="classstring__map_1_1const__iterator.html">string_map&lt;T&gt;::const_iterator</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classstring__map.html">string_map</a>&lt;T&gt;;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classstring__map_1_1const__iterator.html#a9e7b24c524e269c5e910615e77548f01">   95</a></span>&#160;    <a class="code" href="classstring__map_1_1const__iterator.html#a9e7b24c524e269c5e910615e77548f01">const_iterator</a> (<a class="code" href="structstring__map_1_1Nodo.html">Nodo</a>* n) : _nodo (n) {};</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="structstring__map_1_1Nodo.html">Nodo</a>* _nodo;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;};</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classstring__map_1_1iterator.html">  102</a></span>&#160;<span class="keyword">class </span><a class="code" href="classstring__map.html">string_map</a>&lt;T&gt;::<a class="code" href="classstring__map_1_1iterator.html">iterator</a> {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">using</span> value_type = string_map&lt;T&gt;::value_type;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">using</span> reference = value_type&amp;;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">using</span> pointer = value_type*;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="classstring__map_1_1iterator.html">iterator</a>(<span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a>&amp;);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="classstring__map_1_1iterator.html">iterator</a>(<span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="structstring__map_1_1Nodo.html">string_map&lt;T&gt;::Nodo</a>*);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="classstring__map_1_1iterator.html">iterator</a>&amp; operator=(<span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a>&amp;);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <a class="code" href="classstring__map_1_1iterator.html">iterator</a> &amp;operator++();</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    value_type &amp;operator*();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">bool</span> definido()<span class="keyword">const</span>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    value_type* operator-&gt;() ;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordtype">bool</span> operator!=(<span class="keyword">const</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a> &amp;other) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classstring__map.html">string_map</a>&lt;T&gt;;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="classstring__map_1_1iterator.html#a9adc687055baa860aaddb8f2f955ae1a">  192</a></span>&#160;    <a class="code" href="classstring__map_1_1iterator.html#a9adc687055baa860aaddb8f2f955ae1a">iterator</a> (<a class="code" href="structstring__map_1_1Nodo.html">Nodo</a>* n) : _nodo (n) {};</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <a class="code" href="structstring__map_1_1Nodo.html">Nodo</a>* _nodo;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;};</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">// const_iterator methods</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<a class="code" href="classstring__map_1_1const__iterator.html#a34833166008a59e0d3b4758ba1154a9f">string_map&lt;T&gt;::const_iterator::const_iterator</a>(</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="classstring__map_1_1const__iterator.html">string_map&lt;T&gt;::const_iterator</a> &amp;other) : _nodo(other._nodo) {}</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<a class="code" href="classstring__map_1_1const__iterator.html#a34833166008a59e0d3b4758ba1154a9f">string_map&lt;T&gt;::const_iterator::const_iterator</a>(</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="structstring__map_1_1Nodo.html">string_map&lt;T&gt;::Nodo</a>* nodo) : _nodo(nodo) {};</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<a class="code" href="classstring__map_1_1const__iterator.html#a34833166008a59e0d3b4758ba1154a9f">string_map&lt;T&gt;::const_iterator::const_iterator</a>(</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a> &amp;other) : _nodo(other._nodo) {}</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">//.end() esta contenido en el trie</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="classstring__map_1_1const__iterator.html#aba282a526ddb0685bd1433998484181e">  216</a></span>&#160;<span class="keyword">typename</span> <a class="code" href="classstring__map_1_1const__iterator.html">string_map&lt;T&gt;::const_iterator</a> &amp;<a class="code" href="classstring__map_1_1const__iterator.html#aba282a526ddb0685bd1433998484181e">string_map&lt;T&gt;::const_iterator::operator++</a>() {</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keywordflow">if</span>(this-&gt;_nodo-&gt;_hijos.size() &gt; 0) {</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        this-&gt;_nodo = this-&gt;_nodo-&gt;_hijos[0];</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <span class="keywordflow">while</span> (this-&gt;_nodo-&gt;_hijos.size() &gt; 0 &amp;&amp; this-&gt;_nodo-&gt;_definido) {</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            this-&gt;_nodo = this-&gt;_nodo-&gt;_hijos[0];</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        }</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordflow">while</span>(this-&gt;_nodo-&gt;_padre != <span class="keyword">nullptr</span>){</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            <span class="keywordflow">if</span> (this-&gt;_nodo-&gt;_padre-&gt;_hijos.size()-1 &gt; findpos(this-&gt;_nodo-&gt;_padre-&gt;_hijos, this-&gt;_nodo)){</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                this-&gt;_nodo = this-&gt;_nodo-&gt;_padre-&gt;_hijos[findpos(this-&gt;_nodo-&gt;_padre-&gt;_hijos, this-&gt;_nodo)+1];</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            }</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            this-&gt;_nodo = this-&gt;_nodo-&gt;_padre;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        }</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">while</span> (this-&gt;_nodo-&gt;_hijos.size() &gt; 0 &amp;&amp; this-&gt;_nodo-&gt;_definido) {</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            this-&gt;_nodo = this-&gt;_nodo-&gt;_hijos[0];</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;}</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="classstring__map_1_1const__iterator.html#a0efad597b0ffe1a1db9fe46be5802ef5">  238</a></span>&#160;<span class="keyword">const</span> <span class="keyword">typename</span> string_map&lt;T&gt;::const_iterator::value_type &amp;<a class="code" href="classstring__map_1_1const__iterator.html#a0efad597b0ffe1a1db9fe46be5802ef5">string_map&lt;T&gt;::const_iterator::operator*</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">return</span> *_nodo-&gt;v;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;}</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00243"></a><span class="lineno"><a class="line" href="classstring__map_1_1const__iterator.html#aa892ecb777d31558fca1933613d6ea9d">  243</a></span>&#160;<span class="keyword">const</span> <span class="keyword">typename</span> string_map&lt;T&gt;::const_iterator::value_type *<a class="code" href="classstring__map_1_1const__iterator.html#aa892ecb777d31558fca1933613d6ea9d">string_map&lt;T&gt;::const_iterator::operator-&gt;</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keywordflow">return</span> _nodo-&gt;v;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;}</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00248"></a><span class="lineno"><a class="line" href="classstring__map_1_1const__iterator.html#adca0fb340d1da380d7eb2ace2dd4f1d0">  248</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classstring__map_1_1const__iterator.html#adca0fb340d1da380d7eb2ace2dd4f1d0">string_map&lt;T&gt;::const_iterator::operator==</a>(<span class="keyword">const</span> <a class="code" href="classstring__map_1_1const__iterator.html">string_map&lt;T&gt;::const_iterator</a> &amp;other)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordflow">return</span> _nodo == other._nodo;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;}</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="classstring__map_1_1const__iterator.html#a80a030933f7794456a8cb6e79db96d23">  253</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classstring__map_1_1const__iterator.html#a80a030933f7794456a8cb6e79db96d23">string_map&lt;T&gt;::const_iterator::operator!=</a>(<span class="keyword">const</span> <a class="code" href="classstring__map_1_1const__iterator.html">string_map&lt;T&gt;::const_iterator</a> &amp;other)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keywordflow">return</span> not (*<span class="keyword">this</span> == other);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;}</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">/*template&lt;typename T&gt;</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">string_map&lt;T&gt;::const_iterator::const_iterator(</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">        const typename string_map&lt;T&gt;::const_iterator&amp; _it)</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">        : it(_it) {};</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment">// iterator methods</span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<a class="code" href="classstring__map_1_1iterator.html#ab1891c4db11af26df474d6e512228da7">string_map&lt;T&gt;::iterator::iterator</a>(</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a>&amp; other) : _nodo(other._nodo) {};</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<a class="code" href="classstring__map_1_1iterator.html#ab1891c4db11af26df474d6e512228da7">string_map&lt;T&gt;::iterator::iterator</a>(</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="keyword">const</span> <span class="keyword">typename</span> <a class="code" href="structstring__map_1_1Nodo.html">string_map&lt;T&gt;::Nodo</a>* nodo) : _nodo(nodo) {};</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00281"></a><span class="lineno"><a class="line" href="classstring__map_1_1iterator.html#ae0ccdb8ae9f8303956cb420c1d06a94d">  281</a></span>&#160;<span class="keyword">typename</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a>&amp; <a class="code" href="classstring__map_1_1iterator.html#ae0ccdb8ae9f8303956cb420c1d06a94d">string_map&lt;T&gt;::iterator::operator=</a>(<span class="keyword">const</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a>&amp; other){</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span> = other;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;}</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00286"></a><span class="lineno"><a class="line" href="classstring__map_1_1iterator.html#a50e95502f262791747fee46b9d2784ec">  286</a></span>&#160;<span class="keyword">typename</span> string_map&lt;T&gt;::iterator::value_type &amp;<a class="code" href="classstring__map_1_1iterator.html#a50e95502f262791747fee46b9d2784ec">string_map&lt;T&gt;::iterator::operator*</a>() {</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <span class="keywordflow">return</span> *_nodo-&gt;v;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;}</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00291"></a><span class="lineno"><a class="line" href="classstring__map_1_1iterator.html#a4fabcd1bf327adeff53dc52ccc0a8229">  291</a></span>&#160;<span class="keyword">typename</span> string_map&lt;T&gt;::iterator::value_type *<a class="code" href="classstring__map_1_1iterator.html#a4fabcd1bf327adeff53dc52ccc0a8229">string_map&lt;T&gt;::iterator::operator-&gt;</a>(){</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordflow">return</span> _nodo-&gt;v;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;}</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="classstring__map_1_1iterator.html#ae925a84681f01ac54a40868a592486d1">  296</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classstring__map_1_1iterator.html#ae925a84681f01ac54a40868a592486d1">string_map&lt;T&gt;::iterator::operator==</a>(<span class="keyword">const</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a> &amp;other)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span> == other._nodo;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;}</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00301"></a><span class="lineno"><a class="line" href="classstring__map_1_1iterator.html#a6b5de52586495286a8c211759667387c">  301</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classstring__map_1_1iterator.html#a6b5de52586495286a8c211759667387c">string_map&lt;T&gt;::iterator::operator!=</a>(<span class="keyword">const</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a> &amp;other)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keywordflow">return</span> not (this-&gt;<span class="keyword">operator</span>==( other));</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;}</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00306"></a><span class="lineno"><a class="line" href="classstring__map_1_1iterator.html#a9532a114feb48b855c8d4baa86d6c99f">  306</a></span>&#160;<span class="keyword">typename</span> <a class="code" href="classstring__map_1_1iterator.html">string_map&lt;T&gt;::iterator</a> &amp;<a class="code" href="classstring__map_1_1iterator.html#a9532a114feb48b855c8d4baa86d6c99f">string_map&lt;T&gt;::iterator::operator++</a>() {</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <span class="keywordflow">if</span>(this-&gt;_nodo-&gt;_hijos.size() &gt; 0) {</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        this-&gt;_nodo = this-&gt;_nodo-&gt;_hijos[0];</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordflow">while</span> (this-&gt;_nodo-&gt;_hijos.size() &gt; 0 &amp;&amp; this-&gt;_nodo-&gt;_definido) {</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            this-&gt;_nodo = this-&gt;_nodo-&gt;_hijos[0];</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        }</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        <span class="keywordflow">while</span>(this-&gt;_nodo-&gt;padre != <span class="keyword">nullptr</span>){</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            <span class="keywordflow">if</span> (this-&gt;_nodo-&gt;padre-&gt;_hijos.size()-1 &gt; findpos(this-&gt;_nodo-&gt;padre-&gt;_hijos, this-&gt;_nodo)){</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                this-&gt;_nodo = this-&gt;_nodo-&gt;padre-&gt;_hijos[findpos(this-&gt;_nodo-&gt;padre-&gt;_hijos, this-&gt;_nodo)+1];</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            }</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            this-&gt;_nodo = this-&gt;_nodo-&gt;padre;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        }</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        <span class="keywordflow">while</span> (this-&gt;_nodo-&gt;_hijos.size() &gt; 0 &amp;&amp; this-&gt;_nodo-&gt;_definido) {</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;            this-&gt;_nodo = this-&gt;_nodo-&gt;_hijos[0];</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        }</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    }</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;}</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classstring__map.html">string_map&lt;T&gt;::iterator::definido</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    <span class="keywordflow">return</span> _nodo-&gt;_definido;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;}</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="comment">//Hacer interfaz???</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="keywordtype">int</span> findpos (vector&lt;T&gt; s, T e){</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <span class="keywordtype">int</span> res = 0;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="keywordflow">while</span> (res &lt; s.size()){</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        <span class="keywordflow">if</span> (s[res] == e){</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;            <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        }</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        res++;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    }</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;}</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="preprocessor">#endif //TP2_STRING_MAP_ITERATORS_H</span></div>
+<div class="ttc" id="classstring__map_1_1const__iterator_html_adca0fb340d1da380d7eb2ace2dd4f1d0"><div class="ttname"><a href="classstring__map_1_1const__iterator.html#adca0fb340d1da380d7eb2ace2dd4f1d0">string_map::const_iterator::operator==</a></div><div class="ttdeci">bool operator==(const string_map&lt; T &gt;::const_iterator &amp;other) const </div><div class="ttdoc">Comparación entre iteradores. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:248</div></div>
+<div class="ttc" id="classstring__map_1_1iterator_html_ab1891c4db11af26df474d6e512228da7"><div class="ttname"><a href="classstring__map_1_1iterator.html#ab1891c4db11af26df474d6e512228da7">string_map::iterator::iterator</a></div><div class="ttdeci">iterator(const typename string_map&lt; T &gt;::iterator &amp;)</div><div class="ttdoc">Constructor por copia del iterador. </div></div>
+<div class="ttc" id="classstring__map_1_1iterator_html_a6b5de52586495286a8c211759667387c"><div class="ttname"><a href="classstring__map_1_1iterator.html#a6b5de52586495286a8c211759667387c">string_map::iterator::operator!=</a></div><div class="ttdeci">bool operator!=(const string_map&lt; T &gt;::iterator &amp;other) const </div><div class="ttdoc">Comparación entre iteradores. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:301</div></div>
+<div class="ttc" id="classstring__map_1_1iterator_html"><div class="ttname"><a href="classstring__map_1_1iterator.html">string_map::iterator</a></div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:102</div></div>
+<div class="ttc" id="classstring__map_1_1const__iterator_html_a34833166008a59e0d3b4758ba1154a9f"><div class="ttname"><a href="classstring__map_1_1const__iterator.html#a34833166008a59e0d3b4758ba1154a9f">string_map::const_iterator::const_iterator</a></div><div class="ttdeci">const_iterator(const typename string_map&lt; T &gt;::const_iterator &amp;)</div><div class="ttdoc">Constructor por copia del iterador. </div></div>
+<div class="ttc" id="classstring__map_1_1iterator_html_a50e95502f262791747fee46b9d2784ec"><div class="ttname"><a href="classstring__map_1_1iterator.html#a50e95502f262791747fee46b9d2784ec">string_map::iterator::operator*</a></div><div class="ttdeci">value_type &amp; operator*()</div><div class="ttdoc">Desreferencia el puntero. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:286</div></div>
+<div class="ttc" id="classstring__map_1_1iterator_html_a9532a114feb48b855c8d4baa86d6c99f"><div class="ttname"><a href="classstring__map_1_1iterator.html#a9532a114feb48b855c8d4baa86d6c99f">string_map::iterator::operator++</a></div><div class="ttdeci">iterator &amp; operator++()</div><div class="ttdoc">Avanza el iterador una posición. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:306</div></div>
+<div class="ttc" id="classstring__map_1_1iterator_html_a4fabcd1bf327adeff53dc52ccc0a8229"><div class="ttname"><a href="classstring__map_1_1iterator.html#a4fabcd1bf327adeff53dc52ccc0a8229">string_map::iterator::operator-&gt;</a></div><div class="ttdeci">value_type * operator-&gt;()</div><div class="ttdoc">Operador flechita. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:291</div></div>
+<div class="ttc" id="classstring__map_html"><div class="ttname"><a href="classstring__map.html">string_map</a></div><div class="ttdef"><b>Definition:</b> string_map.h:21</div></div>
+<div class="ttc" id="classstring__map_1_1iterator_html_ae925a84681f01ac54a40868a592486d1"><div class="ttname"><a href="classstring__map_1_1iterator.html#ae925a84681f01ac54a40868a592486d1">string_map::iterator::operator==</a></div><div class="ttdeci">bool operator==(const string_map&lt; T &gt;::iterator &amp;other) const </div><div class="ttdoc">Comparación entre iteradores. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:296</div></div>
+<div class="ttc" id="classstring__map_1_1iterator_html_a9adc687055baa860aaddb8f2f955ae1a"><div class="ttname"><a href="classstring__map_1_1iterator.html#a9adc687055baa860aaddb8f2f955ae1a">string_map::iterator::iterator</a></div><div class="ttdeci">iterator(Nodo *n)</div><div class="ttdoc">El iterador es puntero a Nodo. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:192</div></div>
+<div class="ttc" id="classstring__map_1_1const__iterator_html"><div class="ttname"><a href="classstring__map_1_1const__iterator.html">string_map::const_iterator</a></div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:12</div></div>
+<div class="ttc" id="classstring__map_1_1const__iterator_html_aba282a526ddb0685bd1433998484181e"><div class="ttname"><a href="classstring__map_1_1const__iterator.html#aba282a526ddb0685bd1433998484181e">string_map::const_iterator::operator++</a></div><div class="ttdeci">string_map::const_iterator &amp; operator++()</div><div class="ttdoc">Avanza el iterador una posición. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:216</div></div>
+<div class="ttc" id="structstring__map_1_1Nodo_html"><div class="ttname"><a href="structstring__map_1_1Nodo.html">string_map::Nodo</a></div><div class="ttdef"><b>Definition:</b> string_map.h:190</div></div>
+<div class="ttc" id="classstring__map_1_1const__iterator_html_a9e7b24c524e269c5e910615e77548f01"><div class="ttname"><a href="classstring__map_1_1const__iterator.html#a9e7b24c524e269c5e910615e77548f01">string_map::const_iterator::const_iterator</a></div><div class="ttdeci">const_iterator(Nodo *n)</div><div class="ttdoc">El iterador es puntero a Nodo. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:95</div></div>
+<div class="ttc" id="classstring__map_1_1const__iterator_html_a0efad597b0ffe1a1db9fe46be5802ef5"><div class="ttname"><a href="classstring__map_1_1const__iterator.html#a0efad597b0ffe1a1db9fe46be5802ef5">string_map::const_iterator::operator*</a></div><div class="ttdeci">const value_type &amp; operator*() const </div><div class="ttdoc">Desreferencia el puntero. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:238</div></div>
+<div class="ttc" id="classstring__map_1_1const__iterator_html_a80a030933f7794456a8cb6e79db96d23"><div class="ttname"><a href="classstring__map_1_1const__iterator.html#a80a030933f7794456a8cb6e79db96d23">string_map::const_iterator::operator!=</a></div><div class="ttdeci">bool operator!=(const string_map&lt; T &gt;::const_iterator &amp;other) const </div><div class="ttdoc">Comparación entre iteradores. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:253</div></div>
+<div class="ttc" id="classstring__map_1_1const__iterator_html_aa892ecb777d31558fca1933613d6ea9d"><div class="ttname"><a href="classstring__map_1_1const__iterator.html#aa892ecb777d31558fca1933613d6ea9d">string_map::const_iterator::operator-&gt;</a></div><div class="ttdeci">const value_type * operator-&gt;() const </div><div class="ttdoc">Operador flechita. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:243</div></div>
+<div class="ttc" id="classstring__map_1_1iterator_html_ae0ccdb8ae9f8303956cb420c1d06a94d"><div class="ttname"><a href="classstring__map_1_1iterator.html#ae0ccdb8ae9f8303956cb420c1d06a94d">string_map::iterator::operator=</a></div><div class="ttdeci">iterator &amp; operator=(const typename string_map&lt; T &gt;::iterator &amp;)</div><div class="ttdoc">Constructor por copia del iterador. </div><div class="ttdef"><b>Definition:</b> string_map_iterators.h:281</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

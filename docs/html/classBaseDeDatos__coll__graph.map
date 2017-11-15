@@ -1,0 +1,12 @@
+<map id="BaseDeDatos" name="BaseDeDatos">
+<area shape="rect" id="node2" href="$classlinear__map.html" title="linear_map\&lt; linear\l_set, int \&gt;" alt="" coords="616,9,744,50"/>
+<area shape="rect" id="node3" href="$classlinear__set.html" title="linear_set\&lt; string \&gt;" alt="" coords="613,75,747,101"/>
+<area shape="rect" id="node4" href="$classlinear__map.html" title="linear_map\&lt; string,\l bool \&gt;" alt="" coords="332,5,465,46"/>
+<area shape="rect" id="node5" href="$structBaseDeDatos_1_1Join.html" title="Join entre dos tablas Para cada clave del diccionario (registros de tabla1) tengo los registros de ta..." alt="" coords="612,125,748,152"/>
+<area shape="rect" id="node6" href="$classlinear__map.html" title="linear_map\&lt; const Registro\l *, linear_set\&lt; const Registro * \&gt; \&gt;" alt="" coords="286,70,511,111"/>
+<area shape="rect" id="node7" href="$classlinear__set.html" title="linear_set\&lt; const_iterador\l_registro \&gt;" alt="" coords="313,135,485,177"/>
+<area shape="rect" id="node8" href="$classlinear__map.html" title="linear_map\&lt; const_iterador\l_registro, bool \&gt;" alt="" coords="5,123,184,165"/>
+<area shape="rect" id="node9" href="$classstring__map.html" title="string_map\&lt; string\l_map\&lt; Indice \&gt; \&gt;" alt="" coords="615,177,745,218"/>
+<area shape="rect" id="node10" href="$structstring__map_1_1Nodo.html" title="string_map\&lt; T \&gt;::Nodo" alt="" coords="320,243,477,269"/>
+<area shape="rect" id="node14" href="$classstring__map.html" title="string_map\&lt; Tabla \&gt;" alt="" coords="609,243,751,269"/>
+</map>
