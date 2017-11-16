@@ -168,7 +168,7 @@ public:
 
 private:
     Nodo* _raiz;
-    Nodo* _end = nullptr ;//new Nodo("");
+    Nodo* _end = nullptr; //new Nodo("");
 
 
     struct Nodo{

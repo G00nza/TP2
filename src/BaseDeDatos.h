@@ -375,6 +375,9 @@ private:
         /** @brief Par de registros tabla1,tabla2*/
         pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v;
 
+        /** @brief Me dice si estoy en el end*/
+        bool termino;
+
         /** @brief Referencia a los conjuntos de la tabla2*/
         linear_set<linear_set<const Registro*>* >& tabla2;
 

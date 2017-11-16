@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-BaseDeDatos::BaseDeDatos() {};
+BaseDeDatos::BaseDeDatos() {_ultimo_join = new Join();};
 
 void BaseDeDatos::crearTabla(const string &nombre,
                              const linear_set<string> &claves,
@@ -257,7 +257,6 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
     const Tabla& t1 = dameTabla(tabla1);
     const Tabla& t2 = dameTabla(tabla2);
     Indice indice = _indices.at(tabla2).at(campo);
-    Join res;
     //Itero sobre los registros de la tabla 1
     auto it = t1.registros_begin();
     //En caso de estar tratando con un campo nat:
@@ -266,8 +265,8 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
             int dato_actual = it->dato(campo).valorNat(); //Me fijo que valor tiene el registro actual en el campo
             auto find_dato = get<0>(indice).find(dato_actual); //Busco que registros tienen ese valor en la tabla2
             if (find_dato != get<0>(indice).end()) { //Si hay registros con ese valor en la tabla dos:
-                res.tabla1.fast_insert(&*it); //Agrego un puntero al registro de la tabla1 y al conjunto de registros de la tabla2
-                res.tabla2.fast_insert(&find_dato->second);
+                _ultimo_join->tabla1.fast_insert(&*it); //Agrego un puntero al registro de la tabla1 y al conjunto de registros de la tabla2
+                _ultimo_join->tabla2.fast_insert(&find_dato->second);
             }
             ++it;
         }
@@ -277,17 +276,19 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
             string dato_actual = it->dato(campo).valorStr();
             auto find_dato = get<1>(indice).find(dato_actual);
             if (find_dato != get<1>(indice).end()) {
-                res.tabla1.fast_insert(&*it);
-                res.tabla2.fast_insert(&find_dato->second);
+                _ultimo_join->tabla1.fast_insert(&*it);
+                _ultimo_join->tabla2.fast_insert(&find_dato->second);
             }
             ++it;
         }
     }
-    *_ultimo_join = res;
     return _ultimo_join->begin();
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::Join::begin (){
+    if (tabla1.empty()) {
+        return end();
+    }
     auto first = tabla1.begin();
     auto second = (*tabla2.begin())->begin();
     return join_iterator(make_pair(first, second), tabla2);
@@ -360,9 +361,7 @@ BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator=(const BaseDeDat
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::Join::end() {
-    auto res = this->begin();
-    res.v.first = tabla1.end();
-    res.v.second = linear_set<const Registro*>().begin();
+    return join_iterator(make_pair(tabla1.end(), linear_set<const Registro *>().end()), tabla2);
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::join_end() {

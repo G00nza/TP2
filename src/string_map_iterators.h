@@ -185,6 +185,7 @@ public:
 
 private:
     friend class string_map<T>;
+    friend class BaseDeDatos;
 
     /**
      * @brief El iterador es puntero a Nodo.
@@ -298,12 +299,12 @@ typename string_map<T>::iterator::value_type *string_map<T>::iterator::operator-
 
 template<typename T>
 bool string_map<T>::iterator::operator==(const string_map<T>::iterator &other) const {
-    return *this == other._nodo;
+    return _nodo == other._nodo;
 }
 
 template<typename T>
 bool string_map<T>::iterator::operator!=(const string_map<T>::iterator &other) const {
-    return not (this->operator==( other));
+    return not (*this == other);
 }
 
 template<typename T>
@@ -316,7 +317,7 @@ typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
     }else{
         while(_nodo->padre != nullptr){
             if (_nodo->padre->_hijos.size()-1 > _nodo->posEnPadre()){
-                _nodo = this->_nodo->padre->_hijos[_nodo->posEnPadre() + 1];
+                _nodo = _nodo->padre->_hijos[_nodo->posEnPadre() + 1];
                 break;
             }
             _nodo = _nodo->padre;
