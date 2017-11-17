@@ -180,7 +180,7 @@ public:
      * \pre nombre \IN _nombres_tablas \LAND campo \IN campos(dameTabla(nombre,bd)) \LAND bd = bd'
      * \post tieneIndice?(nombre, campo, bd)
      *
-     * \complexity{\O(m[L+log(m)])} chamuyo (ver)
+     * \complexity{\O(m[L+log(m)])}
      */
     void crearIndice(const string &nombre, const string &campo);
 
@@ -367,21 +367,32 @@ private:
 
         /** @brief Constructor del iterador*/
         join_iterator(pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v,
-                      linear_set<linear_set<const Registro*>* >& tabla2, bool termino ):
-                v(v), tabla2(tabla2), termino(termino){};
+                      int max_iter, int iteraciones,
+                      linear_set<linear_set<const Registro*>* >& tabla2):
+                v(v), max_iter(max_iter), iteraciones(iteraciones), tabla2(tabla2){};
 
         /** @brief Constructor por copia*/
         join_iterator(const join_iterator &other):
-                v(other.v), tabla2(other.tabla2), termino(other.termino){};
+                v(other.v), max_iter(other.max_iter), iteraciones(other.iteraciones), tabla2(other.tabla2) {};
 
         /** @brief Par de registros tabla1,tabla2*/
         pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v;
 
-        /** @brief Me dice si estoy en el end*/
-        bool termino;
+
+//        /** @brief Referencia al conjunto de la tabla1*/
+//        linear_set<const Registro*>& tabla1;
+
+        /** @brief Cantidad de registros en tabla1*/
+        int max_iter;
+
+        /** @brief Indice en el que me encuentro sobre los registros de tabla1*/
+        int iteraciones;
 
         /** @brief Referencia a los conjuntos de la tabla2*/
         linear_set<linear_set<const Registro*>* >& tabla2;
+
+        /** @brief Retorna true sii estoy en el end()*/
+        bool termino() const;
 
         /** @brief Operador avanzar (prefix)*/
         join_iterator& operator++();

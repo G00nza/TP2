@@ -89,11 +89,11 @@ bool BaseDeDatos::registroValido(const Registro &r,
     bool mismosTipos = true;
     if (camposIguales) { //O(C)
         for (auto it : t.campos() ) {
-            mismosTipos &= t.tipoCampo(it).esNat() && r.dato(it).esNat();
+            mismosTipos &= t.tipoCampo(it).esNat() == r.dato(it).esNat();
         }
     }
 
-    return (camposIguales and mismosTipos and
+    return (camposIguales and _mismos_tipos(r,t) and
             _no_repite(r, t));
 }
 
@@ -248,6 +248,7 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string &tabla2, const string &campo) {
+    *_ultimo_join = Join(); //Limpio el valor de ultimo join
     //Si tabla2 no tiene indices doy vuelta las cosas, tabla1 tendra indice por precondicion
     if (_indices.count(tabla2) == 0  or _indices.at(tabla2).count(campo) == 0) {
         return join(tabla2, tabla1, campo);
@@ -291,14 +292,14 @@ BaseDeDatos::join_iterator BaseDeDatos::Join::begin (){
     }
     auto first = tabla1.begin();
     auto second = (*tabla2.begin())->begin();
-    return join_iterator(make_pair(first, second), tabla2, false);
+    return join_iterator(make_pair(first, second), tabla1.size(), 0,tabla2);
 }
 
 BaseDeDatos::join_iterator& BaseDeDatos::join_iterator::operator++(){
     bool esUltimo = false;
     ++v.second;
     auto it = tabla2.begin();
-    while (it != tabla2.end()) {
+    while (it != tabla2.end()) { //Me fijo si v.second es el end de alguno de los conjuntos de la tabla 2, para pasar al proximo si es asi
         if (v.second == (*it)->end() ) {
             esUltimo = true;
             ++it;
@@ -308,19 +309,18 @@ BaseDeDatos::join_iterator& BaseDeDatos::join_iterator::operator++(){
     }
 
     if(esUltimo){
+        iteraciones++;
         ++v.first;
-        if (it !=  tabla2.end()) {
+        if (!termino()) { //it != tabla2.end() &&
             v.second = (*it)->begin();
         } else {
             v.second = linear_set<const Registro*>().begin();
-            termino = true;
         }
     }
-
     return *this;
 }
 
-//esto es para que el compilador reconozca entre ++it e it++
+//esto es para que el compilador distinga entre ++it e it++
 BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(int) {
     join_iterator temp(*this);
     operator++();
@@ -335,21 +335,17 @@ Registro BaseDeDatos::join_iterator::operator*() const {
     vector<Dato> datos;
     for (auto it : tabla1.campos()) {
         campos.push_back(it);
+        datos.push_back(tabla1.dato(it));
     }
     for (auto it : tabla2.campos()) {
         campos.push_back(it);
-    }
-    for(auto it : tabla1.datos()) {
-        datos.push_back(it.second);
-    }
-    for(auto it : tabla1.datos()) {
-        datos.push_back(it.second);
+        datos.push_back(tabla2.dato(it));
     }
     return Registro(campos, datos);
 }
 
 bool BaseDeDatos::join_iterator::operator==(const join_iterator &other) const {
-    return (termino && other.termino) || other.v == this->v;
+    return (this->termino() && other.termino()) || other.v == this->v;
 }
 
 bool BaseDeDatos::join_iterator::operator!=(const join_iterator &other) const {
@@ -360,8 +356,14 @@ BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator=(const BaseDeDat
     return join_iterator(other);
 }
 
+bool BaseDeDatos::join_iterator::termino() const {
+    return iteraciones >= max_iter;
+}
+
 BaseDeDatos::join_iterator BaseDeDatos::Join::end() {
-    return join_iterator(make_pair(tabla1.end(), linear_set<const Registro *>().end()), tabla2, true);
+    join_iterator res = join_iterator(make_pair(tabla1.end(), linear_set<const Registro *>().end()), tabla1.size(), tabla1.size(), tabla2);
+    res.iteraciones = res.max_iter;
+    return res;
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::join_end() {

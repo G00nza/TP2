@@ -47,6 +47,9 @@ template<class T>
 typename linear_set<T>::size_type linear_set<T>::size() const {
   return _elems.size();
 }
+
+
+
   
 template<class T>
 typename linear_set<T>::size_type linear_set<T>::erase(const T &x) {
