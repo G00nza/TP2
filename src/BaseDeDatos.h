@@ -367,10 +367,12 @@ private:
 
         /** @brief Constructor del iterador*/
         join_iterator(pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v,
-                      linear_set<linear_set<const Registro*>* >& tabla2 ): v(v), tabla2(tabla2){};
+                      linear_set<linear_set<const Registro*>* >& tabla2, bool termino ):
+                v(v), tabla2(tabla2), termino(termino){};
 
         /** @brief Constructor por copia*/
-        join_iterator(const join_iterator &other): v(other.v), tabla2(other.tabla2){};
+        join_iterator(const join_iterator &other):
+                v(other.v), tabla2(other.tabla2), termino(other.termino){};
 
         /** @brief Par de registros tabla1,tabla2*/
         pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v;

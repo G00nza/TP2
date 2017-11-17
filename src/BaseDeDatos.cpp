@@ -291,7 +291,7 @@ BaseDeDatos::join_iterator BaseDeDatos::Join::begin (){
     }
     auto first = tabla1.begin();
     auto second = (*tabla2.begin())->begin();
-    return join_iterator(make_pair(first, second), tabla2);
+    return join_iterator(make_pair(first, second), tabla2, false);
 }
 
 BaseDeDatos::join_iterator& BaseDeDatos::join_iterator::operator++(){
@@ -313,8 +313,8 @@ BaseDeDatos::join_iterator& BaseDeDatos::join_iterator::operator++(){
             v.second = (*it)->begin();
         } else {
             v.second = linear_set<const Registro*>().begin();
+            termino = true;
         }
-
     }
 
     return *this;
@@ -349,7 +349,7 @@ Registro BaseDeDatos::join_iterator::operator*() const {
 }
 
 bool BaseDeDatos::join_iterator::operator==(const join_iterator &other) const {
-    return other.v == this->v;
+    return (termino && other.termino) || other.v == this->v;
 }
 
 bool BaseDeDatos::join_iterator::operator!=(const join_iterator &other) const {
@@ -361,7 +361,7 @@ BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator=(const BaseDeDat
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::Join::end() {
-    return join_iterator(make_pair(tabla1.end(), linear_set<const Registro *>().end()), tabla2);
+    return join_iterator(make_pair(tabla1.end(), linear_set<const Registro *>().end()), tabla2, true);
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::join_end() {
