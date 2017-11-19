@@ -31,30 +31,23 @@ void BaseDeDatos::agregarRegistro(const Registro &r, const string &nombre) {
 void BaseDeDatos::agregarAIndice(BaseDeDatos::Indice &indice, const Registro &registro, const string &campo) {
     if (get<2>(indice)) {
         string valor_en_campo = registro.dato(campo).valorStr();
+        linear_set<const Registro*> nuevo_conj = linear_set<const Registro*>();
         auto it = get<1>(indice).find(valor_en_campo);
         if (it != get<1>(indice).end()) {
-            linear_set<const Registro*> nuevo_conj = get<1>(indice).at(it->first);
-            nuevo_conj.fast_insert(&registro);
-            get<1>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
-        } else {
-            linear_set<const Registro*> nuevo_conj = linear_set<const Registro*>();
-            nuevo_conj.fast_insert(&registro);
-            get<1>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
+            nuevo_conj = get<1>(indice).at(it->first);
         }
+        nuevo_conj.fast_insert(&registro);
+        get<1>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
     } else {
         int valor_en_campo = registro.dato(campo).valorNat();
+        linear_set<const Registro *> nuevo_conj = linear_set<const Registro *>();
         auto it = get<0>(indice).find(valor_en_campo);
         if (it != get<0>(indice).end()) {
-            linear_set<const Registro*> nuevo_conj = get<0>(indice).at(it->first);
-            nuevo_conj.fast_insert(&registro);
-            get<0>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
-        } else {
-            linear_set<const Registro*> nuevo_conj = linear_set<const Registro*>();
-            nuevo_conj.fast_insert(&registro);
-            get<0>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
+            nuevo_conj = get<0>(indice).at(it->first);
         }
+        nuevo_conj.fast_insert(&registro);
+        get<0>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
     }
-
 }
 
 
