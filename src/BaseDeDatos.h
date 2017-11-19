@@ -369,18 +369,14 @@ private:
         join_iterator(pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v,
                       int max_iter, int iteraciones,
                       linear_set<linear_set<const Registro*>* >& tabla2):
-                v(v), max_iter(max_iter), iteraciones(iteraciones), tabla2(tabla2){};
+                v(v), max_iter(max_iter), iteraciones(iteraciones), tabla2(tabla2), tabla2_it(tabla2.begin()){};
 
         /** @brief Constructor por copia*/
         join_iterator(const join_iterator &other):
-                v(other.v), max_iter(other.max_iter), iteraciones(other.iteraciones), tabla2(other.tabla2) {};
+                v(other.v), max_iter(other.max_iter), iteraciones(other.iteraciones), tabla2(other.tabla2), tabla2_it(other.tabla2_it) {};
 
         /** @brief Par de registros tabla1,tabla2*/
         pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v;
-
-
-//        /** @brief Referencia al conjunto de la tabla1*/
-//        linear_set<const Registro*>& tabla1;
 
         /** @brief Cantidad de registros en tabla1*/
         int max_iter;
@@ -390,6 +386,9 @@ private:
 
         /** @brief Referencia a los conjuntos de la tabla2*/
         linear_set<linear_set<const Registro*>* >& tabla2;
+
+        /** @brief Iterador de this->tabla2*/
+        linear_set<linear_set<const Registro*>* >::iterator tabla2_it;
 
         /** @brief Retorna true sii estoy en el end()*/
         bool termino() const;

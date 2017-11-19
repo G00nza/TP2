@@ -200,10 +200,10 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
         nuevos_indices = _indices.at(nombre);
     }
     Indice indice = Indice(); //Creo un indice nuevo
-    auto it = t.registros_begin();
+    auto it = t.registros().begin();
 
     if (t.tipoCampo(campo).esNat()) { //Si es un campo Nat
-        while (it != t.registros_end()) { //Itero sobre los registros de la tabla
+        while (it != t.registros().end()) { //Itero sobre los registros de la tabla
             int dato_actual = (*it).dato(campo).valorNat(); //Copio el dato del registro actual en el campo param
             linear_set<const Registro*> conj_registros = linear_set<const Registro*>(); //Creo un conjunto nuevo de punteros a registro
             if (get<0>(indice).count(dato_actual) != 0) { //Si ya habia registros con el mismo valor en el campo tomo ese conjunto
@@ -215,7 +215,7 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
         }
         get<2>(indice) = false;
     } else { //Si es un campo str, misma idea
-        while (it != t.registros_end()) {
+        while (it != t.registros().end()) {
             string dato_actual = (*it).dato(campo).valorStr();
             linear_set<const Registro*> conj_registros = linear_set<const Registro*>();
             if (get<1>(indice).count(dato_actual) != 0) {
@@ -277,27 +277,20 @@ BaseDeDatos::join_iterator BaseDeDatos::Join::begin (){
     }
     auto first = tabla1.begin();
     auto second = (*tabla2.begin())->begin();
-    return join_iterator(make_pair(first, second), tabla1.size(), 0,tabla2);
+    return join_iterator(make_pair(first, second), tabla1.size(), 0, tabla2);
 }
 
 BaseDeDatos::join_iterator& BaseDeDatos::join_iterator::operator++(){
-    bool esUltimo = false;
     ++v.second;
-    auto it = tabla2.begin();
-    while (it != tabla2.end()) { //Me fijo si v.second es el end de alguno de los conjuntos de la tabla 2, para pasar al proximo si es asi
-        if (v.second == (*it)->end() ) {
-            esUltimo = true;
-            ++it;
-            break;
-        }
-        ++it;
-    }
 
+    bool esUltimo = v.second == (*tabla2_it)->end();
+    
     if(esUltimo){
         iteraciones++;
+        ++tabla2_it;
         ++v.first;
-        if (!termino()) { //it != tabla2.end() &&
-            v.second = (*it)->begin();
+        if (tabla2_it != tabla2.end()) {
+            v.second = (*tabla2_it)->begin();
         } else {
             v.second = linear_set<const Registro*>().begin();
         }
@@ -314,8 +307,8 @@ BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(int) {
 
 
 Registro BaseDeDatos::join_iterator::operator*() const {
-    Registro reg1 = *(*v.first);
-    Registro reg2 = *(*v.second);
+    const Registro& reg1 = *(*v.first);
+    const Registro& reg2 = *(*v.second);
     vector<string> campos;
     vector<Dato> datos;
     for (auto it : reg1.campos()) {
