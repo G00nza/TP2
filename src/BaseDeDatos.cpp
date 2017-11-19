@@ -195,41 +195,33 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
     const Tabla &t = dameTabla(nombre);
 
     string_map<Indice> nuevos_indices = string_map<Indice>();
-    Indice indice = Indice();
-    //Testear si sirve pasarle una tabla que ya tiene indice en ese campo
+    if (_indices.count(nombre)){ //Si la tabla ya tiene indices los cargo
+        nuevos_indices = _indices.at(nombre);
+    }
+    Indice indice = Indice(); //Creo un indice nuevo
     auto it = t.registros_begin();
 
-    if (t.tipoCampo(campo).esNat()) {
-        linear_set<int> datos = linear_set<int>();
-        while (it != t.registros_end()) {
-            int dato_actual = (*it).dato(campo).valorNat();
-            datos.insert(dato_actual);
-            if (get<0>(indice).count(dato_actual) == 0) {
-                linear_set<const Registro*> nuevo_conj_registros = linear_set<const Registro*>();
-                nuevo_conj_registros.fast_insert(&*it);
-                get<0>(indice).insert(make_pair(dato_actual, nuevo_conj_registros));
-            } else {
-                linear_set<const Registro*> conj_registros = get<0>(indice).at(dato_actual);
-                conj_registros.fast_insert(&*it);
-                get<0>(indice).insert(make_pair(dato_actual, conj_registros));
+    if (t.tipoCampo(campo).esNat()) { //Si es un campo Nat
+        while (it != t.registros_end()) { //Itero sobre los registros de la tabla
+            int dato_actual = (*it).dato(campo).valorNat(); //Copio el dato del registro actual en el campo param
+            linear_set<const Registro*> conj_registros = linear_set<const Registro*>(); //Creo un conjunto nuevo de punteros a registro
+            if (get<0>(indice).count(dato_actual) != 0) { //Si ya habia registros con el mismo valor en el campo tomo ese conjunto
+                conj_registros = get<0>(indice).at(dato_actual);
             }
+            conj_registros.fast_insert(&*it); //Le agrego al conjunto un puntero al registro sobre el que estoy iterando
+            get<0>(indice).insert(make_pair(dato_actual, conj_registros)); //Inserto el nuevo conjunto en el indice para ese dato
             ++it;
         }
         get<2>(indice) = false;
-    } else {
-        linear_set<string> datos = linear_set<string>();
+    } else { //Si es un campo str, misma idea
         while (it != t.registros_end()) {
             string dato_actual = (*it).dato(campo).valorStr();
-            datos.insert(dato_actual);
-            if (get<1>(indice).count(dato_actual) == 0) {
-                linear_set<const Registro*> nuevo_conj_registros = linear_set<const Registro*>();
-                nuevo_conj_registros.fast_insert(&*it);
-                get<1>(indice).insert(make_pair(dato_actual, nuevo_conj_registros));
-            } else {
-                linear_set<const Registro*> conj_registros = get<1>(indice).at(dato_actual);
-                conj_registros.fast_insert(&*it);
-                get<1>(indice).insert(make_pair(dato_actual, conj_registros));
+            linear_set<const Registro*> conj_registros = linear_set<const Registro*>();
+            if (get<1>(indice).count(dato_actual) != 0) {
+                conj_registros = get<1>(indice).at(dato_actual);
             }
+            conj_registros.fast_insert(&*it);
+            get<1>(indice).insert(make_pair(dato_actual, conj_registros));
             ++it;
         }
         get<2>(indice) = true;
@@ -237,7 +229,6 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
 
     nuevos_indices.insert(make_pair(campo, indice));
     _indices.insert(make_pair(nombre, nuevos_indices));
-
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string &tabla2, const string &campo) {
