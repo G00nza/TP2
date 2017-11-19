@@ -329,17 +329,17 @@ BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(int) {
 
 
 Registro BaseDeDatos::join_iterator::operator*() const {
-    Registro tabla1 = *(*v.first);
-    Registro tabla2 = *(*v.second);
+    Registro reg1 = *(*v.first);
+    Registro reg2 = *(*v.second);
     vector<string> campos;
     vector<Dato> datos;
-    for (auto it : tabla1.campos()) {
+    for (auto it : reg1.campos()) {
         campos.push_back(it);
-        datos.push_back(tabla1.dato(it));
+        datos.push_back(reg1.dato(it));
     }
-    for (auto it : tabla2.campos()) {
+    for (auto it : reg2.campos()) {
         campos.push_back(it);
-        datos.push_back(tabla2.dato(it));
+        datos.push_back(reg2.dato(it));
     }
     return Registro(campos, datos);
 }
