@@ -21,10 +21,13 @@ void BaseDeDatos::agregarRegistro(const Registro &r, const string &nombre) {
     if (_indices.count(nombre) == 1){
         string_map<Indice> indices_tabla = _indices.at(nombre);
         for (auto it : t.campos()){
-            if (indices_tabla.count(it) == 1){
-                agregarAIndice(indices_tabla.at(it), r, it);
+            if (indices_tabla.count(it)){
+                Indice indice = indices_tabla.at(it);
+                agregarAIndice(indice, r, it);
+                indices_tabla.insert(make_pair(it, indice));
             }
         }
+        _indices.insert(make_pair(nombre, indices_tabla));
     }
 }
 
@@ -32,18 +35,16 @@ void BaseDeDatos::agregarAIndice(BaseDeDatos::Indice &indice, const Registro &re
     if (get<2>(indice)) {
         string valor_en_campo = registro.dato(campo).valorStr();
         linear_set<const Registro*> nuevo_conj = linear_set<const Registro*>();
-        auto it = get<1>(indice).find(valor_en_campo);
-        if (it != get<1>(indice).end()) {
-            nuevo_conj = get<1>(indice).at(it->first);
+        if (get<1>(indice).count(valor_en_campo)) {
+            nuevo_conj = get<1>(indice).at(valor_en_campo);
         }
         nuevo_conj.fast_insert(&registro);
         get<1>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
     } else {
         int valor_en_campo = registro.dato(campo).valorNat();
         linear_set<const Registro *> nuevo_conj = linear_set<const Registro *>();
-        auto it = get<0>(indice).find(valor_en_campo);
-        if (it != get<0>(indice).end()) {
-            nuevo_conj = get<0>(indice).at(it->first);
+        if (get<0>(indice).count(valor_en_campo)) {
+            nuevo_conj = get<0>(indice).at(valor_en_campo);
         }
         nuevo_conj.fast_insert(&registro);
         get<0>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
@@ -241,7 +242,7 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
     //Ahora si, tabla2 seguro tiene indice
     const Tabla& t1 = dameTabla(tabla1);
     const Tabla& t2 = dameTabla(tabla2);
-    Indice indice = _indices.at(tabla2).at(campo);
+    Indice& indice = _indices.at(tabla2).at(campo);
     //Itero sobre los registros de la tabla 1
     auto it = t1.registros_begin();
     //En caso de estar tratando con un campo nat:
