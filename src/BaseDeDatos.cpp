@@ -237,7 +237,8 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
     *_ultimo_join = Join(); //Limpio el valor de ultimo join
     //Si tabla2 no tiene indices doy vuelta las cosas, tabla1 tendra indice por precondicion
     if (_indices.count(tabla2) == 0  or _indices.at(tabla2).count(campo) == 0) {
-        return join(tabla2, tabla1, campo);
+        join(tabla2, tabla1, campo);
+        return _ultimo_join->begin();
     }
 
     //Ahora si, tabla2 seguro tiene indice
@@ -278,7 +279,7 @@ BaseDeDatos::join_iterator BaseDeDatos::Join::begin (){
     }
     auto first = tabla1.begin();
     auto second = (*tabla2.begin())->begin();
-    return join_iterator(make_pair(first, second), tabla1.size(), 0, tabla2);
+    return join_iterator(make_pair(first, second), tabla1.size(), 0, tabla2, tabla_indexada);
 }
 
 BaseDeDatos::join_iterator& BaseDeDatos::join_iterator::operator++(){
@@ -312,13 +313,18 @@ Registro BaseDeDatos::join_iterator::operator*() const {
     const Registro& reg2 = *(*v.second);
     vector<string> campos;
     vector<Dato> datos;
+    string_map<bool> campos_chequear_repetidos;
     for (auto it : reg1.campos()) {
         campos.push_back(it);
         datos.push_back(reg1.dato(it));
+        campos_chequear_repetidos.insert(make_pair(it, true));
     }
     for (auto it : reg2.campos()) {
-        campos.push_back(it);
-        datos.push_back(reg2.dato(it));
+        if (!campos_chequear_repetidos.count(
+                it)) { //OJO con esto, solo agrego el valor en campo de reg2 si no es un campo comun entre las dos tablas
+            campos.push_back(it);
+            datos.push_back(reg2.dato(it));
+        } //Magicamente esto es O(1) porque use string map
     }
     return Registro(campos, datos);
 }
@@ -332,6 +338,7 @@ bool BaseDeDatos::join_iterator::operator!=(const join_iterator &other) const {
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator=(const BaseDeDatos::join_iterator &other) {
+    v = other.v; //Por alguna razon si no hago esto primero tira seg fault
     return join_iterator(other);
 }
 
@@ -340,7 +347,7 @@ bool BaseDeDatos::join_iterator::termino() const {
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::Join::end() {
-    join_iterator res = join_iterator(make_pair(tabla1.end(), linear_set<const Registro *>().end()), tabla1.size(), tabla1.size(), tabla2);
+    join_iterator res = join_iterator(make_pair(tabla1.end(), linear_set<const Registro *>().end()), tabla1.size(), tabla1.size(), tabla2, tabla_indexada);
     res.iteraciones = res.max_iter;
     return res;
 }

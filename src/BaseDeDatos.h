@@ -359,6 +359,9 @@ private:
         /** @brief Conjunto con los registros de la tabla2 que coinciden con cada registro de la tabla1*/
         linear_set<linear_set<const Registro*>* > tabla2;
 
+        /** @brief Me dice cual de las dos tablas fue usada para buscar en indice 0 = tabla1, 1 = tabla2*/
+        bool tabla_indexada;
+
 
         friend class BaseDeDatos;
     };
@@ -368,8 +371,8 @@ private:
         /** @brief Constructor del iterador*/
         join_iterator(pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v,
                       int max_iter, int iteraciones,
-                      linear_set<linear_set<const Registro*>* >& tabla2):
-                v(v), max_iter(max_iter), iteraciones(iteraciones), tabla2(tabla2), tabla2_it(tabla2.begin()){};
+                      linear_set<linear_set<const Registro*>* >& tabla2, bool tabla_indexada):
+                v(v), max_iter(max_iter), iteraciones(iteraciones), tabla2(tabla2), tabla2_it(tabla2.begin()), tabla_indexada(tabla_indexada){};
 
         /** @brief Constructor por copia*/
         join_iterator(const join_iterator &other):
@@ -383,6 +386,9 @@ private:
 
         /** @brief Indice en el que me encuentro sobre los registros de tabla1*/
         int iteraciones;
+
+        /** @brief Me dice cual de las dos tablas fue usada para buscar en indice 0 = tabla1, 1 = tabla2*/
+        bool tabla_indexada;
 
         /** @brief Referencia a los conjuntos de la tabla2*/
         linear_set<linear_set<const Registro*>* >& tabla2;
