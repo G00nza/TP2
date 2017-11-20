@@ -208,6 +208,7 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
             linear_set<const Registro*> conj_registros = linear_set<const Registro*>(); //Creo un conjunto nuevo de punteros a registro
             if (get<0>(indice).count(dato_actual) != 0) { //Si ya habia registros con el mismo valor en el campo tomo ese conjunto
                 conj_registros = get<0>(indice).at(dato_actual);
+                get<0>(indice).erase(dato_actual); //Por como funciona map de la stl hay q borrar antes de insertar algo nuevo, no se sobreescribe
             }
             conj_registros.fast_insert(&*it); //Le agrego al conjunto un puntero al registro sobre el que estoy iterando
             get<0>(indice).insert(make_pair(dato_actual, conj_registros)); //Inserto el nuevo conjunto en el indice para ese dato
@@ -284,7 +285,7 @@ BaseDeDatos::join_iterator& BaseDeDatos::join_iterator::operator++(){
     ++v.second;
 
     bool esUltimo = v.second == (*tabla2_it)->end();
-    
+
     if(esUltimo){
         iteraciones++;
         ++tabla2_it;
