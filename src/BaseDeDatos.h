@@ -376,7 +376,9 @@ private:
 
         /** @brief Constructor por copia*/
         join_iterator(const join_iterator &other):
-                v(other.v), max_iter(other.max_iter), iteraciones(other.iteraciones), tabla2(other.tabla2), tabla2_it(other.tabla2_it) {};
+                v(other.v), max_iter(other.max_iter), iteraciones(other.iteraciones), tabla2(other.tabla2), tabla2_it(other.tabla2_it) {
+            tabla_indexada = other.tabla_indexada;
+        };
 
         /** @brief Par de registros tabla1,tabla2*/
         pair<linear_set<const Registro*>::iterator, linear_set<const Registro*>::iterator> v;

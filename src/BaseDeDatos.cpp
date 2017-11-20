@@ -238,6 +238,7 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
     //Si tabla2 no tiene indices doy vuelta las cosas, tabla1 tendra indice por precondicion
     if (_indices.count(tabla2) == 0  or _indices.at(tabla2).count(campo) == 0) {
         join(tabla2, tabla1, campo);
+        _ultimo_join->tabla_indexada = false;
         return _ultimo_join->begin();
     }
 
@@ -270,6 +271,7 @@ BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string 
             ++it;
         }
     }
+    _ultimo_join->tabla_indexada = true;
     return _ultimo_join->begin();
 }
 
@@ -309,8 +311,12 @@ BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(int) {
 
 
 Registro BaseDeDatos::join_iterator::operator*() const {
-    const Registro& reg1 = *(*v.first);
-    const Registro& reg2 = *(*v.second);
+    Registro reg1 = *(*v.first);
+    Registro reg2 = *(*v.second);
+    if (!tabla_indexada) { //Esto me permite hacer las cosas en el orden correcto cuando las tablas comparten campos
+        reg2 = *(*v.first);
+        reg1 = *(*v.second);
+    }
     vector<string> campos;
     vector<Dato> datos;
     string_map<bool> campos_chequear_repetidos;
@@ -324,6 +330,7 @@ Registro BaseDeDatos::join_iterator::operator*() const {
                 it)) { //OJO con esto, solo agrego el valor en campo de reg2 si no es un campo comun entre las dos tablas
             campos.push_back(it);
             datos.push_back(reg2.dato(it));
+            campos_chequear_repetidos.insert(make_pair(it, true));
         } //Magicamente esto es O(1) porque use string map
     }
     return Registro(campos, datos);
@@ -339,6 +346,7 @@ bool BaseDeDatos::join_iterator::operator!=(const join_iterator &other) const {
 
 BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator=(const BaseDeDatos::join_iterator &other) {
     v = other.v; //Por alguna razon si no hago esto primero tira seg fault
+    tabla_indexada = other.tabla_indexada;
     return join_iterator(other);
 }
 
