@@ -46,18 +46,23 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
     bool pertenece = false;
     Nodo *actual = _raiz;//actual->_camino
     string auxNombre = "";
+    int insertAt = 0;
     for (int i = 0; i < iteraciones; ++i) {
         for (int j = 0; j < actual->_hijos.size() && !pertenece; ++j) {
             if ((*(actual->_hijos[j]->_camino))[i] == recorrido[i]){
                 actual = actual->_hijos[j];
                 pertenece = true;
+            } else if ((*(actual->_hijos[j]->_camino))[i] < recorrido[i]){
+                insertAt = j + 1;
             }
         }
         auxNombre += recorrido[i];
 
         if (!pertenece){
             Nodo *nuevo = new Nodo(auxNombre);
-            actual->_hijos.push_back(nuevo);
+            auto it = actual->_hijos.begin();
+            actual->_hijos.insert(it + insertAt, nuevo);
+            insertAt = 0; //hago reset de insertAt
             nuevo->padre = actual;
             actual = nuevo;
         }
