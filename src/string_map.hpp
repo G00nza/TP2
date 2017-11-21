@@ -164,12 +164,12 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
     int pos = 0;
     for (int j = 0; j < iteraciones; ++j) {
         for (int i = 0; i < actual->_hijos.size(); ++i) {
-            if (camino[0] == actual->_hijos[i]->_camino[0]) {////////// <========== HAY UN ERROR ACA <===========
+            if (camino[j] == actual->_hijos[i]->_camino->back()) {////////// <========== HAY UN ERROR ACA <===========
                 pos = i;
             }
         }
         actual = actual->_hijos[pos];
-        camino.erase(0);
+        //camino.erase(0);
     }
     if (actual->_hijos.size() == 0 && actual != _raiz) {
         //nunca puedo borrar la raiz
