@@ -62,10 +62,10 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
             Nodo *nuevo = new Nodo(auxNombre);
             auto it = actual->_hijos.begin();
             actual->_hijos.insert(it + insertAt, nuevo);
-            insertAt = 0; //hago reset de insertAt
             nuevo->padre = actual;
             actual = nuevo;
         }
+        insertAt = 0; //hago reset de insertAt
         pertenece = false;// hago reset de pertenece
     }
     if (!actual->_definido){
@@ -164,7 +164,7 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
     int pos = 0;
     for (int j = 0; j < iteraciones; ++j) {
         for (int i = 0; i < actual->_hijos.size(); ++i) {
-            if (camino[0] == actual->_hijos[i]->_camino[0]) {
+            if (camino[0] == actual->_hijos[i]->_camino[0]) {////////// <========== HAY UN ERROR ACA <===========
                 pos = i;
             }
         }
@@ -198,7 +198,8 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
         actual->_obtener = nullptr;
     }
     _tamano--;
-    return _tamano;
+//    return _tamano;
+    return 1;
 }
 
 
@@ -266,8 +267,9 @@ typename string_map<T>::mapped_type &string_map<T>::operator[](const key_type &k
 template<typename T>
 typename string_map<T>::iterator string_map<T>::erase(iterator pos) {
     string sacar = *(pos._nodo->_camino);
+    ++pos;
     erase(sacar);
-    return begin();
+    return pos;
 }
 
 template<typename T>

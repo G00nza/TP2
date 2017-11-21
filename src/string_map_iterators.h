@@ -124,7 +124,7 @@ public:
      *
      * \complexity{\O(1)}
      */
-    iterator& operator=(const typename string_map<T>::iterator&);
+//    iterator& operator=(const typename string_map<T>::iterator&);
 
     /**
      * @brief Avanza el iterador una posición.
@@ -282,10 +282,10 @@ template<typename T>
 string_map<T>::iterator::iterator(
         const typename string_map<T>::Nodo* nodo) : _nodo(nodo) {};
 
-template<typename T>
-typename string_map<T>::iterator& string_map<T>::iterator::operator=(const string_map<T>::iterator& other){
-    return *this = other;
-}
+//template<typename T>
+//typename string_map<T>::iterator& string_map<T>::iterator::operator=(const string_map<T>::iterator& other){
+//    return *this = other;
+//}
 
 template<typename T>
 typename string_map<T>::iterator::value_type &string_map<T>::iterator::operator*() {
