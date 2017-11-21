@@ -315,19 +315,21 @@ typename string_map<T>::iterator &string_map<T>::iterator::operator++() {
             _nodo = _nodo->_hijos[0];
         }
     }else{
+        bool notRoot = false;
         while(_nodo->padre != nullptr){
             if (_nodo->padre->_hijos.size()-1 > _nodo->posEnPadre()){
                 _nodo = _nodo->padre->_hijos[_nodo->posEnPadre() + 1];
+                notRoot = true;
                 break;
             }
             _nodo = _nodo->padre;
         }
-        if (_nodo->padre != nullptr){
-            _nodo = _nodo->padre;
-        }else {
+        if (notRoot) {
             while (_nodo->_hijos.size() > 0 && !_nodo->_definido) {
                 _nodo = _nodo->_hijos[0];
             }
+        } else{
+            _nodo = _nodo->padre;
         }
     }
     return *this;

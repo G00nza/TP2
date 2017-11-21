@@ -45,6 +45,7 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
     unsigned long iteraciones = recorrido.size();
     bool pertenece = false;
     Nodo *actual = _raiz;//actual->_camino
+    string auxNombre = "";
     for (int i = 0; i < iteraciones; ++i) {
         for (int j = 0; j < actual->_hijos.size() && !pertenece; ++j) {
             if ((*(actual->_hijos[j]->_camino))[i] == recorrido[i]){
@@ -52,11 +53,9 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
                 pertenece = true;
             }
         }
+        auxNombre += recorrido[i];
+
         if (!pertenece){
-            string auxNombre = "";
-            for (int k = 0; k <= i ; ++k) {
-                auxNombre += recorrido[k];
-            }
             Nodo *nuevo = new Nodo(auxNombre);
             actual->_hijos.push_back(nuevo);
             nuevo->padre = actual;
@@ -69,10 +68,7 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
         _tamano++;
         actual->_definido = true;
     }
-    //*(actual->_obtener) = T(v.second);
-    //delete actual->_obtener;
     (actual->v->second) = v.second;
-    //actual->_obtener = &(actual->v->second);
     string_map<T>::iterator it(actual);
     return make_pair(it, pertenece);
 }
@@ -137,16 +133,11 @@ string_map<T>::find(const key_type &k) const {
     return it;
 }
 
-//si aparece => 1
-//si no  => 0
+
 template<typename T>
 bool string_map<T>::count(const key_type &key) const {
-    //bool aux1 = (find(key)._nodo)->_definido;
-    //bool aux2 = *((find(key)._nodo)->_camino).first == key;
     return find(key) != end() &&
             ((find(key)._nodo)->_definido && *((find(key)._nodo)->_camino) == key);
-    //implementar
-    //return find(key) != end();
 }
 
 template<typename T>
@@ -166,7 +157,6 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
     unsigned long iteraciones = camino.size();
     Nodo *actual = _raiz;
     int pos = 0;
-    //vector<int> posicions;
     for (int j = 0; j < iteraciones; ++j) {
         for (int i = 0; i < actual->_hijos.size(); ++i) {
             if (camino[0] == actual->_hijos[i]->_camino[0]) {
@@ -175,7 +165,6 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
         }
         actual = actual->_hijos[pos];
         camino.erase(0);
-        //posicions.push_back(pos);
     }
     if (actual->_hijos.size() == 0 && actual != _raiz) {
         //nunca puedo borrar la raiz
@@ -194,7 +183,7 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
     } else{
         actual->_definido = false;
         //delete (actual->_obtener);//ver que los iteradores no rompan agregando pre
-        delete (actual->_obtener); ///que pasa si despues quiero insertar algo en este nodo
+        delete (actual->_obtener);
         actual->_obtener = nullptr;
     }
     if (key == "") {
@@ -260,40 +249,6 @@ typename string_map<T>::const_iterator string_map<T>::end() const {
     auto it (_end);
     return it;
 }
-
-/*template<typename T>
-int string_map<T>::posicion(vector <Nodo*> v, char c) const {
-    int pos = 0;
-    for (int i = 0; i < v.size(); ++i) {
-        if (c == v[i]->_camino->back)
-            pos = i;
-    }
-    return pos;
-}*/
-
-/*template<typename T>
-bool string_map<T>::igualDeNodo(string_map<T>::Nodo &n1, string_map<T>::Nodo &n2) const {
-    bool res;
-    res = n1._definido == n2._definido;
-    if (n1._definido && n2._definido){
-        res &= n1.v->second == n2.v->second;
-    }
-    res &= n1._hijos.size() == n2._hijos.size();
-    if (res) { //al sacar el vector de char esto se complico
-        for (int i = 0; i < n1._hijos.size() && res; ++i) { //buscar el nodo hijo con mismo valor
-            Nodo *n1aux = n1._hijos[i];
-            Nodo *n2aux = nullptr;
-            for (int j = 0; j < n2._hijos.size() ; ++j) {
-                if (*(n2._hijos[j]->_camino) == *(n1aux->_camino) ){
-                    n2aux = n2._hijos[j];
-                }
-            }
-            //Nodo *n2aux = n2._hijos[posicion(n2._hijos, n1._hijos[i]-> _camino->back )];
-            res &= igualDeNodo(*n1aux, *n2aux);
-        }
-    }
-    return res;
-}*/
 
 template<typename T>
 typename string_map<T>::mapped_type &string_map<T>::operator[](const key_type &key) {
