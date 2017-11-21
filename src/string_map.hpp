@@ -1,7 +1,3 @@
-//
-// Created by gsaenz on 12/10/17.
-//
-
 #ifndef TP2_STRING_MAP_HPP
 #define TP2_STRING_MAP_HPP
 
@@ -14,27 +10,25 @@ using namespace std;
 
 template<typename T>
 string_map<T>::string_map() {
-//    Nodo *nuevo = new Nodo;
-//    _raiz = nuevo;
-    _raiz = new Nodo;
+    _raiz = new Nodo("");
+    _raiz->padre = _end;
     _tamano = 0;
 }
 
 template<typename T>
 string_map<T>::~string_map() {
-    // ver que pasa con el map vacio
-//    while (_tamano > 0) {
-//        this->erase(begin());
-//    }
-//    delete (_raiz);
-//    _raiz = NULL;
+    while (_tamano > 0) {
+        this->erase(begin());
+    }
+    delete (_raiz);
+    _raiz = NULL;
 }
 
 template<typename T>
 string_map<T>::string_map(const string_map<T> &other) : string_map() {
-   const_iterator it = other.begin();
-   while (it != other.end()) {
-       this->insert(*it);
+    const_iterator it = other.begin();
+    while (this->size() != other.size()) {
+        this->insert(*it);
         ++it;
     }
 }
@@ -43,55 +37,50 @@ string_map<T>::string_map(const string_map<T> &other) : string_map() {
 template<typename T>
 pair<typename string_map<T>::iterator, bool>
 string_map<T>::insert(const string_map<T>::value_type &v) {
-//    string camino = v.first;
-//    unsigned long iteraciones = camino.size();
-//    bool pertenece = false;
-//    Nodo *actual = _raiz;
-//    int pos = 0;
-//    for (int j = 0; j < iteraciones; ++j) {
-//        for (int i = 0; i < actual->_claves.size(); ++i) {
-//            if (camino[0] == actual->_claves.at(i)) {
-//                pertenece = true;
-//                pos = i;
-//            }
-//        }
-//        if (!pertenece) {
-//            actual->_claves.push_back(camino[0]);
-//            Nodo *nuevo = new Nodo;
-//            actual->_hijos.push_back(nuevo);
-//            nuevo->_posEnPadre = actual->_hijos.size()-1;
-//            nuevo->padre = actual;
-//            string aux;
-//            for (int k = 0; k < j ; ++k) {
-//                aux.push_back(v.first[k]);
-//            }
-//            nuevo->_camino = new string(aux);
-//            actual = nuevo;
-//        } else {
-//            actual = actual->_hijos[pos];
-//        }
-//        camino.erase(0);
-//    }
-//    if (actual->_definido) {
-//        pertenece = false;
-//    } else {
-//        pertenece = true;
-//        _tamano++;
-//        actual->_definido = true;
-//        actual->_posEnPadre = actual->padre->_claves.size()-1;
-//    }
-//    *actual->_obtener = v.second;
-//    string_map<T>::iterator it(actual);
-//    return make_pair(it, pertenece);
+    string recorrido = v.first;
+    unsigned long iteraciones = recorrido.size();
+    bool pertenece = false;
+    Nodo *actual = _raiz;
+    string auxNombre = "";
+    int insertAt = 0;
+    for (int i = 0; i < iteraciones; ++i) {
+        for (int j = 0; j < actual->_hijos.size() && !pertenece; ++j) {
+            if ((*(actual->_hijos[j]->_camino))[i] == recorrido[i]){
+                actual = actual->_hijos[j];
+                pertenece = true;
+            } else if ((*(actual->_hijos[j]->_camino))[i] < recorrido[i]){
+                insertAt = j + 1;
+            }
+        }
+        auxNombre += recorrido[i];
+
+        if (!pertenece){
+            Nodo *nuevo = new Nodo(auxNombre);
+            auto it = actual->_hijos.begin();
+            actual->_hijos.insert(it + insertAt, nuevo);
+            nuevo->padre = actual;
+            actual = nuevo;
+        }
+        insertAt = 0; //hago reset de insertAt
+        pertenece = false;// hago reset de pertenece
+    }
+    if (!actual->_definido){
+        pertenece = true;
+        _tamano++;
+        actual->_definido = true;
+    }
+    (actual->v->second) = v.second;
+    string_map<T>::iterator it(actual);
+    return make_pair(it, pertenece);
 }
 
 template<typename T>
 string_map<T> &string_map<T>::operator=(const string_map<T> &other) {
-    //this->~string_map();
     this->clear();
     const_iterator it = other.begin();
-    while (it != other.end()){
+    while (this->size() != other.size()) {
         this->insert(*it);
+        ++it;
     }
     return *this;
 }
@@ -114,7 +103,7 @@ typename string_map<T>::iterator string_map<T>::find(const key_type &k) {
             }
             j++;
         }
-        if (j == actual->_hijos.size()) {
+        if (i != k.size()-1 && j == actual->padre->_hijos.size()) {
             return it;
         }
     }
@@ -136,7 +125,7 @@ string_map<T>::find(const key_type &k) const {
             }
             j++;
         }
-        if (j == actual->_hijos.size()) {
+        if (i != k.size()-1 && actual != _raiz && j == actual->padre->_hijos.size()) {
             return it;
         }
     }
@@ -144,20 +133,22 @@ string_map<T>::find(const key_type &k) const {
     return it;
 }
 
-//si aparece => 1
-//si no  => 0
+
 template<typename T>
-size_t string_map<T>::count(const key_type &key) const {
-    return (*find(key)).first == key;
-    //implementar
-    //return find(key) != end();
+bool string_map<T>::count(const key_type &key) const {
+    return find(key) != end() &&
+            ((find(key)._nodo)->_definido && *((find(key)._nodo)->_camino) == key);
 }
 
 template<typename T>
 bool string_map<T>::operator==(const string_map<T> &other) const {
-    Nodo *actualThis = _raiz;
-    Nodo *actualOther = other._raiz;
-    return igualDeNodo(*actualThis, *actualOther);
+    bool res = true;
+    auto it = begin();
+    while ( it != end() && res) {
+        res &= other.find(it->first) != other.end() && other.at(it->first) == it->second;
+        ++it;
+    }
+    return res;
 }
 
 template<typename T>
@@ -166,87 +157,46 @@ typename string_map<T>::size_type string_map<T>::erase(const key_type &key) {
     unsigned long iteraciones = camino.size();
     Nodo *actual = _raiz;
     int pos = 0;
-    //vector<int> posicions;
     for (int j = 0; j < iteraciones; ++j) {
-        for (int i = 0; i < actual->_claves.size(); ++i) {
-            if (camino[0] == actual->_claves[i]) {
+        for (int i = 0; i < actual->_hijos.size(); ++i) {
+            if (camino[j] == actual->_hijos[i]->_camino->back()) {
                 pos = i;
             }
         }
         actual = actual->_hijos[pos];
-        camino.erase(0);
-        //posicions.push_back(pos);
     }
-    if (actual->_hijos.size() == 0) {
-        if (actual != _raiz) {//nunca puedo borrar la raiz
+    if (actual->_hijos.size() == 0 && actual != _raiz) {
+        //nunca puedo borrar la raiz
+        Nodo *borrar = actual;
+        actual = actual->padre;
+        actual->_hijos.erase(actual->_hijos.begin() + borrar->posEnPadre());
+        delete borrar;
+
+        while (!actual->_definido && actual->_hijos.size() == 0 && actual != _raiz) {
             Nodo *borrar = actual;
-            actual = actual->_padre;
-            actual->_claves.erase(actual->_claves.begin() + borrar->_posEnPadre);
-            actual->_hijos.erase(actual->_hijos.begin() + borrar->_posEnPadre);
+            actual = actual->padre;
+            actual->_hijos.erase(actual->_hijos.begin() + borrar->posEnPadre());
             delete borrar;
-            while (!actual->_definido && actual->_hijos.size() < 1 && actual != _raiz) {
-                Nodo *borrar = actual;
-                actual = actual->_padre;
-                actual->_claves.erase(actual->_claves.begin() + borrar->_posEnPadre);
-                actual->_hijos.erase(actual->_hijos.begin() + borrar->_posEnPadre);
-                delete borrar;
-            }
         }
+
     } else{
         actual->_definido = false;
-        delete (actual->_obtener);//ver que los iteradores no rompan agregando pre
-        //delete (actual->v);
-        actual->_obtener = nullptr;
-    }
-    if (actual == _raiz) {
-        actual->_definido = false;
         delete (actual->_obtener);
-        //delete (actual->v);//ver que los iteradores no rompan agregando pre
         actual->_obtener = nullptr;
     }
-    _tamano --;
-    return _tamano;
-/*    if (actual->_hijos.size() == 0) {
-        //sacar letra en padre
-        while (actual != _raiz && !actual->_definido) {
-            if (actual->padre->_hijos.size() == 1) {
-                Nodo *aux = actual;
-                actual->padre->_hijos.erase(actual->padre->_hijos.begin());
-                actual->padre->_claves.erase(actual->padre->_claves.begin());
-                posicions.pop_back();
-                actual = actual->padre;
-                delete aux;
-            } else {
-                break;
-            }
-        }
-        if (actual != _raiz) {
-            actual->padre->_hijos.erase(actual->padre->_hijos.begin() + posicions.back());
-            actual->padre->_claves.erase(actual->padre->_claves.begin() + posicions.back());
-            delete actual;
-        } else {
-            if (_raiz->_obtener != NULL) {
-                _raiz->_hijos.erase(_raiz->_hijos.begin() + posicions.back());
-                _raiz->_hijos.erase(_raiz->_hijos.begin() + posicions.back());
-            } else {
-                _raiz = new Nodo;
-                delete actual;
-            }
-        }
-    } else {
-        actual->_obtener = NULL;
+    if (key == "") {
         actual->_definido = false;
-        actual->v->second = NULL;
+        delete (actual->v);
+        actual->_obtener = nullptr;
     }
-
-    return _tamano--;
-*/
+    _tamano--;
+    return 1;
 }
 
 
 template<typename T>
 const typename string_map<T>::mapped_type &string_map<T>::at(const key_type &key) const {
-    return find(key)->second;
+    return ((find(key)._nodo)->v->second);
 }
 
 template<typename T>
@@ -256,7 +206,7 @@ bool string_map<T>::empty() const {
 
 template<typename T>
 typename string_map<T>::mapped_type &string_map<T>::at(const key_type &key) {
-    return (*find(key)).second;
+    return ((find(key)._nodo)->v->second);
 }
 
 template<typename T>
@@ -274,10 +224,7 @@ typename string_map<T>::iterator string_map<T>::begin() {
 
 template < typename T >
 typename string_map<T>::iterator string_map<T>::end() {
-    string_map<T>::iterator it(_raiz);
-    while (it._nodo->_hijos.size() > 0){
-        it._nodo = it._nodo->_hijos.back();
-    }
+    auto it (_end);
     return it;
 }
 
@@ -296,53 +243,24 @@ typename string_map<T>::const_iterator string_map<T>::begin() const {
 
 template<typename T>
 typename string_map<T>::const_iterator string_map<T>::end() const {
-    string_map<T>::const_iterator it(_raiz);
-    while (it._nodo->_hijos.size() > 0){
-        it._nodo = it._nodo->_hijos.back();
-    }
+    auto it (_end);
     return it;
 }
 
 template<typename T>
-int string_map<T>::posicion(vector<char> v, char c) const {
-    int pos = 0;
-    for (int i = 0; i < v.size(); ++i) {
-        if (c == v[i])
-            pos = i;
-    }
-    return pos;
-}
-
-template<typename T>
-bool string_map<T>::igualDeNodo(string_map<T>::Nodo &n1, string_map<T>::Nodo &n2) const {
-    bool res;
-    res = n1._obtener == n2._obtener;
-    res &= seteq(n1._claves, n2._claves);
-    if (res) {
-        for (int i = 0; i < n1._claves.size() && res; ++i) {
-            Nodo *n1aux = n1._hijos[i];
-            Nodo *n2aux = n2._hijos[posicion(n1._claves, n1._claves[i])];
-            res = igualDeNodo(*n1aux, *n2aux);
-        }
-    }
-
-    return res;
-}
-
-template<typename T>
 typename string_map<T>::mapped_type &string_map<T>::operator[](const key_type &key) {
-    mapped_type nada;
-    if (count(key) == 1){
-        return at(key);
+    if (!count(key)){
+        insert(make_pair(key, mapped_type()));
     }
-    return (*(insert(make_pair(key, nada)).first)).second;
+    return at(key);
 }
 
 template<typename T>
 typename string_map<T>::iterator string_map<T>::erase(iterator pos) {
     string sacar = *(pos._nodo->_camino);
+    ++pos;
     erase(sacar);
-    return begin();
+    return pos;
 }
 
 template<typename T>
@@ -351,28 +269,5 @@ void string_map<T>::clear(){
         erase(begin());
     }
 }
-
-
-
-
-
-/*
-template < typename T >
-std::ostream &operator<<(std::ostream &os, const string_map<T>& m) {
-    os << "{ ";
-    int count = m.size();
-    for (auto kv : m) {
-        count--;
-        os << kv.first << ": " << kv.second;
-        if (count) {
-            os << ", ";
-        }
-    }
-    os << " }";
-    return os;
-}
-*/
-
-
 
 #endif //TP2_STRING_MAP_HPP

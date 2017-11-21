@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-BaseDeDatos::BaseDeDatos() {};
+BaseDeDatos::BaseDeDatos() {_ultimo_join = new Join();};
 
 void BaseDeDatos::crearTabla(const string &nombre,
                              const linear_set<string> &claves,
@@ -21,40 +21,34 @@ void BaseDeDatos::agregarRegistro(const Registro &r, const string &nombre) {
     if (_indices.count(nombre) == 1){
         string_map<Indice> indices_tabla = _indices.at(nombre);
         for (auto it : t.campos()){
-            if (indices_tabla.count(it) == 1){
-                agregarAIndice(indices_tabla.at(it), r, it);
+            if (indices_tabla.count(it)){
+                Indice indice = indices_tabla.at(it);
+                agregarAIndice(indice, r, it);
+                indices_tabla.insert(make_pair(it, indice));
             }
         }
+        _indices.insert(make_pair(nombre, indices_tabla));
     }
 }
 
 void BaseDeDatos::agregarAIndice(BaseDeDatos::Indice &indice, const Registro &registro, const string &campo) {
     if (get<2>(indice)) {
         string valor_en_campo = registro.dato(campo).valorStr();
-        auto it = get<1>(indice).find(valor_en_campo);
-        if (it != get<1>(indice).end()) {
-            linear_set<const Registro*> nuevo_conj = get<1>(indice).at(it->first);
-            nuevo_conj.fast_insert(&registro);
-            get<1>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
-        } else {
-            linear_set<const Registro*> nuevo_conj = linear_set<const Registro*>();
-            nuevo_conj.fast_insert(&registro);
-            get<1>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
+        linear_set<const Registro*> nuevo_conj = linear_set<const Registro*>();
+        if (get<1>(indice).count(valor_en_campo)) {
+            nuevo_conj = get<1>(indice).at(valor_en_campo);
         }
+        nuevo_conj.fast_insert(&registro);
+        get<1>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
     } else {
         int valor_en_campo = registro.dato(campo).valorNat();
-        auto it = get<0>(indice).find(valor_en_campo);
-        if (it != get<0>(indice).end()) {
-            linear_set<const Registro*> nuevo_conj = get<0>(indice).at(it->first);
-            nuevo_conj.fast_insert(&registro);
-            get<0>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
-        } else {
-            linear_set<const Registro*> nuevo_conj = linear_set<const Registro*>();
-            nuevo_conj.fast_insert(&registro);
-            get<0>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
+        linear_set<const Registro *> nuevo_conj = linear_set<const Registro *>();
+        if (get<0>(indice).count(valor_en_campo)) {
+            nuevo_conj = get<0>(indice).at(valor_en_campo);
         }
+        nuevo_conj.fast_insert(&registro);
+        get<0>(indice).insert(make_pair(valor_en_campo, nuevo_conj));
     }
-
 }
 
 
@@ -74,26 +68,26 @@ int BaseDeDatos::uso_criterio(const BaseDeDatos::Criterio &criterio) const {
 
 bool BaseDeDatos::registroValido(const Registro &r,
                                  const string &nombre) const {
-    const Tabla &t = _tablas.at(nombre); //ahora O(1)
+    const Tabla &t = _tablas.at(nombre);
 
     bool camposIguales = true;
 
-    for (auto it : t.campos() ) { //O(C)
+    for (auto it : t.campos() ) {
         camposIguales &= r.campos().count(it);
     }
 
-    for (auto it : r.campos() ) { // O(C)
+    for (auto it : r.campos() ) {
         camposIguales &= t.tipos().count(it);
     }
 
     bool mismosTipos = true;
-    if (camposIguales) { //O(C)
+    if (camposIguales) {
         for (auto it : t.campos() ) {
-            mismosTipos &= t.tipoCampo(it).esNat() && r.dato(it).esNat();
+            mismosTipos &= t.tipoCampo(it).esNat() == r.dato(it).esNat();
         }
     }
 
-    return (camposIguales and mismosTipos and
+    return (camposIguales and _mismos_tipos(r,t) and
             _no_repite(r, t));
 }
 
@@ -202,41 +196,34 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
     const Tabla &t = dameTabla(nombre);
 
     string_map<Indice> nuevos_indices = string_map<Indice>();
-    Indice indice = Indice();
-    //Testear si sirve pasarle una tabla que ya tiene indice en ese campo
-    auto it = t.registros_begin();
+    if (_indices.count(nombre)){ //Si la tabla ya tiene indices los cargo
+        nuevos_indices = _indices.at(nombre);
+    }
+    Indice indice = Indice(); //Creo un indice nuevo
+    auto it = t.registros().begin();
 
-    if (t.tipoCampo(campo).esNat()) {
-        linear_set<int> datos = linear_set<int>();
-        while (it != t.registros_end()) {
-            int dato_actual = (*it).dato(campo).valorNat();
-            datos.insert(dato_actual);
-            if (get<0>(indice).count(dato_actual) == 0) {
-                linear_set<const Registro*> nuevo_conj_registros = linear_set<const Registro*>();
-                nuevo_conj_registros.fast_insert(&*it);
-                get<0>(indice).insert(make_pair(dato_actual, nuevo_conj_registros));
-            } else {
-                linear_set<const Registro*> conj_registros = get<0>(indice).at(dato_actual);
-                conj_registros.fast_insert(&*it);
-                get<0>(indice).insert(make_pair(dato_actual, conj_registros));
+    if (t.tipoCampo(campo).esNat()) { //Si es un campo Nat
+        while (it != t.registros().end()) { //Itero sobre los registros de la tabla
+            int dato_actual = (*it).dato(campo).valorNat(); //Copio el dato del registro actual en el campo param
+            linear_set<const Registro*> conj_registros = linear_set<const Registro*>(); //Creo un conjunto nuevo de punteros a registro
+            if (get<0>(indice).count(dato_actual) != 0) { //Si ya habia registros con el mismo valor en el campo tomo ese conjunto
+                conj_registros = get<0>(indice).at(dato_actual);
+                get<0>(indice).erase(dato_actual); //Por como funciona map de la stl hay q borrar antes de insertar algo nuevo, no se sobreescribe
             }
+            conj_registros.fast_insert(&*it); //Le agrego al conjunto un puntero al registro sobre el que estoy iterando
+            get<0>(indice).insert(make_pair(dato_actual, conj_registros)); //Inserto el nuevo conjunto en el indice para ese dato
             ++it;
         }
         get<2>(indice) = false;
-    } else {
-        linear_set<string> datos = linear_set<string>();
-        while (it != t.registros_end()) {
+    } else { //Si es un campo str, misma idea
+        while (it != t.registros().end()) {
             string dato_actual = (*it).dato(campo).valorStr();
-            datos.insert(dato_actual);
-            if (get<1>(indice).count(dato_actual) == 0) {
-                linear_set<const Registro*> nuevo_conj_registros = linear_set<const Registro*>();
-                nuevo_conj_registros.fast_insert(&*it);
-                get<1>(indice).insert(make_pair(dato_actual, nuevo_conj_registros));
-            } else {
-                linear_set<const Registro*> conj_registros = get<1>(indice).at(dato_actual);
-                conj_registros.fast_insert(&*it);
-                get<1>(indice).insert(make_pair(dato_actual, conj_registros));
+            linear_set<const Registro*> conj_registros = linear_set<const Registro*>();
+            if (get<1>(indice).count(dato_actual) != 0) {
+                conj_registros = get<1>(indice).at(dato_actual);
             }
+            conj_registros.fast_insert(&*it);
+            get<1>(indice).insert(make_pair(dato_actual, conj_registros));
             ++it;
         }
         get<2>(indice) = true;
@@ -244,83 +231,135 @@ void BaseDeDatos::crearIndice(const string &nombre, const string &campo) {
 
     nuevos_indices.insert(make_pair(campo, indice));
     _indices.insert(make_pair(nombre, nuevos_indices));
-
 }
 
 BaseDeDatos::join_iterator BaseDeDatos::join(const string &tabla1, const string &tabla2, const string &campo) {
+    *_ultimo_join = Join(); //Limpio el valor de ultimo join
     //Si tabla2 no tiene indices doy vuelta las cosas, tabla1 tendra indice por precondicion
     if (_indices.count(tabla2) == 0  or _indices.at(tabla2).count(campo) == 0) {
-        return join(tabla2, tabla1, campo);
+        join(tabla2, tabla1, campo);
+        _ultimo_join->tabla_indexada = false;
+        return _ultimo_join->begin();
     }
 
     //Ahora si, tabla2 seguro tiene indice
     const Tabla& t1 = dameTabla(tabla1);
     const Tabla& t2 = dameTabla(tabla2);
-    Indice indice = _indices.at(tabla2).at(campo);
-    Join res;
+    Indice& indice = _indices.at(tabla2).at(campo);
+    //Itero sobre los registros de la tabla 1
     auto it = t1.registros_begin();
+    //En caso de estar tratando con un campo nat:
     if (!get<2>(indice)) {
         while (it != t1.registros_end()) {
-            int dato_actual = it->dato(campo).valorNat();
-            auto find_dato = get<0>(indice).find(dato_actual);
-            if (find_dato != get<0>(indice).end()) {
-                res.fast_insert(make_pair(&*it, get<0>(indice).at(dato_actual)));
+            int dato_actual = it->dato(campo).valorNat(); //Me fijo que valor tiene el registro actual en el campo
+            auto find_dato = get<0>(indice).find(dato_actual); //Busco que registros tienen ese valor en la tabla2
+            if (find_dato != get<0>(indice).end()) { //Si hay registros con ese valor en la tabla dos:
+                _ultimo_join->tabla1.fast_insert(&*it); //Agrego un puntero al registro de la tabla1 y al conjunto de registros de la tabla2
+                _ultimo_join->tabla2.fast_insert(&find_dato->second);
             }
             ++it;
         }
     } else {
+        //En caso de estar tratando con un campo string (misma idea):
         while (it != t1.registros_end()) {
             string dato_actual = it->dato(campo).valorStr();
             auto find_dato = get<1>(indice).find(dato_actual);
             if (find_dato != get<1>(indice).end()) {
-                res.fast_insert(make_pair(&*it, get<1>(indice).at(dato_actual)));
+                _ultimo_join->tabla1.fast_insert(&*it);
+                _ultimo_join->tabla2.fast_insert(&find_dato->second);
             }
             ++it;
         }
     }
-    *_ultimo_join = res;
-    //Habría que implementar un join_begin y un join_end ¡NO USAR join.begin() PORQUE ESE ESE EL ITERADOR DE LINEAR MAP Y NO NOS SIRVE!
-    return join_begin(*_ultimo_join);
+    _ultimo_join->tabla_indexada = true;
+    return _ultimo_join->begin();
 }
 
-BaseDeDatos::join_iterator BaseDeDatos::join_begin (Join join){
-    const Registro* first = join.begin()->first;
-    const Registro* second = *(join.begin()->second.begin());
-    return make_pair(first, second);
+BaseDeDatos::join_iterator BaseDeDatos::Join::begin (){
+    if (tabla1.empty()) {
+        return end();
+    }
+    auto first = tabla1.begin();
+    auto second = (*tabla2.begin())->begin();
+    return join_iterator(make_pair(first, second), tabla1.size(), 0, tabla2, tabla_indexada);
 }
 
-//BaseDeDatos::join_iterator BaseDeDatos::join_end (){
-//
-//}
-//
-//BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(){
-//    if (this->second != this->second.end()){
-//        this->second++;
-//    }else{
-//        this->first++;
-//        this->second = at(*(this->first)).begin();/////HAY QUE HACER UN OBTENER!!!!!!!!!!!
-//    }
-//    return *this;
-//}
-//
-//
-//Registro BaseDeDatos::join_iterator::operator *(){
-//    vector<string> campos = {};
-//    vector<Dato> datos = {};
-//    typename string_map::iterator it_datos1 = (this->first).datos().begin();//iterador string_map sobre (this->first).datos()
-//    for(typename linear_set::iterator it_campos1 = (this->first).campos().begin(); it_campos1 != (this->first).campos().end(); it_campos1++ ){ //iterador linear_set sobre (this->first).campos()
-//        campos.push_back(*it_campos1);
-//        datos.push_back(*it_datos1);
-//        it_datos1++;
-//    }
-//    typename string_map::iterator it_datos2 = (this->second).datos().begin();//iterador string_map sobre (this->second).datos()
-//    for(typename linear_set::iterator it_campos2 = (this->second).campos().begin(); it_campos2 != (this->second).campos().end(); it_campos2++){ //iterador linear_set sobre (this->second).campos()
-//        if (!pertenece(*it_campos2, campos)){
-//            campos.push_back(*it_campos2);
-//            datos.push_back(*it_datos2);
-//        }
-//        it_datos2++;
-//    }
-//    Registro res(campos, datos);
-//    return res;
-//}
+BaseDeDatos::join_iterator& BaseDeDatos::join_iterator::operator++(){
+    ++v.second;
+
+    bool esUltimo = v.second == (*tabla2_it)->end();
+
+    if(esUltimo){
+        iteraciones++;
+        ++tabla2_it;
+        ++v.first;
+        if (tabla2_it != tabla2.end()) {
+            v.second = (*tabla2_it)->begin();
+        } else {
+            v.second = linear_set<const Registro*>().begin();
+        }
+    }
+    return *this;
+}
+
+//esto es para que el compilador distinga entre ++it e it++
+BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator++(int) {
+    join_iterator temp(*this);
+    operator++();
+    return temp;
+}
+
+
+Registro BaseDeDatos::join_iterator::operator*() const {
+    Registro reg1 = *(*v.first);
+    Registro reg2 = *(*v.second);
+    if (!tabla_indexada) { //Esto me permite hacer las cosas en el orden correcto cuando las tablas comparten campos
+        reg2 = *(*v.first);
+        reg1 = *(*v.second);
+    }
+    vector<string> campos;
+    vector<Dato> datos;
+    string_map<bool> campos_chequear_repetidos;
+    for (auto it : reg1.campos()) {
+        campos.push_back(it);
+        datos.push_back(reg1.dato(it));
+        campos_chequear_repetidos.insert(make_pair(it, true));
+    }
+    for (auto it : reg2.campos()) {
+        if (!campos_chequear_repetidos.count(
+                it)) { //solo agrego el valor en campo de reg2 si no es un campo comun entre las dos tablas
+            campos.push_back(it);
+            datos.push_back(reg2.dato(it));
+            campos_chequear_repetidos.insert(make_pair(it, true));
+        }
+    }
+    return Registro(campos, datos);
+}
+
+bool BaseDeDatos::join_iterator::operator==(const join_iterator &other) const {
+    return (this->termino() && other.termino()) || other.v == this->v;
+}
+
+bool BaseDeDatos::join_iterator::operator!=(const join_iterator &other) const {
+    return !(*this == other);
+}
+
+BaseDeDatos::join_iterator BaseDeDatos::join_iterator::operator=(const BaseDeDatos::join_iterator &other) {
+    v = other.v;
+    tabla_indexada = other.tabla_indexada;
+    return join_iterator(other);
+}
+
+bool BaseDeDatos::join_iterator::termino() const {
+    return iteraciones >= max_iter;
+}
+
+BaseDeDatos::join_iterator BaseDeDatos::Join::end() {
+    join_iterator res = join_iterator(make_pair(tabla1.end(), linear_set<const Registro *>().end()), tabla1.size(), tabla1.size(), tabla2, tabla_indexada);
+    res.iteraciones = res.max_iter;
+    return res;
+}
+
+BaseDeDatos::join_iterator BaseDeDatos::join_end() {
+    return _ultimo_join->end();
+}
