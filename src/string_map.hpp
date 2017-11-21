@@ -62,10 +62,10 @@ string_map<T>::insert(const string_map<T>::value_type &v) {
             Nodo *nuevo = new Nodo(auxNombre);
             auto it = actual->_hijos.begin();
             actual->_hijos.insert(it + insertAt, nuevo);
-            insertAt = 0; //hago reset de insertAt
             nuevo->padre = actual;
             actual = nuevo;
         }
+        insertAt = 0; //hago reset de insertAt
         pertenece = false;// hago reset de pertenece
     }
     if (!actual->_definido){
